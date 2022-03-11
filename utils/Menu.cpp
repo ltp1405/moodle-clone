@@ -12,10 +12,10 @@ void Menu::addItem(string itemName) {
 int Menu::getInput() {
     for (int i = 0; i < numberOfItems; i++) {
         cout << i+1 << "/ ";
-        cout << menuItems[i] << endl;
+        cout << menuItems[i] << std::endl;
     }
 
-    cout << "Choose " << 1 << "-" << numberOfItems << endl;
+    cout << "Choose " << 1 << "-" << numberOfItems << std::endl;
     cout << "> ";
     int choice;
     cin >> choice;
