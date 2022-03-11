@@ -19,5 +19,7 @@ struct Course {
     Session *sessions;
     const int sessionNumbers = 2;
 
+    Course();
     void startRegistrationSession();
+    void addSession(Session session);
 };
