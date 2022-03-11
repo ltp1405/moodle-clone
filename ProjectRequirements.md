@@ -8,7 +8,6 @@ There are 2 types of users in the system.
 He/she has to log in to the system.
 Then, he/she can view his/her profile info, change password, or log out of the system
 
-
 ### At the beginning of a school year (often in September), an academic staff member will:
 - Create a school year (2020-2021, for example)
 - Create several classes for 1st year students. For example: class 20APCS1,
@@ -24,6 +23,7 @@ these students had been added in the previous years.
 - Semester 1 (Fall)
 - Semester 2 (Summer)
 - Semester 3 (Autumn)
+
 ### At the beginning of a semester, an academic staff member will:
 - Create a semester: 1, 2, or 3, school year, start date, end date. Choose the
 school year that the newly created semester belongs to. The created semester will
@@ -46,10 +46,10 @@ He/she can enroll in at most 5 courses in a semester.
 - View a list of enrolled courses.
 - Remove a course from the enrolled list.
 
-### When a course registration session is close,
-#### A student still can:
+### When a course registration session is close, a student still can:
 - View a list of his/her courses. He/she will study these courses in this semester.
-#### At any time, an academic staff member can:
+
+### At any time, an academic staff member can:
 - View a list of classes.
 - View a list of students in a class (for example, 20APCS1…)
 - View a list of courses.
