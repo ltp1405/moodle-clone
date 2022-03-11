@@ -1,4 +1,4 @@
-#include "utils/Menu.h"
+#include "Menu.h"
 #include <iostream>
 #include <string>
 using std::cout;
@@ -31,7 +31,7 @@ int main() {
     academicMemberMenu.addItem("Update scoreboard of a course");
     academicMemberMenu.addItem("Update scoreboard of a class");
 
-    academicMemberMenu.getInput();
+    cout << academicMemberMenu.getInput();
 	return 0;
 }
 
