@@ -10,19 +10,11 @@ template<typename T>
 struct LinkedList {
     DNode<T> *head = nullptr, *tail = nullptr;
     int size = 0;
+
+    void printList(LinkedList<T> &list);
+    void addHead(LinkedList<T> &list, const T &item);
+    void addTail(LinkedList<T> &list, const T &item);
+    bool deleteHead(LinkedList<T> &list);
+    bool deleteTail(LinkedList<T> &list);
+    bool findNode(LinkedList<T> &list, T &toFind, DNode<T> &result, bool (*compare)(const T &a, const T &b));
 };
-
-template<typename T>
-void printList(LinkedList<T> &list);
-
-template<typename T>
-void addHead(LinkedList<T> &list, const T &item);
-
-template<typename T>
-void addTail(LinkedList<T> &list, const T &item);
-
-template<typename T>
-bool deleteHead(LinkedList<T> &list);
-
-template<typename T>
-bool deleteTail(LinkedList<T> &list);

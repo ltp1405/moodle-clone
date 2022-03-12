@@ -59,3 +59,17 @@ bool deleteTail(LinkedList<T> &list) {
     delete tmp;
     return true;
 }
+
+template<typename T>
+bool findNode(LinkedList<T> &list, T &toFind, DNode<T> &result, bool (*compare)(const T &a, const T &b)) {
+    for (DNode<T> *current = list.head; 
+        current != nullptr; 
+        current = current->next
+    ) {
+        if(compare(current->data, toFind)) {
+            result = current;
+            return true;
+        }
+    }
+    return false;
+}
