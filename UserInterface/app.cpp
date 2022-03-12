@@ -9,6 +9,8 @@ using std::endl;
 class App {
 private:
     // A bunch of linked list
+public:
+    void load();
 };
 
 string getInput();
@@ -23,6 +25,12 @@ void promptAddStudent(App*);
 void promptCreateSemester(App*);
 void promptViewScoreboard(App*);
 void promptOpenRegistrationSession(App*);
+void promptViewCoursesList(App*);
+void promptExportStudent(App*);
+void promptImportCourseScoreboard(App*);
+void promptViewCourseScoreboard(App*);
+void promptUpdateClassScoreboard(App*);
+void promptUpdateCourseScoreboard(App*);
 void studentPromptViewProfile(App*);
 void studentPromptChangePassword(App*);
 void studentPromptViewScoreboard(App*);
@@ -41,12 +49,12 @@ int main() {
     academicMemberMenu.addItem("Add student to class", promptAddStudent);
     academicMemberMenu.addItem("Create semester", promptCreateSemester);
     academicMemberMenu.addItem("Open Registration Session", promptOpenRegistrationSession);
-    // academicMemberMenu.addItem("View list of courses");
-    // academicMemberMenu.addItem("Export students");
-    // academicMemberMenu.addItem("Import scoreboard of a course");
-    // academicMemberMenu.addItem("View scoreboard of a course");
-    // academicMemberMenu.addItem("Update scoreboard of a course");
-    // academicMemberMenu.addItem("Update scoreboard of a class");
+    academicMemberMenu.addItem("View list of courses", promptViewCoursesList);
+    academicMemberMenu.addItem("Export students", promptExportStudent);
+    academicMemberMenu.addItem("Import scoreboard of a course", promptImportCourseScoreboard);
+    academicMemberMenu.addItem("View scoreboard of a course", promptViewCourseScoreboard);
+    academicMemberMenu.addItem("Update scoreboard of a course", promptUpdateCourseScoreboard);
+    academicMemberMenu.addItem("Update scoreboard of a class", promptUpdateClassScoreboard);
 
     academicMemberMenu.run();
 	return 0;
