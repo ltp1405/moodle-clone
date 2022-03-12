@@ -1,9 +1,15 @@
-#include "Menu.h"
+#include "Menu.hpp"
 #include <iostream>
 #include <string>
 using std::cout;
 using std::cin;
 using std::string;
+using std::endl;
+
+class App {
+private:
+    // A bunch of linked list
+};
 
 string getInput();
 void run();
@@ -11,53 +17,73 @@ void init();
 bool process(string input);
 void displayUsage();
 
+void promptCreateCourse(App*);
+void promptCreateSchoolYear(App*);
+void promptAddStudent(App*);
+void promptCreateSemester(App*);
+void promptViewScoreboard(App*);
+void promptOpenRegistrationSession(App*);
+void studentPromptViewProfile(App*);
+void studentPromptChangePassword(App*);
+void studentPromptViewScoreboard(App*);
+
 int main() {
-    Menu studentMenu;
-    Menu academicMemberMenu;
+    App *app = new App;
+    Menu<App> studentMenu(app);
+    Menu<App> academicMemberMenu(app);
 
-    studentMenu.addItem("View profile");
-    studentMenu.addItem("Change password");
-    studentMenu.addItem("View scoreboard");
+    studentMenu.addItem("View profile", studentPromptViewProfile);
+    studentMenu.addItem("Change password", studentPromptChangePassword);
+    studentMenu.addItem("View scoreboard", studentPromptViewScoreboard);
 
-    academicMemberMenu.addItem("Create new course");
-    academicMemberMenu.addItem("Create new school year");
-    academicMemberMenu.addItem("Add student to class");
-    academicMemberMenu.addItem("Create semester");
-    academicMemberMenu.addItem("Open Registration Session");
-    academicMemberMenu.addItem("View list of courses");
-    academicMemberMenu.addItem("Export students");
-    academicMemberMenu.addItem("Import scoreboard of a course");
-    academicMemberMenu.addItem("View scoreboard of a course");
-    academicMemberMenu.addItem("Update scoreboard of a course");
-    academicMemberMenu.addItem("Update scoreboard of a class");
+    academicMemberMenu.addItem("Create new course", promptCreateCourse);
+    academicMemberMenu.addItem("Create new school year", promptCreateSchoolYear);
+    academicMemberMenu.addItem("Add student to class", promptAddStudent);
+    academicMemberMenu.addItem("Create semester", promptCreateSemester);
+    academicMemberMenu.addItem("Open Registration Session", promptOpenRegistrationSession);
+    // academicMemberMenu.addItem("View list of courses");
+    // academicMemberMenu.addItem("Export students");
+    // academicMemberMenu.addItem("Import scoreboard of a course");
+    // academicMemberMenu.addItem("View scoreboard of a course");
+    // academicMemberMenu.addItem("Update scoreboard of a course");
+    // academicMemberMenu.addItem("Update scoreboard of a class");
 
-    cout << academicMemberMenu.getInput();
+    academicMemberMenu.run();
 	return 0;
 }
 
-void promptCreateCourse() {
+void promptCreateCourse(App *app) {
+    cout << "Create course" << endl;
 }
 
-void promptCreateSchoolYear() {
+void promptCreateSchoolYear(App *app) {
+    cout << "Create school year" << endl;
 }
 
-void promptAddStudent() {
+void promptAddStudent(App *app) {
+    cout << "Add student" << endl;
 }
 
-void promptCreateSemester() {
+void promptCreateSemester(App *app) {
+    cout << "Create semester" << endl;
 }
 
-void promptViewScoreboard() {
+void promptViewScoreboard(App *app) {
+    cout << "View scoreboard" << endl;
 }
 
-void promptOpenRegistrationSession() {
+void promptOpenRegistrationSession(App *app) {
+    cout << "Open registration session" << endl;
 }
 
-void studentPromptViewProfile() {
+void studentPromptViewProfile(App *app) {
+    cout << "View profile" << endl;
 }
 
-void studentPromptChangePassword() {
+void studentPromptChangePassword(App *app) {
+    cout << "Change password" << endl;
 }
 
-void studentPromptViewScoreboard() {
+void studentPromptViewScoreboard(App *app) {
+    cout << "View scoreboard" << endl;
 }
