@@ -1,13 +1,16 @@
 #pragma once
 #include "../School/Session.h"
 #include "../utils/Date.h"
+#include "../utils/LinkedList.h"
 #include <string>
 using std::string;
 
-struct CourseRegistrationSession {
+struct RegistrationSession {
     bool activated;
     Date start;
     Date end;
+
+    RegistrationSession();
 };
 
 struct Course {
@@ -16,8 +19,8 @@ struct Course {
     string teacherName;
     const int credits;
     const int maxStudents;
-    Session *sessions;
-    const int sessionNumbers = 2;
+    LinkedList<Session> sessions;
+    RegistrationSession regSession;
 
     Course(string courseId, string courseName, int numberOfCredits,
            int maxStudents, string teacher);
