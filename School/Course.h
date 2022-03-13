@@ -5,14 +5,6 @@
 #include <string>
 using std::string;
 
-struct RegistrationSession {
-    bool activated;
-    Date start;
-    Date end;
-
-    RegistrationSession();
-};
-
 struct Course {
     const string id;
     const string name;
@@ -20,12 +12,10 @@ struct Course {
     const int credits;
     const int maxStudents;
     LinkedList<Session> sessions;
-    RegistrationSession regSession;
 
     Course(string courseId, string courseName, int numberOfCredits,
            int maxStudents, string teacher);
 
     void addTeacherName(string name);
-    void startRegistrationSession();
     void addSession(Session session);
 };
