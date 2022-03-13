@@ -2,7 +2,7 @@
 #include "../School/Session.h"
 #include "../utils/Date.h"
 #include <string>
-using namespace std;
+using std::string;
 
 struct CourseRegistrationSession {
     bool activated;
@@ -11,15 +11,18 @@ struct CourseRegistrationSession {
 };
 
 struct Course {
-    string id;
-    string name;
+    const string id;
+    const string name;
     string teacherName;
-    int numberOfCredits;
-    int maxStudents;
+    const int credits;
+    const int maxStudents;
     Session *sessions;
     const int sessionNumbers = 2;
 
-    Course();
+    Course(string courseId, string courseName, int numberOfCredits,
+           int maxStudents, string teacher);
+
+    void addTeacherName(string name);
     void startRegistrationSession();
     void addSession(Session session);
 };
