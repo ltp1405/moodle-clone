@@ -6,11 +6,12 @@ struct Semester {
     int order;
     Date start;
     Date end;
-    Course *courses;
+    LinkedList<Course> courses;
 
-    Semester();
-    void addSchoolYear();
+    Semester(int order, Date start, Date end);
+    void addtime(int order, Date start, Date end);
     void viewListOfCourse();
     void addCourse(Course course);
     Course getCourse();
 };
+
