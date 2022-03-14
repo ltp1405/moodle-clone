@@ -5,11 +5,11 @@
 struct SchoolYear {
     Date from;
     Date to;
-    Semester *semesters;
+    LinkedList<Semester> semesters;
     int semesterNumber;
 
-    SchoolYear();
-    void addBeginDate();
-    void addEndDate();
+    SchoolYear(Date from, Date to);
+    void addtime(Date from, Date to);
     void addSemester(Semester semester);
+    bool compare(Semester semester1, Semester semester2);
 };
