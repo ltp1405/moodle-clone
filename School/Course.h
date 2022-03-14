@@ -16,6 +16,5 @@ struct Course {
     Course(string courseId, string courseName, int numberOfCredits,
            int maxStudents, string teacher);
 
-    void addTeacherName(string name);
     void addSession(Session session);
 };

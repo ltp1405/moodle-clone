@@ -9,3 +9,6 @@ Course::Course(string courseId, string courseName, int numberOfCredits, int maxS
     regSession = RegistrationSession();
 }
 
+void Course::addSession(Session session) {
+    sessions.addTail(session);
+}
