@@ -9,17 +9,24 @@ struct DNode {
 template<class T>
 class LinkedList {
 private:
-    DNode<T> *head = nullptr, *tail = nullptr;
-    int size = 0;
+    DNode<T> *head, *tail;
+    int size;
 public:
-    int size();
-    void printList();
+    LinkedList();
+    ~LinkedList();
+    int getSize();
+    void printList(void (*print)(const T &item));
     void addHead(const T &item);
     void addTail(const T &item);
     bool deleteHead();
     bool deleteTail();
-    DNode<T>* findNode(T &toFind, bool (*compare)(const T &a, const T &b));
-    int findIndex(T &toFind, bool (*compare)(const T &a, const T &b));
-    bool deleteAtX(T &x, bool (*compare)(const T &a, const T &b));
+    DNode<T>* findNode(T &toFind, bool (*checkEqual)(const T &a, const T &b));
+    int findIndex(const T &toFind, bool (*checkEqual)(const T &a, const T &b));
+    bool getNodeAtIndex(int index, T &res);
+    bool deleteAtX(const T &x, bool (*checkEqual)(const T &a, const T &b));
     bool deleteAtIndex(int index);
+    bool updateAtX(const T &x, const T &payload, bool (*checkEqual)(const T &a, const T &b));
+    bool updateAtIndex(int index, const T &payload);
 };
+
+#include "LinkedList.tpp"
