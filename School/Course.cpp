@@ -6,7 +6,6 @@ Course::Course(string courseId, string courseName, int numberOfCredits, int maxS
     , credits(numberOfCredits)
     , maxStudents(maxStudents)
     , teacherName(teacher) {
-    regSession = RegistrationSession();
 }
 
 void Course::addSession(Session session) {
