@@ -9,10 +9,10 @@ LinkedList<T>::LinkedList() {
 
 template<class T>
 LinkedList<T>::~LinkedList() {
-    while(head) {
-        head = head->next;
-        delete head->prev;
-    }
+    for (DNode<T>* current = head; head != nullptr; current = head) {
+        head = current->next;
+		delete current;
+	}
 }
 
 template<class T>
