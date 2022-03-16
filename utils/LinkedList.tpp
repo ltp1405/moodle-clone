@@ -21,7 +21,7 @@ int LinkedList<T>::getSize() {
 }
 
 template<class T>
-void LinkedList<T>::printList(void (*print)(const T &item)) {
+void LinkedList<T>::printList(std::function<void(T&)> print) {
     for (DNode<T> *current = head; 
         current != nullptr; 
         current = current->next
@@ -85,7 +85,7 @@ bool LinkedList<T>::deleteTail() {
 
 // Maybe not needed
 template<class T>
-DNode<T>* LinkedList<T>::findNode(T &toFind, bool (*checkEqual)(const T &a, const T &b)) {
+DNode<T>* LinkedList<T>::findNode(T &toFind, std::function<bool(T &a, T &b)> checkEqual) {
     for (DNode<T> *current = head; 
         current != nullptr; 
         current = current->next
@@ -97,7 +97,7 @@ DNode<T>* LinkedList<T>::findNode(T &toFind, bool (*checkEqual)(const T &a, cons
 }
 
 template<class T>
-int LinkedList<T>::findIndex(const T &toFind, bool (*checkEqual)(const T &a, const T &b)) {
+int LinkedList<T>::findIndex(const T &toFind, std::function<bool(T&, T&)>) {
     int cnt = 0;
     for (DNode<T> *current = head; 
         current != nullptr; 
@@ -125,7 +125,7 @@ bool LinkedList<T>::getNodeAtIndex(int index, T &res) {
 }
 
 template<class T>
-bool LinkedList<T>::deleteAtX(const T &x, bool (*checkEqual)(const T &a, const T &b)) {
+bool LinkedList<T>::deleteAtX(const T &x, std::function<bool(T&, T&)> checkEqual) {
     for (DNode<T> *current = head; 
         current != nullptr; 
         current = current->next
@@ -178,7 +178,7 @@ bool LinkedList<T>::deleteAtIndex(int index) {
 }
 
 template<class T>
-bool LinkedList<T>::updateAtX(const T &x, const T &payload, bool (*checkEqual)(const T &a, const T &b)) {
+bool LinkedList<T>::updateAtX(const T &x, const T &payload, std::function<bool(T &a, T &b)>) {
     for (DNode<T> *current = head; 
         current != nullptr; 
         current = current->next

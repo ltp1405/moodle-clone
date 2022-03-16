@@ -1,4 +1,5 @@
 #pragma once
+#include <functional>
 
 template<class T>
 struct DNode {
@@ -15,17 +16,17 @@ public:
     LinkedList();
     ~LinkedList();
     int getSize();
-    void printList(void (*print)(const T &item));
+    void printList(std::function<void(T&)> print);
     void addHead(const T &item);
     void addTail(const T &item);
     bool deleteHead();
     bool deleteTail();
-    DNode<T>* findNode(T &toFind, bool (*checkEqual)(const T &a, const T &b));
-    int findIndex(const T &toFind, bool (*checkEqual)(const T &a, const T &b));
+    DNode<T>* findNode(T &toFind, std::function<bool(T&, T&)>);
+    int findIndex(const T &toFind, std::function<bool(T&, T&)>);
     bool getNodeAtIndex(int index, T &res);
-    bool deleteAtX(const T &x, bool (*checkEqual)(const T &a, const T &b));
+    bool deleteAtX(const T &x, std::function<bool(T&, T&)>);
     bool deleteAtIndex(int index);
-    bool updateAtX(const T &x, const T &payload, bool (*checkEqual)(const T &a, const T &b));
+    bool updateAtX(const T &x, const T &payload, std::function<bool(T &a, T &b)>);
     bool updateAtIndex(int index, const T &payload);
 };
 
