@@ -41,12 +41,18 @@ enum class BackgroundColor : int {
     bright_white = 107,
 };
 
+template<class Printable>
 class Text {
+private:
+    bool bold;
+    bool dim;
+    Color fg;
+    BackgroundColor bg;
 public:
-    std::string text;
+    Printable text;
 
     Text();
-    Text(std::string text, Color fg = Color::white,
+    Text(Printable text, Color fg = Color::white,
          BackgroundColor bg = BackgroundColor::black, bool bold = false,
          bool dim = false) {
         this->text = text;
@@ -58,29 +64,45 @@ public:
             setDim();
     }
 
+    std::string display() const {
+        std::stringstream sstr;
+        sstr << "\x1b[1;" << static_cast<int>(fg) << "m";
+        sstr << "\x1b[1;" << static_cast<int>(bg) << "m";
+        if (bold)
+            sstr << "\x1b[1m";
+        if (dim)
+            sstr << "\x1b[3m";
+        sstr << text << "\x1b[0m";
+
+        return sstr.str();
+    }
+
     void setColor(Color color) {
-        text = "\x1b[1;" + std::to_string(static_cast<int>(color)) + "m" + text + "\x1b[0m";
+        fg = color;
     }
 
     void setBgColor(BackgroundColor bgcolor) {
-        text = "\x1b[1;" + std::to_string(static_cast<int>(bgcolor)) + "m" + text + "\x1b[0m";
+        bg = bgcolor;
     }
 
-    void setBold() {
-        text = "\x1b[1m" + text + "\x1b[22m";
+    void setBold(bool on=true) {
+        if (on)
+            bold = true;
+        else 
+            bold = false;
     }
 
-    void setItalic() {
-        text = "\x1b[3m" + text + "\x1b[23m";
-    }
-
-    void setDim() {
-        text = "\x1b[2m" + text + "\x1b[22m";
+    void setDim(bool on=true) {
+        if (on)
+            bold = true;
+        else 
+            bold = false;
     }
 };
 
-std::ostream &operator<<(std::ostream &os, Text const &t) {
-    return os << t.text;
+template<class Printable>
+std::ostream &operator<<(std::ostream &os, Text<Printable> const &t) {
+    return os << t.display();
 }
 
 // int main(int agrc,char** argv){
