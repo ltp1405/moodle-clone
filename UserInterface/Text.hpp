@@ -1,4 +1,5 @@
 // Code idea from https://gist.github.com/zyvitski/fb12f2ce6bc9d3b141f3bd4410a6f7cf
+#pragma once
 #include <iostream>
 #include <sstream>
 #include <string>
