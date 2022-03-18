@@ -19,7 +19,7 @@ void Table::printTop() {
     for (auto col = cols.begin(); col != cols.end(); col++) {
         printLine(horizontal, col->width);
         if (col != cols.end() - 1)
-            cout << horizontalDown;
+            cout << horizontalUp;
         else
             cout << upperRight;
     }
@@ -31,7 +31,7 @@ void Table::printBot() {
     for (auto col = cols.begin(); col != cols.end(); col++) {
         printLine(horizontal, col->width);
         if (col != cols.end() - 1)
-            cout << horizontalUp;
+            cout << horizontalDown;
         else
             cout << lowerRight;
     }
@@ -98,7 +98,10 @@ void Table::display() {
                 cout.setf(std::ios::right);
 
             cout.width(cols[i].width);
-            cout << (*row)[i];
+            if ((*row)[i].length() > cols[i].width) {
+                cout << (*row)[i].substr(0, cols[i].width-3) + "...";
+            } else
+                cout << (*row)[i];
             cout << "│";
         }
 
