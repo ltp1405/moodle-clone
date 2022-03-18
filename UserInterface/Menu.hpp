@@ -42,5 +42,5 @@ void Menu<T>::run() {
     int choice;
     cin >> choice;
 
-    callbacks[choice+1](context);
+    callbacks[choice-1](context);
 }
