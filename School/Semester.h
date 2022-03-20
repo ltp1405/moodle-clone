@@ -8,7 +8,7 @@ struct Semester {
     Date end;
     LinkedList<Course> courses;
 
-    Semester();
+    Semester(){}
     Semester(int order, Date start, Date end){
         this->order = order;
         this->start = start;

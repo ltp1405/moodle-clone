@@ -6,7 +6,9 @@ using namespace std;
 void Semester::addCourse(Course course){
     courses.addTail(course);
 }
+void printCourse(Course course){
 
+}
 void Semester::viewListOfCourse(){
     printList(courses);
 }
