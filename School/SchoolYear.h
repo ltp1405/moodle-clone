@@ -8,7 +8,7 @@ struct SchoolYear {
     LinkedList<Semester> semesters;
     int semesterNumber;
 
-    SchoolYear();
+    SchoolYear(){}
     SchoolYear(Date from, Date to){
         this->from = from;
         this->to = to;

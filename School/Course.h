@@ -17,4 +17,5 @@ struct Course {
            int maxStudents, string teacher);
 
     void addSession(Session session);
+    void print();
 };
