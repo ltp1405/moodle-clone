@@ -90,3 +90,9 @@ void App::run() {
     academicMemberMenu.addItem("Update scoreboard of a class", &App::promptUpdateClassScoreboard);
     academicMemberMenu.run();
 }
+
+int main() {
+    App *app = new App;
+    app->run();
+	return 0;
+}
