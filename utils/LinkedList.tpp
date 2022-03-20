@@ -8,7 +8,7 @@ DNode<T>::DNode() {
 
 template<class T> 
 DNode<T>::DNode(T data) {
-    this->data = data
+    this->data = data;
     this->next = nullptr, this->prev = nullptr;
 }
 
