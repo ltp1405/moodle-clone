@@ -38,9 +38,12 @@ void Menu<T>::run() {
     }
 
     cout << "Choose " << 1 << "-" << menuItems.size() << std::endl;
+    cout << "Choose 0 to cancel" << std::endl;
     cout << "> ";
     int choice;
     cin >> choice;
+    if (choice == 0)
+        return;
 
-    callbacks[choice+1](context);
+    callbacks[choice-1](context);
 }
