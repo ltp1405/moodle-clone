@@ -9,6 +9,9 @@ using std::endl;
 class App {
 private:
     // A bunch of linked list
+    void promptLoginAsStudent();
+    void promptLoginAsAMember();
+    void promptLogin();
     void promptCreateCourse();
     void promptCreateSchoolYear();
     void promptAddStudent();
