@@ -119,18 +119,16 @@ int LinkedList<T>::findIndex(const T &toFind, std::function<bool(T&, T&)>) {
 }
 
 template<class T>
-bool LinkedList<T>::getNodeAtIndex(int index, T &res) {
+DNode<T>* LinkedList<T>::getNodeAtIndex(int index) {
     int cnt = 0;
     for (DNode<T> *current = head; 
         current != nullptr; 
         current = current->next, cnt++
     ) {
-        if (cnt == index) {
-            res = current->data;
-            return true;
-        }
+        if (cnt == index)
+            return current;
     }
-    return false;
+    return nullptr;
 }
 
 template<class T>
