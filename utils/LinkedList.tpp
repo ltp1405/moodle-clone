@@ -212,3 +212,16 @@ bool LinkedList<T>::updateAtIndex(int index, const T &payload) {
     }
     return false;
 }
+
+template<class T>
+DNode<T>* LinkedList<T>::operator[](int index) {
+    int cnt = 0;
+    for (DNode<T> *current = head; 
+        current != nullptr; 
+        current = current->next, cnt++
+    ) {
+        if (cnt == index)
+            return current;
+    }
+    return nullptr;
+}
