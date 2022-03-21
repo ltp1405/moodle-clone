@@ -4,7 +4,10 @@
 template<class T>
 struct DNode {
     T data;
-    DNode *next = nullptr, *prev = nullptr;
+    DNode *next, *prev;
+
+    DNode();
+    DNode(T data);
 };
 
 template<class T>
@@ -23,7 +26,7 @@ public:
     bool deleteTail();
     DNode<T>* findNode(T &toFind, std::function<bool(T&, T&)>);
     int findIndex(const T &toFind, std::function<bool(T&, T&)>);
-    bool getNodeAtIndex(int index, T &res);
+    DNode<T>* getNodeAtIndex(int index);
     bool deleteAtX(const T &x, std::function<bool(T&, T&)>);
     bool deleteAtIndex(int index);
     bool updateAtX(const T &x, const T &payload, std::function<bool(T &a, T &b)>);
