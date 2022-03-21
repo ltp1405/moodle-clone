@@ -1,6 +1,17 @@
 #include "LinkedList.h"
 #include <iostream>
 
+template<class T> 
+DNode<T>::DNode() {
+    this->next = nullptr, this->prev = nullptr;
+}
+
+template<class T> 
+DNode<T>::DNode(T data) {
+    this->data = data;
+    this->next = nullptr, this->prev = nullptr;
+}
+
 template<class T>
 LinkedList<T>::LinkedList() {
     head = nullptr, tail = nullptr;
@@ -34,28 +45,26 @@ void LinkedList<T>::printList(std::function<void(T&)> print) {
 template<class T>
 void LinkedList<T>::addHead(const T &item) {
     if (!head) {
-        head = new DNode<T>;
+        head = new DNode<T>(item);
         tail = head;
     } else {
-        head->prev = new DNode<T>;
+        head->prev = new DNode<T>(item);
         head->prev->next = head;
         head = head->prev;
     }
-    head->data = item;
     size++;
 }
 
 template<class T>
 void LinkedList<T>::addTail(const T &item) {
     if (!head) {
-        head = new DNode<T>;
+        head = new DNode<T>(item);
         tail = head;
     } else {
-        tail->next = new DNode<T>;
+        tail->next = new DNode<T>(item);
         tail->next->prev = tail;
         tail = tail->next;
     }
-    tail->data = item;
     size++;
 }
 

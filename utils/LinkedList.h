@@ -4,7 +4,10 @@
 template<class T>
 struct DNode {
     T data;
-    DNode *next = nullptr, *prev = nullptr;
+    DNode *next, *prev;
+
+    DNode();
+    DNode(T data);
 };
 
 template<class T>
