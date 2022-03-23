@@ -6,13 +6,14 @@
 using std::string;
 
 struct Course {
-    const string id;
-    const string name;
+    string id;
+    string name;
     string teacherName;
-    const int credits;
-    const int maxStudents;
+    int credits;
+    int maxStudents;
     LinkedList<Session> sessions;
 
+    Course();
     Course(string courseId, string courseName, int numberOfCredits,
            int maxStudents, string teacher);
 
