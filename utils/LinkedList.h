@@ -19,6 +19,8 @@ public:
     LinkedList();
     ~LinkedList();
     int getSize();
+    DNode<T>* getHead();
+    DNode<T>* getTail();
     void printList(std::function<void(T&)> print);
     void addHead(const T &item);
     void addTail(const T &item);
