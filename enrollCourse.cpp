@@ -11,11 +11,33 @@ void addStudentToCourse(Course &crs, const Student &st) {
     cout << "Add " << st.firstname << " to " << crs.id << endl;
 }
 
+bool enrolled(Course &crs, const Student &st) {
+    DNode<Student>*cur = crs.students.getHead();
+    while (cur) {
+        if (cur->data.firstname == st.firstname)
+            return true;
+        cur = cur->next;
+    }
+    return false;
+}
+
 void enrollCourse(LinkedList<Course> &ls, const Student &st) {
     bool cont = true;
+    DNode<Course> *curHead = ls.getHead();
     while (cont) {
         cout << "These are course available: " << endl;
-        ls.printList(&Course::print);
+        DNode<Course> *cur = curHead;
+        if (!cur)
+            return;
+        while (cur) {
+            bool erl = enrolled(cur->data, st);
+            if (erl)
+                cout << "\x1b[9m";
+            cur->data.print();
+            if (erl)
+                cout << "\x1b[0m";
+            cur = cur->next;
+        }
         cout << "Choose which course to enroll, type 0 to exit." << endl;
         cout << "[choice]> ";
         int choice;
