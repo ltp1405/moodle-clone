@@ -4,12 +4,11 @@ using std::cout;
 using std::endl;
 
 Course::Course() {}
-
 Course::Course(string courseId, string courseName, int numberOfCredits, int maxStudents, string teacher) {
     id = courseId;
     name = courseName;
     credits = numberOfCredits;
-    maxStudents = maxStudents;
+    this->maxStudents = maxStudents;
     teacherName = teacher;
 }
 
