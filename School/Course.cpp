@@ -3,13 +3,15 @@
 using std::cout;
 using std::endl;
 
-Course::Course(string courseId, string courseName, int numberOfCredits, int maxStudents, string teacher)
-    : id(courseId)
-    , name(courseName)
-    , credits(numberOfCredits)
-    , maxStudents(maxStudents)
-    , teacherName(teacher) {
+Course::Course(string courseId, string courseName, int numberOfCredits, int maxStudents, string teacher) {
+    id = courseId;
+    name = courseName;
+    credits = numberOfCredits;
+    this->maxStudents = maxStudents;
+    teacherName = teacher;
 }
+
+Course::Course() {}
 
 void Course::addSession(Session session) {
     sessions.addTail(session);
