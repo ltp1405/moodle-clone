@@ -1,6 +1,6 @@
 #pragma once
-#include "../School/Course.h"
 #include <string>
+#include "../utils/Date.h"
 using std::string;
 
 enum Gender {
@@ -17,9 +17,7 @@ struct Student {
 	Date dateOfBirth;
 	int age;
 
-	Course *enrolledCourse;
 	int courseNumber;
-	const int maxCourses = 5;
 };
 
 void addStudent(string firstname, string lastname, string id, Gender gender, Date dateOfBirth);

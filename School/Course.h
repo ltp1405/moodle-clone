@@ -2,6 +2,7 @@
 #include "../School/Session.h"
 #include "../utils/Date.h"
 #include "../utils/LinkedList.h"
+#include "../Personnel/Student.h"
 #include <string>
 using std::string;
 
@@ -12,6 +13,7 @@ struct Course {
     int credits;
     int maxStudents;
     LinkedList<Session> sessions;
+    LinkedList<Student> students;
 
     Course();
     Course(string courseId, string courseName, int numberOfCredits,
