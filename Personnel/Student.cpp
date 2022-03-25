@@ -1,18 +1,43 @@
 #include "Student.h"
 #include "../utils/LinkedList.h"
-#include <iostream>
+#include "../utils/Date.h"
+#include <fstream>
+using namespace std;
 
-void addStudent(string firstname, string lastname, string id, Gender gender, Date dateOfBirth){}
+Student addStudent(){
+	Student s;
+	cout << "Student ID: ";
+	cin >> s.id;
+	cout << "Student First Name: ";
+	cin >> s.firstname;
+	cout << "Student Last Name: ";
+	cin >> s.lastname;
 
-void displayStudent(){
-	cout << endl;
-	cout << "---------------------- Student Details ----------------------\n";
-	cout << "Student Id    : " << endl;
-	cout << "First Name    : " << endl;
-	cout << "Last Name     : " << endl;
-	cout << "Gender        : " << endl;
-	cout << "Age           : " << endl;
-	cout << "Date of birth : " << endl;
-	cout << "Course        : " << endl;
-	cout << endl;
+	cout << "Student Gender (1 for Male, 2 for Female): ";
+	int temp;
+	cin >> temp;
+	if(temp==1) s.gender=MALE;
+	if(temp==2) s.gender=FEMALE;
+
+	cout << "Student Day Of Birth (DD/MM/YYYY): ";
+	cin >> s.dateOfBirth.day >> s.dateOfBirth.month >> s.dateOfBirth.year;
+
+	return s;
+}
+
+void inputStudentCSV(LinkedList<Student> &s){
+	ifstream fin;
+	fin.open("Student.csv");
+}
+
+void didplayStudent(Student s) {
+	cout << endl
+		 << "---------------------- Student Details ----------------------\n"
+		 << "Ordinary Number : " << s.ordNum << endl
+		 << "Student Id      : " << s.id << endl
+		 << "First Name      : " << s.firstname << endl
+		 << "Last Name       : " << s.lastname << endl
+		 << "Gender          : " << s.gender << endl
+		 << "Date of birth   : " << s.dateOfBirth.toString() << endl
+		 << endl;
 }
