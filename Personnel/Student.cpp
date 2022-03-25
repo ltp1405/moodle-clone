@@ -28,9 +28,10 @@ Student addStudent(){
 void inputStudentCSV(LinkedList<Student> &s){
 	ifstream fin;
 	fin.open("Student.csv");
+	
 }
 
-void didplayStudent(Student s) {
+void displayStudent(Student s) {
 	cout << endl
 		 << "---------------------- Student Details ----------------------\n"
 		 << "Ordinary Number : " << s.ordNum << endl
@@ -39,5 +40,17 @@ void didplayStudent(Student s) {
 		 << "Last Name       : " << s.lastname << endl
 		 << "Gender          : " << s.gender << endl
 		 << "Date of birth   : " << s.dateOfBirth.toString() << endl
+		 << endl;
+}
+
+void displayAllStudent(LinkedList<Student> s){
+	cout << "---------------------- Student Details ----------------------\n";
+	cout << endl
+		 << "Ordinary Number : " << endl
+		 << "Student Id      : " << endl
+		 << "First Name      : " << endl
+		 << "Last Name       : " << endl
+		 << "Gender          : " << endl
+		 << "Date of birth   : " << endl
 		 << endl;
 }
