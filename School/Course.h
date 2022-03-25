@@ -2,17 +2,20 @@
 #include "../School/Session.h"
 #include "../utils/Date.h"
 #include "../utils/LinkedList.h"
+#include "../Personnel/Student.h"
 #include <string>
 using std::string;
 
 struct Course {
-    const string id;
-    const string name;
+    string id;
+    string name;
     string teacherName;
-    const int credits;
-    const int maxStudents;
+    int credits;
+    int maxStudents;
     LinkedList<Session> sessions;
+    LinkedList<Student> students;
 
+    Course();
     Course(string courseId, string courseName, int numberOfCredits,
            int maxStudents, string teacher);
 
