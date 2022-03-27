@@ -1,6 +1,5 @@
 #include "../App.h"
 #include "../../School/Semester.h"
-#include "../../School/Semester.cpp"
 
 void Semester::addtime(int order, Date start, Date end){
     this->order = order;
