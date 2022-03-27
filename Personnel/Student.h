@@ -25,6 +25,6 @@ struct Student {
 };
 
 Student addStudent();
-void inputStudentCSV(LinkedList<Student> &s);	
-void displayStudent(Student s);
-void displayAllStudent(LinkedList<Student> s);
+void inputStudentCSV(LinkedList<Student> &student);	
+void displayStudent(Student student);
+void displayAllStudent(LinkedList<Student> student);
