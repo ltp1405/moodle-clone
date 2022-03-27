@@ -32,6 +32,16 @@ int LinkedList<T>::getSize() {
 }
 
 template<class T>
+DNode<T>* LinkedList<T>::getHead() {
+    return head;
+}
+
+template<class T>
+DNode<T>* LinkedList<T>::getTail() {
+    return tail;
+}
+
+template<class T>
 void LinkedList<T>::printList(std::function<void(T&)> print) {
     for (DNode<T> *current = head; 
         current != nullptr; 
