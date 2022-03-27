@@ -1,14 +1,14 @@
 #include "School/Course.h"
 #include "Personnel/Student.h"
 #include "utils/LinkedList.h"
+#include "UserInterface/App.h"
 #include <iostream>
 using std::cout;
 using std::cin;
 using std::endl;
 
-void addStudentToCourse(Course &crs, const Student &st) {
+void addStudentToCourse(Course &crs, Student &st) {
     crs.students.addHead(st);
-    cout << "Add " << st.firstname << " to " << crs.id << endl;
 }
 
 bool enrolled(Course &crs, const Student &st) {
@@ -21,7 +21,7 @@ bool enrolled(Course &crs, const Student &st) {
     return false;
 }
 
-void enrollCourse(LinkedList<Course> &ls, const Student &st) {
+void enrollCourse(LinkedList<Course> &ls, Student &st) {
     bool cont = true;
     DNode<Course> *curHead = ls.getHead();
     while (cont) {
@@ -50,22 +50,19 @@ void enrollCourse(LinkedList<Course> &ls, const Student &st) {
     }
 }
 
-int main() {
-    Student st1;
-    st1.firstname = "Tung";
-    Course c1 = Course();
-    c1.id = "cs162";
-    Course c2 = Course();
-    c2.id = "mth252";
-    LinkedList<Course> courses;
-    courses.addHead(c1);
-    courses.addHead(c2);
+void App::studentPromptEnrollCourse() {
+    if (currentStudent)
+        enrollCourse(currentSemester->courses, *currentStudent);
+    else
+        cout << "Nullptr";
+}
 
-    Student st2;
-    st2.firstname = "Han";
-    enrollCourse(courses, st1);
-    enrollCourse(courses, st2);
-    DNode<Course> *curCourse = courses.getHead();
+void App::run() {
+    Student st1;
+    currentStudent = &st1;
+
+    enrollCourse(currentSemester->courses, st1);
+    DNode<Course> *curCourse = currentSemester->courses.getHead();
     while (curCourse) {
         DNode<Student> *s = curCourse->data.students.getHead();
         while (s) {
@@ -74,4 +71,9 @@ int main() {
         }
         curCourse = curCourse->next;
     }
+}
+
+int main() {
+    App app;
+    app.run();
 }
