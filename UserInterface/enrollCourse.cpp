@@ -1,7 +1,7 @@
-#include "School/Course.h"
-#include "Personnel/Student.h"
-#include "utils/LinkedList.h"
-#include "UserInterface/App.h"
+#include "../School/Course.h"
+#include "../Personnel/Student.h"
+#include "../utils/LinkedList.h"
+#include "App.h"
 #include <iostream>
 using std::cout;
 using std::cin;
