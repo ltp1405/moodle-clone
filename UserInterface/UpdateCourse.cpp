@@ -10,6 +10,7 @@ void promptChangeId(Course *crs) {
     cout << "Current ID: " << crs->id << endl;
     cout << "Please enter new ID: ";
     string id;
+    cin.ignore(1000, '\n');
     std::getline(cin, id);
     crs->id = id;
 }
@@ -18,6 +19,7 @@ void promptChangeName(Course *crs) {
     cout << "Current Name: " << crs->name << endl;
     cout << "Please enter new course name: ";
     string name;
+    cin.ignore(1000, '\n');
     std::getline(cin, name);
     crs->name = name;
 }
@@ -26,6 +28,7 @@ void promptChangeTeacher(Course *crs) {
     cout << "Current Teacher: " << crs->teacherName << endl;
     cout << "Please enter new teacher: ";
     string name;
+    cin.ignore(1000, '\n');
     std::getline(cin, name);
     crs->teacherName = name;
 }
