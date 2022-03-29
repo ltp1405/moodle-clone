@@ -2,50 +2,83 @@
 #include "../utils/LinkedList.h"
 #include "../utils/Date.h"
 #include <fstream>
+#include <string.h>
+#include <sstream>
 using namespace std;
 
 Student addStudent(){
-	Student s;
+	Student student;
 	cout << "Student ID: ";
-	cin >> s.id;
+	cin >> student.id;
 	cout << "Student First Name: ";
-	cin >> s.firstname;
+	cin >> student.firstname;
 	cout << "Student Last Name: ";
-	cin >> s.lastname;
+	cin >> student.lastname;
 
 	cout << "Student Gender (1 for Male, 2 for Female): ";
 	int temp;
 	cin >> temp;
-	if(temp==1) s.gender=MALE;
-	if(temp==2) s.gender=FEMALE;
+	if(temp==1) student.gender=MALE;
+	if(temp==2) student.gender=FEMALE;
+	if(temp!=1&&temp!=2) student.gender=OTHER;
 
 	cout << "Student Day Of Birth (DD/MM/YYYY): ";
-	cin >> s.dateOfBirth.day >> s.dateOfBirth.month >> s.dateOfBirth.year;
+	cin >> student.dateOfBirth.day >> student.dateOfBirth.month >> student.dateOfBirth.year;
 
-	return s;
+	return student;
 }
 
-void inputStudentCSV(LinkedList<Student> &s){
+void inputStudentCSV(LinkedList<Student> &student){
 	ifstream fin;
-	fin.open("Student.csv");
-	
+	fin.open("Student.csv", ios::in);
+	DNode<Student>* temp=NULL;
+	string line;
+	while (getline(fin, line)){
+		temp = new DNode<Student>;
+
+		stringstream inputstream;
+		inputstream.str(line);
+
+		inputstream >> temp->data.ordNum;
+
+		inputstream >> temp->data.id;
+
+		getline(inputstream, temp->data.firstname, ',');
+		getline(inputstream, temp->data.lastname, ',');
+
+		string studentGender;
+		inputstream >> studentGender;
+		if(studentGender=="1") temp->data.gender==MALE;
+		if(studentGender=="2") temp->data.gender==FEMALE;
+		if(studentGender!="1" && studentGender!="2") temp->data.gender=OTHER;
+
+		string sDob;
+		getline(inputstream, sDob, ',');
+		stringstream dobstream;
+		dobstream.str(sDob);
+		dobstream >> temp->data.dateOfBirth.day;
+		dobstream >> temp->data.dateOfBirth.month;
+		dobstream >> temp->data.dateOfBirth.year;
+
+		student.addTail(temp->data);
+	}
 }
 
-void displayStudent(Student s) {
+void displayStudent(Student student) {
 	cout << endl
 		 << "---------------------- Student Details ----------------------\n"
-		 << "Ordinary Number : " << s.ordNum << endl
-		 << "Student Id      : " << s.id << endl
-		 << "First Name      : " << s.firstname << endl
-		 << "Last Name       : " << s.lastname << endl
-		 << "Gender          : " << s.gender << endl
-		 << "Date of birth   : " << s.dateOfBirth.toString() << endl
+		 << "Ordinary Number : " << student.ordNum << endl
+		 << "Student Id      : " << student.id << endl
+		 << "First Name      : " << student.firstname << endl
+		 << "Last Name       : " << student.lastname << endl
+		 << "Gender          : " << student.gender << endl
+		 << "Date of birth   : " << student.dateOfBirth.toString() << endl
 		 << endl;
 }
 
-void displayAllStudent(LinkedList<Student> s){
-	cout << "---------------------- Student Details ----------------------\n";
-	cout << endl
+void displayAllStudent(LinkedList<Student> student){
+	cout << "---------------------- Student Details ----------------------\n"
+		 << endl
 		 << "Ordinary Number : " << endl
 		 << "Student Id      : " << endl
 		 << "First Name      : " << endl
