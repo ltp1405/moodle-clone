@@ -48,8 +48,8 @@ void inputStudentCSV(LinkedList<Student> &student){
 
 		string studentGender;
 		inputstream >> studentGender;
-		if(studentGender=="1") temp->data.gender==MALE;
-		if(studentGender=="2") temp->data.gender==FEMALE;
+		if(studentGender=="1") temp->data.gender=MALE;
+		if(studentGender=="2") temp->data.gender=FEMALE;
 		if(studentGender!="1" && studentGender!="2") temp->data.gender=OTHER;
 
 		string sDob;
