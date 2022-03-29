@@ -7,8 +7,9 @@ void SchoolYear::addtime(Date from, Date to, int semesterNumber ){
     this->to = to;
     this->semesterNumber = semesterNumber;
 }
-void promptCreateSchoolYear(SchoolYear &S){
+SchoolYear CreateSchoolYear(){
 
+    SchoolYear S;
     Date from;
     cout << "This school year start from (input with format dd mm yy: ";
     cin >> from.day >> from.month >> from.year;
@@ -23,4 +24,10 @@ void promptCreateSchoolYear(SchoolYear &S){
         Semester semester_new;
         S.addSemester(semester_new);
     }
+    return S;
+}
+void App::promptCreateSchoolYear(){
+    cout << "Create new school year." << endl;
+    SchoolYear S = CreateSchoolYear();
+    schoolyears.addTail(S);
 }
