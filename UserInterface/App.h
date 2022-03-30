@@ -3,6 +3,9 @@
 #include <string>
 #include "../School/SchoolYear.h"
 #include "../utils/LinkedList.h"
+#include "../School/Score.h"
+#include "../Personnel/Student.h"
+#include "../School/Semester.h"
 using std::cout;
 using std::cin;
 using std::string;
@@ -11,6 +14,9 @@ using std::endl;
 class App {
 private:
     // A bunch of linked list
+    Student *currentStudent;
+    Semester *currentSemester;
+    LinkedList<Score> scoreboard;
     LinkedList<SchoolYear> schoolyears;
     void promptLoginAsStudent();
     void promptLoginAsAMember();
@@ -30,6 +36,7 @@ private:
     void studentPromptViewProfile();
     void studentPromptChangePassword();
     void studentPromptViewScoreboard();
+    void viewScoreboard(const string courseId);
 public:
     void load();
     void run();
