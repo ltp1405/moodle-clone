@@ -82,12 +82,33 @@ void Table::display() {
 
     cout << vertical;
     for (auto col = cols.getHead(); col; col = col->next) {
-        if (col->data.align == Alignment::left)
+        if (col->data.align == Alignment::left) {
             cout.setf(std::ios::left);
-        else if (col->data.align == Alignment::right)
+            cout.width(col->data.width);
+        } else if (col->data.align == Alignment::right) {
             cout.setf(std::ios::right);
-        cout.width(col->data.width);
+            cout.width(col->data.width);
+        } else if (col->data.align == Alignment::center) {
+            int cellWidth = col->data.width;
+            int cellDataWidth = col->data.name.size();
+            int frontPadding = (cellWidth - cellDataWidth) / 2
+                + (cellWidth - cellDataWidth) % 2;
+            int backPadding = (cellWidth - cellDataWidth) / 2;
+                for (int i = 0; i < frontPadding; i++) {
+                    cout << " ";
+                }
+        }
+
         cout << col->data.name;
+
+        if (col->data.align == Alignment::center) {
+            int cellWidth = col->data.width;
+            int cellDataWidth = col->data.name.size();
+            int backPadding = (cellWidth - cellDataWidth) / 2;
+            for (int i = 0; i < backPadding; i++)
+                cout << " ";
+        }
+
         cout << vertical;
     }
 
@@ -96,16 +117,34 @@ void Table::display() {
     for (auto row = rows.getHead(); row != nullptr; row = row->next) {
         cout << vertical;
         for (int i = 0; i < row->data.getSize(); i++) {
-            if (cols[i]->data.align == Alignment::left)
+            if (cols[i]->data.align == Alignment::left) {
                 cout.setf(std::ios::left);
-            else if (cols[i]->data.align == Alignment::right)
+                cout.width(cols[i]->data.width);
+            } else if (cols[i]->data.align == Alignment::right) {
                 cout.setf(std::ios::right);
+                cout.width(cols[i]->data.width);
+            } else if (cols[i]->data.align == Alignment::center) {
+                int cellWidth = cols[i]->data.width;
+                int cellDataWidth = row->data[i]->data.size();
+                int frontPadding = (cellWidth - cellDataWidth) / 2
+                    + (cellWidth - cellDataWidth) % 2;
+                int backPadding = (cellWidth - cellDataWidth) / 2;
+                    for (int i = 0; i < frontPadding; i++) {
+                        cout << " ";
+                    }
+            }
 
-            cout.width(cols[i]->data.width);
             if (row->data[i]->data.length() > cols[i]->data.width) {
                 cout << row->data[i]->data.substr(0, cols[i]->data.width-3) + "...";
             } else
                 cout << row->data[i]->data;
+            if (cols[i]->data.align == Alignment::center) {
+                int cellWidth = cols[i]->data.width;
+                int cellDataWidth = row->data[i]->data.size();
+                int backPadding = (cellWidth - cellDataWidth) / 2;
+                for (int i = 0; i < backPadding; i++)
+                    cout << " ";
+            }
             cout << vertical;
         }
 
