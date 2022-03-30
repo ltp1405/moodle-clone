@@ -1,7 +1,7 @@
 #include "Table.hpp"
 #include "App.h"
 
-void App::promptViewScoreboard() {
+void App::viewScoreboard() {
     DNode<Score> *cur = scoreboard.getHead();
     Table table("Scoreboard");
     table.addColumn(Column("Order", 5));

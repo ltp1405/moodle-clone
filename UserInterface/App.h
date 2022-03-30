@@ -25,7 +25,7 @@ private:
     void promptCreateSchoolYear();
     void promptAddStudent();
     void promptCreateSemester();
-    void promptViewScoreboard();
+    void viewScoreboard();
     void promptOpenRegistrationSession();
     void promptViewCoursesList();
     void promptExportStudent();
@@ -35,7 +35,7 @@ private:
     void promptUpdateCourseScoreboard();
     void studentPromptViewProfile();
     void studentPromptChangePassword();
-    void studentPromptViewScoreboard();
+    void studentViewScoreboard();
     void viewScoreboard(const string courseId);
 public:
     void load();
