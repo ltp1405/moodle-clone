@@ -23,12 +23,6 @@ struct Student {
 };
 
 Student addStudent();
-<<<<<<< HEAD
-void inputStudentCSV(LinkedList<Student> &s);	
-void displayStudent(Student s);
-void displayAllStudent(LinkedList<Student> s);
-=======
 void inputStudentCSV(LinkedList<Student> &student);	
 void displayStudent(Student student);
 void displayAllStudent(LinkedList<Student> student);
->>>>>>> 0c39d12 (:rocket: Import CSV)
