@@ -77,11 +77,10 @@ void Table::addRow(vector<string> data) {
     }
 }
 
-
 void Table::display() {
     printTop();
 
-    cout << "│";
+    cout << vertical;
     for (auto col = cols.getHead(); col; col = col->next) {
         if (col->data.align == Alignment::left)
             cout.setf(std::ios::left);
@@ -89,13 +88,13 @@ void Table::display() {
             cout.setf(std::ios::right);
         cout.width(col->data.width);
         cout << col->data.name;
-        cout << "│";
+        cout << vertical;
     }
 
     cout << endl;
     printBotHeader();
     for (auto row = rows.getHead(); row != nullptr; row = row->next) {
-        cout << "│";
+        cout << vertical;
         for (int i = 0; i < row->data.getSize(); i++) {
             if (cols[i]->data.align == Alignment::left)
                 cout.setf(std::ios::left);
@@ -107,7 +106,7 @@ void Table::display() {
                 cout << row->data[i]->data.substr(0, cols[i]->data.width-3) + "...";
             } else
                 cout << row->data[i]->data;
-            cout << "│";
+            cout << vertical;
         }
 
         cout << endl;

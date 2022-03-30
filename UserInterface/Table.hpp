@@ -63,12 +63,6 @@ private:
     void printBot();
     void printBotHeader();
     void printLine(const string s, int times);
-public:
-    Table(string title);
-    void addColumn(string name);
-    void addColumn(Column col);
-    void addRow(vector<string> data);
-
     void addEach(int count) {
         int diff = count - cols.getSize();
         if (diff < 0) {
@@ -91,6 +85,12 @@ public:
         addEach(count+1, var2...);
     }
     
+public:
+    Table(string title);
+    void addColumn(string name);
+    void addColumn(Column col);
+    void addRow(vector<string> data);
+
     template<typename... Ts> void addRow(Ts... data) {
         rows.addTail(LinkedList<string>());
         addEach(0, data...);
