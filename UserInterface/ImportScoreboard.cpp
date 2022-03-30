@@ -1,6 +1,7 @@
 #include "../utils/LinkedList.h"
 #include "../School/Score.h"
 #include "../utils/CSVParser.h"
+#include "Table.hpp"
 #include "App.h"
 #include <iostream>
 using namespace std;
@@ -30,20 +31,6 @@ void App::promptImportCourseScoreboard() {
             else if (file[0][j] == "student name")
                 scoreboard.getTail()->data.name = file[i][j];
         }
-    }
-}
-
-void App::promptViewScoreboard() {
-    DNode<Score> *cur = scoreboard.getHead();
-    while (cur) {
-        cout << cur->data.name << " ";
-        cout << cur->data.midtermMark << " ";
-        cout << cur->data.finalMark << " ";
-        cout << cur->data.totalMark << " ";
-        cout << cur->data.otherMark << " ";
-        cout << cur->data.courseId << " ";
-        cout << endl;
-        cur = cur->next;
     }
 }
 
