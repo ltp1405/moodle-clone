@@ -33,13 +33,3 @@ void App::promptImportCourseScoreboard() {
         }
     }
 }
-
-void App::run() {
-    promptImportCourseScoreboard();
-    promptViewScoreboard();
-}
-
-int main() {
-    App app;
-    app.run();
-}
