@@ -19,6 +19,8 @@ public:
     LinkedList();
     ~LinkedList();
     int getSize();
+    DNode<T>* getHead();
+    DNode<T>* getTail();
     void printList(std::function<void(T&)> print);
     void addHead(const T &item);
     void addTail(const T &item);
@@ -31,6 +33,7 @@ public:
     bool deleteAtIndex(int index);
     bool updateAtX(const T &x, const T &payload, std::function<bool(T &a, T &b)>);
     bool updateAtIndex(int index, const T &payload);
+    DNode<T>* operator[](int index);
 };
 
 #include "LinkedList.tpp"
