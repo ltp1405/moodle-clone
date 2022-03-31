@@ -6,6 +6,11 @@
 #include "../utils/LinkedList.h"
 #include <iostream>
 #include <string>
+#include "../School/SchoolYear.h"
+#include "../utils/LinkedList.h"
+#include "../School/Score.h"
+#include "../Personnel/Student.h"
+#include "../School/Semester.h"
 using std::cout;
 using std::cin;
 using std::string;
@@ -17,6 +22,7 @@ class App {
     LinkedList<SchoolYear> schoolyears;
     Semester *currentSemester;
     SchoolYear *currentSchoolyear;
+    LinkedList<Score> scoreboard;
     
 private:
     // A bunch of linked list
@@ -27,7 +33,7 @@ private:
     void promptCreateSchoolYear();
     void promptAddStudent();
     void promptCreateSemester();
-    void promptViewScoreboard();
+    void viewScoreboard();
     void promptOpenRegistrationSession();
     void promptViewCoursesList();
     void promptExportStudent();
@@ -37,6 +43,8 @@ private:
     void promptUpdateCourseScoreboard();
     void studentPromptViewProfile();
     void studentPromptChangePassword();
+    void studentViewScoreboard();
+    void viewScoreboard(const string courseId);
     void studentPromptViewScoreboard();
     void studentPromptEnrollCourse();
 public:
