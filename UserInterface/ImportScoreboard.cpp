@@ -1,33 +1,35 @@
 #include "../utils/LinkedList.h"
 #include "../School/Score.h"
 #include "../utils/CSVParser.h"
+#include "Table.hpp"
+#include "App.h"
 #include <iostream>
 using namespace std;
 using std::stod;
 
-LinkedList<Score> importScoreboard(const string filename="../data/scoreboard.csv") {
-    vvs file = readCSV(filename);
-    LinkedList<Score> scoreboard;
+void App::promptImportCourseScoreboard() {
+    cout << "Enter filename, (leave empty for default: data/scoreboard.csv) :";
+    string ans;
+    std::getline(cin, ans);
+    cout << "Scoreboard imported" << endl;
+    vvs file = readCSV("../data/scoreboard.csv");
     for (int i = 1; i < file.size(); i++) {
-        Score s;
+        scoreboard.addTail(Score());
         for (int j = 0; j < file[i].size(); j++) {
             if (file[0][j] == "midterm mark")
-                s.midtermMark = stod(file[i][j]);
+                scoreboard.getTail()->data.midtermMark = stod(file[i][j]);
             else if (file[0][j] == "final mark")
-                s.finalMark = stod(file[i][j]);
+                scoreboard.getTail()->data.finalMark = stod(file[i][j]);
             else if (file[0][j] == "total mark")
-                s.totalMark = stod(file[i][j]);
+                scoreboard.getTail()->data.totalMark = stod(file[i][j]);
             else if (file[0][j] == "other mark")
-                s.otherMark = stod(file[i][j]);
+                scoreboard.getTail()->data.otherMark = stod(file[i][j]);
             else if (file[0][j] == "student id")
-                s.id = file[i][j];
+                scoreboard.getTail()->data.id = file[i][j];
             else if (file[0][j] == "course id")
-                s.courseId = file[i][j];
+                scoreboard.getTail()->data.courseId = file[i][j];
             else if (file[0][j] == "student name")
-                s.name = file[i][j];
+                scoreboard.getTail()->data.name = file[i][j];
         }
-        scoreboard.addHead(s);
     }
-
-    return scoreboard;
 }
