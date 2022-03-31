@@ -17,7 +17,7 @@ bool checkLoginInfo(vvs& login_info, string username, string password) {
 }
 
 void App::promptLoginAsAMember() {
-    vvs login_info = readCSV("../../data/AcademicMemberLoginInfo.csv");
+    vvs login_info = readCSV("data/AcademicMemberLoginInfo.csv");
     string username, password;
     short count_input_time = 0;
     cin.ignore(100, '\n');
@@ -40,7 +40,7 @@ void App::promptLoginAsAMember() {
 }
 
 void App::promptLoginAsStudent() {
-    vvs login_info = readCSV("../../data/StudentLoginInfo.csv");
+    vvs login_info = readCSV("data/StudentLoginInfo.csv");
     string username, password;
     short count_input_time = 0;
     cin.ignore(100, '\n');
