@@ -1,8 +1,8 @@
-#include "App.h"
+#include "../App.h"
 #include <iostream>
 #include <string>
-#include "../School/Course.h"
-#include "../School/Semester.h"
+#include "../../School/Course.h"
+#include "../../School/Semester.h"
 using std::string;
 using std::cout;
 using std::cin;
