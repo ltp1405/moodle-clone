@@ -1,7 +1,7 @@
 #include <iostream>
-#include "App.h"
-#include "Table.hpp"
-#include "../Personnel/Student.h"
+#include "../App.h"
+#include "../Table.hpp"
+#include "../../Personnel/Student.h"
 
 void App::studentPromptViewScoreboard() {
     DNode<Score> *cur = scoreboard.getHead();

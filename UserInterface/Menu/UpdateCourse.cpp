@@ -1,5 +1,5 @@
-#include "../School/Course.h"
-#include "Menu.hpp"
+#include "../../School/Course.h"
+#include "../Menu.hpp"
 #include <iostream>
 #include <string>
 using std::cout;

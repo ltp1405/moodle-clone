@@ -1,5 +1,5 @@
-#include "Table.hpp"
-#include "App.h"
+#include "../Table.hpp"
+#include "../App.h"
 
 void App::viewScoreboard() {
     DNode<Score> *cur = scoreboard.getHead();

@@ -1,8 +1,8 @@
-#include "App.h"
-#include "../utils/LinkedList.h"
-#include "../School/Course.h"
-#include "Menu.hpp"
-#include "Table.hpp"
+#include "../App.h"
+#include "../../utils/LinkedList.h"
+#include "../../School/Course.h"
+#include "../Menu.hpp"
+#include "../Table.hpp"
 #include <string>
 using std::string;
 

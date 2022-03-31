@@ -1,8 +1,8 @@
-#include "../utils/LinkedList.h"
-#include "../School/Score.h"
-#include "../utils/CSVParser.h"
-#include "Table.hpp"
-#include "App.h"
+#include "../../utils/LinkedList.h"
+#include "../../School/Score.h"
+#include "../../utils/CSVParser.h"
+#include "../Table.hpp"
+#include "../App.h"
 #include <iostream>
 using namespace std;
 using std::stod;
