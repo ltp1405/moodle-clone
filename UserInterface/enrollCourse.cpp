@@ -56,24 +56,3 @@ void App::studentPromptEnrollCourse() {
     else
         cout << "Nullptr";
 }
-
-void App::run() {
-    Student st1;
-    currentStudent = &st1;
-
-    enrollCourse(currentSemester->courses, st1);
-    DNode<Course> *curCourse = currentSemester->courses.getHead();
-    while (curCourse) {
-        DNode<Student> *s = curCourse->data.students.getHead();
-        while (s) {
-            cout << s->data.firstname << " in " << curCourse->data.id << endl;
-            s = s->next;
-        }
-        curCourse = curCourse->next;
-    }
-}
-
-int main() {
-    App app;
-    app.run();
-}
