@@ -1,25 +1,16 @@
 #include "App.h"
 void App::promptCreateCourse() {}
-void App::promptCreateSchoolYear() {}
 void App::promptAddStudent() {}
-void App::promptCreateSemester() {}
 void App::promptOpenRegistrationSession() {}
 void App::studentPromptViewProfile() {}
 void App::studentPromptChangePassword() {}
-void App::studentPromptViewScoreboard() {}
 void App::promptExportStudent() {
-}
-
-void App::promptImportCourseScoreboard() {
 }
 
 void App::promptUpdateClassScoreboard() {
 }
 
 void App::promptUpdateCourseScoreboard() {
-}
-
-void App::promptViewCourseScoreboard() {
 }
 
 void App::promptViewCoursesList() {

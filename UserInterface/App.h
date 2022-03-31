@@ -22,13 +22,10 @@ class App {
     LinkedList<SchoolYear> schoolyears;
     Semester *currentSemester;
     SchoolYear *currentSchoolyear;
+    LinkedList<Score> scoreboard;
     
 private:
     // A bunch of linked list
-    Student *currentStudent;
-    Semester *currentSemester;
-    LinkedList<Score> scoreboard;
-    LinkedList<SchoolYear> schoolyears;
     void promptLoginAsStudent();
     void promptLoginAsAMember();
     void promptLogin();
