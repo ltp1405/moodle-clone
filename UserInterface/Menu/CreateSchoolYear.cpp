@@ -1,6 +1,5 @@
 #include "../App.h"
 #include "../../School/SchoolYear.h"
-#include "../../School/SchoolYear.cpp"
 #include "../../utils/Date.h"
 
 void SchoolYear::addtime(Date from, Date to, int semesterNumber ){

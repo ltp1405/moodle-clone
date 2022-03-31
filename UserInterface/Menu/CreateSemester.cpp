@@ -17,4 +17,11 @@ void promptCreateSemester(Semester &semester_new){
     cout << "Input the end date of this semester (format dd mm yy): ";
     cin >> end.day >> end.month >> end.year;
     semester_new.addtime(order, start, end);
+    int numCourses;
+    cout << "Input the number of courses you want in this semester: ";
+    cin >> numCourses;
+    for(int i = 0; i < numCourses; i++){
+        Course course_new;
+        semester_new.addCourse(course_new);
+    }
 }
