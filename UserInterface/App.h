@@ -11,6 +11,8 @@ using std::endl;
 class App {
 private:
     // A bunch of linked list
+    Student *currentStudent;
+    Semester *currentSemester;
     LinkedList<SchoolYear> schoolyears;
     void promptLoginAsStudent();
     void promptLoginAsAMember();
@@ -30,6 +32,7 @@ private:
     void studentPromptViewProfile();
     void studentPromptChangePassword();
     void studentPromptViewScoreboard();
+    void studentViewEnrolledCourses();
 public:
     void load();
     void run();
