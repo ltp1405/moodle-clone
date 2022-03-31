@@ -10,15 +10,20 @@ enum Gender {
 };
 
 struct Student {
+	Student();
+	int ordNum;
 	string firstname;
 	string lastname;
 	string id;
 	Gender gender;
 	Date dateOfBirth;
-	int age;
 
 	int courseNumber;
 };
 
+Student addStudent();
+void inputStudentCSV(LinkedList<Student> &student);	
+void displayStudent(Student student);
+void displayAllStudent(LinkedList<Student> student);
 void addStudent(string firstname, string lastname, string id, Gender gender, Date dateOfBirth);
 void didplayStudent();
