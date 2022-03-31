@@ -7,7 +7,7 @@ void Semester::addtime(int order, Date start, Date end){
     this->end = end;
 }
 
-void promptCreateSemester(Semester &semester_new){
+void CreateSemester(Semester &semester_new){
     int order;
     cout << "Input the order of this semester: ";
     cin >> order;

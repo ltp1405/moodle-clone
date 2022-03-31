@@ -1,4 +1,5 @@
 #pragma once
+#include "../utils/LinkedList.h"
 #include <string>
 #include "../utils/Date.h"
 using std::string;
@@ -10,7 +11,10 @@ enum Gender {
 };
 
 struct Student {
-	Student();
+	Student() 
+	{
+
+	}
 	int ordNum;
 	string firstname;
 	string lastname;
@@ -22,8 +26,6 @@ struct Student {
 };
 
 Student addStudent();
-void inputStudentCSV(LinkedList<Student> &student);	
+void inputStudentCSV(LinkedList<Student> &student);
 void displayStudent(Student student);
 void displayAllStudent(LinkedList<Student> student);
-void addStudent(string firstname, string lastname, string id, Gender gender, Date dateOfBirth);
-void didplayStudent();
