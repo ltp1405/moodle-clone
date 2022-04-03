@@ -8,6 +8,10 @@ using std::cout;
 using std::cin;
 
 void App::promptCreateCourse() {
+    if (!currentSemester) {
+        cout << "No semester available" << endl;
+        return;
+    }
     string id;
     string name;
     string teacherName;
