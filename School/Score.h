@@ -1,3 +1,4 @@
+#pragma once
 #include "../Personnel/Student.h"
 #include "Course.h"
 
