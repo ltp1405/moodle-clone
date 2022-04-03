@@ -47,6 +47,7 @@ private:
     void viewScoreboard(const string courseId);
     void studentPromptViewScoreboard();
     void studentViewEnrolledCourses();
+    void studentPromptEnrollCourse();
 public:
     void load();
     void run();
