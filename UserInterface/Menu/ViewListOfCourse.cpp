@@ -29,6 +29,7 @@ void App::promptViewCoursesList() {
             if (ss != cur->data.sessions.getTail()) {
                 s += ", ";
             }
+            ss = ss->next;
         }
         tb.addRow(
                 cur->data.id,
