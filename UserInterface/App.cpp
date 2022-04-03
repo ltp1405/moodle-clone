@@ -1,5 +1,4 @@
 #include "App.h"
-void App::promptCreateCourse() {}
 void App::promptAddStudent() {}
 void App::promptOpenRegistrationSession() {}
 void App::studentPromptViewProfile() {}

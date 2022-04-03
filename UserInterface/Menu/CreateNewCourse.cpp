@@ -7,13 +7,14 @@ using std::string;
 using std::cout;
 using std::cin;
 
-void promptAddCourseToSemester(Semester &sm) {
+void App::promptCreateCourse() {
     string id;
     string name;
     string teacherName;
     int credits;
     int maxStudents;
 
+    cin.ignore(1000, '\n');
     cout << "Enter course id: ";
     getline(cin, id);
     cout << "Enter course name: ";
@@ -26,10 +27,5 @@ void promptAddCourseToSemester(Semester &sm) {
     cin.ignore(1000, '\n');
     getline(cin, teacherName);
 
-    Course crs = Course(id, name, credits, maxStudents, teacherName);
-    sm.addCourse(crs);
-}
-
-void App::promptCreateCourse() {
-    Menu<App> chooseSemesterMenu(this);
+    currentSemester->addCourse(Course(id, name, credits, maxStudents, teacherName));
 }
