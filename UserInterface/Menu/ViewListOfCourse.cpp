@@ -1,11 +1,11 @@
 #include <iostream>
 #include <string>
-#include "../School/Semester.h"
-#include "../School/SchoolYear.h"
-#include "../School/Course.h"
-#include "../utils/LinkedList.h"
-#include "App.h"
-#include "Table.hpp"
+#include "../../School/Semester.h"
+#include "../../School/SchoolYear.h"
+#include "../../School/Course.h"
+#include "../../utils/LinkedList.h"
+#include "../App.h"
+#include "../Table.hpp"
 using std::cout;
 using std::cin;
 using std::endl;
