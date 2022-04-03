@@ -1,16 +1,16 @@
 #include <iostream>
 using namespace std;
 #include "../School/Semester.h"
-
+#include "../utils/LinkedList.h"
 
 void Semester::addCourse(Course course){
     courses.addTail(course);
 }
 void printCourse(Course course){
-
+    cout << course.id << endl;
 }
 void Semester::viewListOfCourse(){
-    printList(courses);
+    courses.printList(printCourse);
 }
 
 bool compareCourse(Course course1, Course course2){

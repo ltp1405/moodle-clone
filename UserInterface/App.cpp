@@ -1,8 +1,10 @@
 #include "App.h"
+void App::promptCreateCourse() {}
+void App::promptAddStudent() {}
+void App::promptOpenRegistrationSession() {}
+void App::studentPromptViewProfile() {}
+void App::studentPromptChangePassword() {}
 void App::promptExportStudent() {
-}
-
-void App::promptImportCourseScoreboard() {
 }
 
 void App::promptUpdateClassScoreboard() {
@@ -11,18 +13,7 @@ void App::promptUpdateClassScoreboard() {
 void App::promptUpdateCourseScoreboard() {
 }
 
-void App::promptViewCourseScoreboard() {
-}
-
 void App::promptViewCoursesList() {
-}
-
-void App::promptLoginAsStudent() {
-    cout << "Login in";
-}
-
-void App::promptLoginAsAMember() {
-    cout << "Login in";
 }
 
 void App::promptLogin() {
