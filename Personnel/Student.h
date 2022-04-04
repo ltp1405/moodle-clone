@@ -15,17 +15,19 @@ struct Student {
 	{
 
 	}
-	int ordNum;
 	string firstname;
 	string lastname;
 	string id;
 	Gender gender;
 	Date dateOfBirth;
+	int SocialID;
 
 	int courseNumber;
 };
 
 Student addStudent();
-void inputStudentCSV(LinkedList<Student> &student);	
+void importStudentCSV(LinkedList<Student> &student);	
 void displayStudent(Student student);
 void displayAllStudent(LinkedList<Student> student);
+void exportStudentCSV(Student student, ofstream& fout);
+void exportAllStudentCSV(LinkedList<Student> student);
