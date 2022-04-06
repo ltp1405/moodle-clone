@@ -1,4 +1,7 @@
 #include "App.h"
+#include "Menu/OpenRegistrationSession.h"
+#include <fstream>
+
 void App::promptCreateCourse() {}
 void App::promptAddStudent() {}
 void App::studentPromptViewProfile() {}
@@ -20,6 +23,16 @@ void App::promptLogin() {
     menu.addItem("Login as student", &App::promptLoginAsStudent);
     menu.addItem("Login as academic member", &App::promptLoginAsAMember);
     menu.run();
+}
+
+void App::init() {
+    std::ifstream fin("../data/RegistrationTime.txt");
+    string str;
+    getline(fin, str, '\n');
+    regSession.start = getDateTimefromString(str);
+    getline(fin, str, '\n');
+    regSession.end = getDateTimefromString(str);
+    fin.close();
 }
 
 void App::run() {
@@ -47,6 +60,7 @@ void App::run() {
 
 int main() {
     App *app = new App;
+    app->init();
     app->run();
 	return 0;
 }

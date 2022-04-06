@@ -11,6 +11,7 @@
 #include "../School/Score.h"
 #include "../Personnel/Student.h"
 #include "../School/Semester.h"
+#include "../School/RegistrationSession.hpp"
 using std::cout;
 using std::cin;
 using std::string;
@@ -23,6 +24,7 @@ class App {
     Semester *currentSemester;
     SchoolYear *currentSchoolyear;
     LinkedList<Score> scoreboard;
+    RegistrationSession regSession;
     
 private:
     // A bunch of linked list

@@ -2,16 +2,14 @@
 #include <string>
 #include <sstream>
 
+#include "OpenRegistrationSession.h"
 #include "../App.h"
 #include "../../School/RegistrationSession.hpp"
 
 using namespace std;
 
-const regex date_expr("(?:(?:31(\\/|-|\\.)(?:0?[13578]|1[02]))\\1|(?:(?:29|30)(\\/|-|\\.)(?:0?[1,3-9]|1[0-2])\\2))(?:(?:1[6-9]|[2-9]\\d)?\\d{2})$|^(?:29(\\/|-|\\.)0?2\\3(?:(?:(?:1[6-9]|[2-9]\\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:0?[1-9]|1\\d|2[0-8])(\\/|-|\\.)(?:(?:0?[1-9])|(?:1[0-2]))\\4(?:(?:1[6-9]|[2-9]\\d)?\\d{2})");
-const regex time_expr("^(((([0-1][0-9])|(2[0-3])):?[0-5][0-9]:?[0-5][0-9]+$))");
-
-tm getDateTimefromString(string date, string time) {
-    stringstream ss(date + ' ' + time);
+tm getDateTimefromString(string datetime) {
+    stringstream ss(datetime);
     tm tm{};
     string str;
     getline(ss, str, '/');
@@ -30,7 +28,7 @@ tm getDateTimefromString(string date, string time) {
     return tm;
 }
 
-void openRegistrationSession() {
+RegistrationSession openRegistrationSession() {
     string start_date, end_date, start_time, end_time;
     cout << "Enter start date for Registration Session(dd/mm/yyyy): ";
     cin.ignore(100, '\n');
@@ -58,9 +56,9 @@ void openRegistrationSession() {
     } while (!checkTimeFormat(end_time));
     
     tm start{}, end{};
-    start = getDateTimefromString(start_date, start_time);
-    end = getDateTimefromString(end_date, end_time);
-    RegistrationSession regSession(start, end);
+    start = getDateTimefromString(start_date + ' ' + start_time);
+    end = getDateTimefromString(end_date + ' ' + end_time);
+    return RegistrationSession(start, end);
 }
 
 bool checkDateFormat(string date) {
@@ -72,6 +70,23 @@ bool checkTimeFormat(string time) {
 }
 
 void App::promptOpenRegistrationSession() {
-    
-    openRegistrationSession();
+    system("cls");
+    mktime(&regSession.start);
+    mktime(&regSession.end);
+    char ans = ' ', start_buf[26], end_buf[26];
+    asctime_s(start_buf, sizeof start_buf, &regSession.start);
+    asctime_s(end_buf, sizeof end_buf, &regSession.end);
+    cout << "The current Registration Session opens from: " << start_buf
+        << "to: " << end_buf
+        << "Would you like to change the current Registration Session? (y/n): ";
+    while (ans != 'y' && ans != 'Y' && ans != 'n' && ans != 'N') {
+        cin >> ans;
+        cin.ignore(100, '\n');
+        if (ans == 'y' || ans == 'Y')
+            regSession = openRegistrationSession();
+        else if (ans == 'n' || ans == 'N')
+            return;
+        else 
+            cout << "Please enter y or n.\n";
+    }
 }
