@@ -31,9 +31,9 @@ Student addStudent(){
 	return student;
 }
 
-void importStudentCSV(LinkedList<Student> &student){
+void importStudentCSV(LinkedList<Student> &student, string filename){
 	ifstream fin;
-	fin.open("Student.csv", ios::in);
+	fin.open(filename, ios::in);
 	DNode<Student>* temp=NULL;
 	string line;
 	while (getline(fin, line)){
@@ -67,6 +67,7 @@ void importStudentCSV(LinkedList<Student> &student){
 		inputstream >> temp->data.SocialID;
 
 		student.addTail(temp->data);
+		delete temp;   
 	}
 }
 
@@ -108,7 +109,7 @@ void exportStudentCSV(Student student, ofstream &fout){
 
 void exportAllStudentCSV(LinkedList<Student> student){
 	ofstream fout;
-	fout.open("Student.csv",ios::out);
+	fout.open("../data/Student.csv",ios::out);
 	DNode<Student>* temp = student.getHead();
 	int count = 0;
 	while(!temp){
@@ -119,4 +120,3 @@ void exportAllStudentCSV(LinkedList<Student> student){
 		temp=temp->next;
 	}
 }
-

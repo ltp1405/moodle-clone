@@ -2,7 +2,8 @@
 #include <string>
 #include "../utils/LinkedList.h"
 #include "../Personnel/Student.h"
-using std::string;
+#include <string.h>
+using namespace std;
 
 struct Class {
 	string classname;
