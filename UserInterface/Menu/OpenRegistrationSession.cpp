@@ -1,6 +1,7 @@
 #include <regex>
 #include <string>
 #include <sstream>
+#include <fstream>
 
 #include "OpenRegistrationSession.h"
 #include "../App.h"
@@ -58,6 +59,9 @@ RegistrationSession openRegistrationSession() {
     tm start{}, end{};
     start = getDateTimefromString(start_date + ' ' + start_time);
     end = getDateTimefromString(end_date + ' ' + end_time);
+    ofstream fout("../../data/RegistrationTime.txt");
+    fout << start_date << ' ' << start_time << endl << end_date << ' ' << end_time;
+    fout.close();
     return RegistrationSession(start, end);
 }
 
