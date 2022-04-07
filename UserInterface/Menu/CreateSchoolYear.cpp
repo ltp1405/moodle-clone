@@ -30,4 +30,5 @@ void App::promptCreateSchoolYear(){
     cout << "Create new school year." << endl;
     SchoolYear S = CreateSchoolYear();
     schoolyears.addTail(S);
+    currentSchoolyear = &schoolyears.getTail()->data;
 }
