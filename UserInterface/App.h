@@ -12,6 +12,7 @@ private:
     void promptLoginAsStudent();
     void promptLoginAsAMember();
     void promptLogin();
+    void promptCreateClass();
     void promptCreateCourse();
     void promptCreateSchoolYear();
     void promptAddStudent();

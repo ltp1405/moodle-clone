@@ -3,6 +3,7 @@
 #include "../utils/LinkedList.h"
 #include "../Personnel/Student.h"
 #include <string.h>
+#include <fstream>
 using namespace std;
 
 struct Class {
@@ -11,3 +12,4 @@ struct Class {
 };
 
 Class inputClass();
+void importClassTXT(LinkedList<Class>& c);

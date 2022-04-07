@@ -69,6 +69,7 @@ void importStudentCSV(LinkedList<Student> &student, string filename){
 		student.addTail(temp->data);
 		delete temp;   
 	}
+	fin.close();
 }
 
 void displayStudent(Student student) {
@@ -119,4 +120,5 @@ void exportAllStudentCSV(LinkedList<Student> student){
 		fout << endl;
 		temp=temp->next;
 	}
+	fout.close();
 }

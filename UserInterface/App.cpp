@@ -41,6 +41,7 @@ void App::run() {
     studentMenu.addItem("Change password", &App::studentPromptChangePassword);
     studentMenu.addItem("View scoreboard", &App::studentPromptViewScoreboard);
 
+    academicMemberMenu.addItem("Create new class", &App::promptCreateClass);
     academicMemberMenu.addItem("Create new course", &App::promptCreateCourse);
     academicMemberMenu.addItem("Create new school year", &App::promptCreateSchoolYear);
     academicMemberMenu.addItem("Add student to class", &App::promptAddStudent);
