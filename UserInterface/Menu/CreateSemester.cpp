@@ -6,7 +6,8 @@ void Semester::addtime(int order, Date start, Date end){
     this->start = start;
     this->end = end;
 }
-void promptCreateSemester(Semester &semester_new){
+
+void CreateSemester(Semester &semester_new){
     int order;
     cout << "Input the order of this semester: ";
     cin >> order;
@@ -23,5 +24,17 @@ void promptCreateSemester(Semester &semester_new){
     for(int i = 0; i < numCourses; i++){
         Course course_new;
         semester_new.addCourse(course_new);
+    }
+}
+
+void App::promptCreateSemester(){
+    int indexsemester;
+    int numsemester;
+    cout << "number of semesters you want to input: ";
+    cin >> numsemester;
+    for(int i = 1; i <= numsemester; i++){
+        cout << "input index semester you want to input: ";
+        cin >> indexsemester;
+        CreateSemester(schoolyears.getTail()->data.semesters[indexsemester-1]->data);
     }
 }

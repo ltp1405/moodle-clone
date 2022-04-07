@@ -96,7 +96,6 @@ void displayAllStudent(LinkedList<Student> student){
 		 << "Social ID      : " << endl
 		 << endl;
 }
-
 void exportStudentCSV(Student student, ofstream &fout){
 	fout << student.id << ","
 		 << student.firstname << ","
