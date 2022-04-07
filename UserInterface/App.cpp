@@ -13,9 +13,6 @@ void App::promptUpdateClassScoreboard() {
 void App::promptUpdateCourseScoreboard() {
 }
 
-void App::promptViewCoursesList() {
-}
-
 void App::promptLogin() {
     Menu<App> menu(this);
     menu.addItem("Login as student", &App::promptLoginAsStudent);
