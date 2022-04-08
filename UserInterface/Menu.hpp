@@ -17,7 +17,7 @@ private:
 public:
     Menu(T*);
     void addItem(string itemName, std::function<void(T*)>);
-    void run();
+    int run();
 };
 
 template <typename T>
@@ -32,7 +32,7 @@ void Menu<T>::addItem(string itemName, std::function<void(T*)> callback) {
 }
 
 template <typename T>
-void Menu<T>::run() {
+int Menu<T>::run() {
     for (int i = 0; i < menuItems.size(); i++) {
         cout << i+1 << "/ ";
         cout << menuItems[i] << std::endl;
@@ -44,7 +44,8 @@ void Menu<T>::run() {
     int choice;
     cin >> choice;
     if (choice == 0)
-        return;
+        return 0;
 
     callbacks[choice-1](context);
+    return choice-1;
 }
