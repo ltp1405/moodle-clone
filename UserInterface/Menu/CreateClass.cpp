@@ -3,5 +3,7 @@
 
 void promptCreateClass()
 {
+    LinkedList<Class> CLASS;
+    importClassTXT(CLASS);
     
 }
