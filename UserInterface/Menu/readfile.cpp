@@ -1,13 +1,14 @@
 #include "../App.h"
 #include <fstream>
+
 void App::readfile(){
     std::ifstream fin;
     fin.open("schoolyear.txt");
-    SchoolYear* S = new SchoolYear;
-    fin >> S->from.day >> S->from.month >> S->from.year;
-    fin >> S->to.day >> S->to.month >> S->to.year;
-    fin >> S->semesterNumber;
-    for(int i = 1; i <= S->semesterNumber; i++){
+    SchoolYear S;
+    fin >> S.from.day >> S.from.month >> S.from.year;
+    fin >> S.to.day >> S.to.month >> S.to.year;
+    fin >> S.semesterNumber;
+    for(int i = 1; i <= S.semesterNumber; i++){
         Semester* semester_new = new Semester;
         fin >> semester_new->order;
         fin >> semester_new->start.day >> semester_new->start.month >> semester_new->start.year;
@@ -23,9 +24,9 @@ void App::readfile(){
             fin >> course_new->maxStudents;
             semester_new->addCourse(*course_new);
         }
-        S->addSemester(*semester_new);
+        S.addSemester(*semester_new);
     }
-    schoolyears.addTail(*S);
+    schoolyears.addTail(std::move(S));
     currentSchoolyear = &schoolyears.getTail()->data;
     fin.close();
 }
