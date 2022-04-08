@@ -26,8 +26,10 @@ SchoolYear CreateSchoolYear(){
     }
     return S;
 }
+
 void App::promptCreateSchoolYear(){
     cout << "Create new school year." << endl;
-    SchoolYear S = CreateSchoolYear();
-    schoolyears.addTail(S);
+    schoolyears.addTail(SchoolYear());
+    schoolyears.getTail()->data = CreateSchoolYear();
+    currentSchoolyear = &schoolyears.getTail()->data;
 }

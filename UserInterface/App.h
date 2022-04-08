@@ -5,6 +5,7 @@
 #include "../School/Semester.h"
 #include "../utils/LinkedList.h"
 #include <iostream>
+#include <fstream>
 #include <string>
 #include "../School/SchoolYear.h"
 #include "../utils/LinkedList.h"
@@ -48,6 +49,8 @@ private:
     void studentPromptViewScoreboard();
     void studentViewEnrolledCourses();
     void studentPromptEnrollCourse();
+    void savefile();
+    void readfile();
 public:
     void load();
     void run();
