@@ -49,6 +49,7 @@ private:
     void studentPromptViewScoreboard();
     void studentViewEnrolledCourses();
     void studentPromptEnrollCourse();
+    void displayCurrentSchoolyear();
     void savefile();
     void readfile();
 public:
