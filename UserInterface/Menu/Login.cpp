@@ -54,9 +54,11 @@ void App::promptLoginAsStudent() {
         getline(cin, password);
         for (int i = 1; i < login_info.size(); i++) 
             if (checkLoginInfo(login_info, username, password)) {
-                cout << "Login successful";
+                cout << "Login successful\n";
+                cin.ignore(100, '\n');
                 return;
             }
     }
+    system("cls");
     exit(0);
 }
