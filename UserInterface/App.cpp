@@ -31,8 +31,8 @@ void App::run() {
     academicMemberMenu.addItem("Display current schoolyear", &App::displayCurrentSchoolyear);
     academicMemberMenu.addItem("Create new course", &App::promptCreateCourse);
     academicMemberMenu.addItem("Create new school year", &App::promptCreateSchoolYear);
-    academicMemberMenu.addItem("Add student to class", &App::promptAddStudent);
     academicMemberMenu.addItem("Create semester", &App::promptCreateSemester);
+    academicMemberMenu.addItem("Add student to class", &App::promptAddStudent);
     academicMemberMenu.addItem("Open Registration Session", &App::promptOpenRegistrationSession);
     academicMemberMenu.addItem("View list of courses", &App::promptViewCoursesList);
     academicMemberMenu.addItem("Export students", &App::promptExportStudent);
@@ -40,7 +40,13 @@ void App::run() {
     academicMemberMenu.addItem("View scoreboard of a course", &App::promptViewCourseScoreboard);
     academicMemberMenu.addItem("Update scoreboard of a course", &App::promptUpdateCourseScoreboard);
     academicMemberMenu.addItem("Update scoreboard of a class", &App::promptUpdateClassScoreboard);
-    academicMemberMenu.run();
+
+    if (!currentStudent)
+        while (true)
+            academicMemberMenu.run();
+    else
+        while (true)
+            studentMenu.run();
 }
 
 int main() {
