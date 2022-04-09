@@ -12,17 +12,16 @@ enum Gender {
 
 struct Student {
 	Student() {}
-	int ordNum;
+	string id;
+    string username;
 	string firstname;
 	string lastname;
-	string id;
+    string password;
 	Gender gender;
 	Date dateOfBirth;
-
-	int courseNumber;
 };
 
 Student addStudent();
-void inputStudentCSV(LinkedList<Student> &student);
+void inputStudentCSV(LinkedList<Student*> &student);
 void displayStudent(Student student);
-void displayAllStudent(LinkedList<Student> student);
+void displayAllStudent(LinkedList<Student*> student);

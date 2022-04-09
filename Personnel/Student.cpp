@@ -1,6 +1,7 @@
 #include "Student.h"
 #include "../utils/LinkedList.h"
 #include "../utils/Date.h"
+#include "../utils/CSVParser.h"
 #include <fstream>
 #include <string.h>
 #include <sstream>
@@ -28,47 +29,45 @@ Student addStudent(){
 	return student;
 }
 
-void inputStudentCSV(LinkedList<Student> &student){
+void inputStudentCSV(LinkedList<Student*> &student){
 	ifstream fin;
 	fin.open("Student.csv", ios::in);
-	DNode<Student>* temp=NULL;
 	string line;
 	while (getline(fin, line)){
-		temp = new DNode<Student>;
+		auto *temp = new Student;
 
 		stringstream inputstream;
 		inputstream.str(line);
 
-		inputstream >> temp->data.ordNum;
 
-		inputstream >> temp->data.id;
+		inputstream >> temp->id;
 
-		getline(inputstream, temp->data.firstname, ',');
-		getline(inputstream, temp->data.lastname, ',');
+		getline(inputstream, temp->firstname, ',');
+		getline(inputstream, temp->lastname, ',');
 
 		string studentGender;
 		inputstream >> studentGender;
-		if(studentGender=="1") temp->data.gender=MALE;
-		if(studentGender=="2") temp->data.gender=FEMALE;
-		if(studentGender!="1" && studentGender!="2") temp->data.gender=OTHER;
+		if(studentGender=="1") temp->gender=MALE;
+		if(studentGender=="2") temp->gender=FEMALE;
+		if(studentGender!="1" && studentGender!="2") temp->gender=OTHER;
 
 		string sDob;
 		getline(inputstream, sDob, ',');
 		stringstream dobstream;
 		dobstream.str(sDob);
-		dobstream >> temp->data.dateOfBirth.day;
-		dobstream >> temp->data.dateOfBirth.month;
-		dobstream >> temp->data.dateOfBirth.year;
+		dobstream >> temp->dateOfBirth.day;
+		dobstream >> temp->dateOfBirth.month;
+		dobstream >> temp->dateOfBirth.year;
 
-		student.addTail(temp->data);
+		student.addTail(temp);
 	}
 }
 
 void displayStudent(Student student) {
 	cout << endl
 		 << "---------------------- Student Details ----------------------\n"
-		 << "Ordinary Number : " << student.ordNum << endl
 		 << "Student Id      : " << student.id << endl
+		 << "Username        : " << student.username << endl
 		 << "First Name      : " << student.firstname << endl
 		 << "Last Name       : " << student.lastname << endl
 		 << "Gender          : " << student.gender << endl
@@ -76,14 +75,10 @@ void displayStudent(Student student) {
 		 << endl;
 }
 
-void displayAllStudent(LinkedList<Student> student){
-	cout << "---------------------- Student Details ----------------------\n"
-		 << endl
-		 << "Ordinary Number : " << endl
-		 << "Student Id      : " << endl
-		 << "First Name      : " << endl
-		 << "Last Name       : " << endl
-		 << "Gender          : " << endl
-		 << "Date of birth   : " << endl
-		 << endl;
+void displayAllStudent(LinkedList<Student*> student){
+    DNode<Student*> *st = student.getHead();
+    while (st) {
+        displayStudent(*st->data);
+        st = st->next;
+    }
 }
