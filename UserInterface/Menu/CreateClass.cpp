@@ -5,13 +5,12 @@ void promptCreateClass()
 {
     LinkedList<Class> CLASS;
     importClassTXT(CLASS);
-    cout << "Input the class name: ";
+    cout << "Input the class name(e.g: 21CTT1): ";
     string classname;
     cin >> classname;
     while(findClass(CLASS,classname))
     {
-        cout << "Class name already exists!\n" 
-             << "Try again.\n\n"
+        cout << "Class name already exists! Try again.\n\n"
              << "Input the class name: ";
         cin >> classname;
     }

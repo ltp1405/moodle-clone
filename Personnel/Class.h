@@ -11,6 +11,5 @@ struct Class {
 	LinkedList<Student> listOfStudent;
 };
 
-Class inputClass();
 void importClassTXT(LinkedList<Class>& c);
 bool findClass(LinkedList<Class> c, string find);
