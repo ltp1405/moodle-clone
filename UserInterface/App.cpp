@@ -1,7 +1,6 @@
 #include "App.h"
 void App::promptAddStudent() {}
 void App::promptOpenRegistrationSession() {}
-void App::studentPromptViewProfile() {}
 void App::studentPromptChangePassword() {}
 void App::promptExportStudent() {
 }
