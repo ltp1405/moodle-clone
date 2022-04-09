@@ -74,6 +74,11 @@ void App::promptLogin() {
     menu.run();
 }
 
+void App::logout() {
+    currentStudent = nullptr;
+    currentMember = nullptr;
+}
+
 void App::run() {
     promptLogin();
     Menu<App> studentMenu(this);
@@ -82,6 +87,7 @@ void App::run() {
     studentMenu.addItem("View profile", &App::studentPromptViewProfile);
     studentMenu.addItem("Change password", &App::studentPromptChangePassword);
     studentMenu.addItem("View scoreboard", &App::studentPromptViewScoreboard);
+    studentMenu.addItem("Logout", &App::logout);
 
     academicMemberMenu.addItem("Display current schoolyear", &App::displayCurrentSchoolyear);
     academicMemberMenu.addItem("Create new course", &App::promptCreateCourse);
@@ -96,17 +102,17 @@ void App::run() {
     academicMemberMenu.addItem("View scoreboard of a course", &App::promptViewCourseScoreboard);
     academicMemberMenu.addItem("Update scoreboard of a course", &App::promptUpdateCourseScoreboard);
     academicMemberMenu.addItem("Update scoreboard of a class", &App::promptUpdateClassScoreboard);
-    if (!currentStudent)
-        while (true) {
-            if (academicMemberMenu.run() == 0) {
+    academicMemberMenu.addItem("Logout", &App::logout);
+    while (currentStudent || currentMember) {
+        if (!currentStudent) {
+            if (academicMemberMenu.run() == 0)
                 return;
-            }
+        } else {
+            if (studentMenu.run() == 0)
+                return;
         }
-    else
-        while (true) {
-            if (studentMenu.run() == 0) {
-                return;
-            }
+        if (!currentMember && !currentStudent)
+            promptLogin();
     }
 }
 

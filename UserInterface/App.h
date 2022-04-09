@@ -30,6 +30,7 @@ class App {
     
 private:
     // A bunch of linked list
+    void logout();
     void loadStudentList();
     void loadMemberList();
     void promptLoginAsStudent();
