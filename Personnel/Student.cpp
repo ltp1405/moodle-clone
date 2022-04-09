@@ -1,10 +1,4 @@
 #include "Student.h"
-#include "../utils/LinkedList.h"
-#include "../utils/Date.h"
-#include <fstream>
-#include <string.h>
-#include <sstream>
-using namespace std;
 
 Student addStudent(){
 	Student student;

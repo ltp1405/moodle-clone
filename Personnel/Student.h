@@ -1,8 +1,10 @@
 #pragma once
 #include "../utils/LinkedList.h"
-#include <string>
 #include "../utils/Date.h"
-using std::string;
+#include <fstream>
+#include <string.h>
+#include <sstream>
+using namespace std;
 
 enum Gender {
 	MALE,
