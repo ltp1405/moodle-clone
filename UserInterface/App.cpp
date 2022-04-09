@@ -31,20 +31,43 @@ void App::run() {
     academicMemberMenu.addItem("Display current schoolyear", &App::displayCurrentSchoolyear);
     academicMemberMenu.addItem("Create new course", &App::promptCreateCourse);
     academicMemberMenu.addItem("Create new school year", &App::promptCreateSchoolYear);
-    academicMemberMenu.addItem("Add student to class", &App::promptAddStudent);
     academicMemberMenu.addItem("Create semester", &App::promptCreateSemester);
-    academicMemberMenu.addItem("Open Registration Session", &App::promptOpenRegistrationSession);
+    // academicMemberMenu.addItem("Add student to class", &App::promptAddStudent);
+    // academicMemberMenu.addItem("Open Registration Session", &App::promptOpenRegistrationSession);
     academicMemberMenu.addItem("View list of courses", &App::promptViewCoursesList);
-    academicMemberMenu.addItem("Export students", &App::promptExportStudent);
+    // academicMemberMenu.addItem("Export students", &App::promptExportStudent);
     academicMemberMenu.addItem("Import scoreboard of a course", &App::promptImportCourseScoreboard);
     academicMemberMenu.addItem("View scoreboard of a course", &App::promptViewCourseScoreboard);
     academicMemberMenu.addItem("Update scoreboard of a course", &App::promptUpdateCourseScoreboard);
     academicMemberMenu.addItem("Update scoreboard of a class", &App::promptUpdateClassScoreboard);
-    academicMemberMenu.run();
+    while (true)
+        if (academicMemberMenu.run() == 0) {
+            return;
+        }
+}
+
+void App::init() {
+    readfile();
+}
+
+App::~App() {
+    cout << "DONE" << endl;
+    savefile();
+    for (auto *sy = schoolyears.getHead(); sy != nullptr; sy = sy->next) {
+        for (auto *sm = sy->data->semesters.getHead(); sm != nullptr; sm = sm->next) {
+            for (auto *cr = sm->data->courses.getHead(); cr != nullptr; cr = cr->next) {
+                delete cr->data;
+            }
+            delete sm->data;
+        }
+        delete sy->data;
+    }
 }
 
 int main() {
     App *app = new App;
+    app->init();
     app->run();
+    delete app;
 	return 0;
 }

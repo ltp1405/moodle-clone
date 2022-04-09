@@ -66,5 +66,5 @@ void App::promptCreateCourse() {
     string time;
     getline(cin, time);
     Time t = parseTime(time);
-    currentSemester->courses.getTail()->data.addSession(Session(d, t));
+    currentSemester->courses.getTail()->data->addSession(Session(d, t));
 }
