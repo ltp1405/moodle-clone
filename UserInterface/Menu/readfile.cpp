@@ -9,22 +9,22 @@ void App::readfile(){
     fin >> S->to.day >> S->to.month >> S->to.year;
     fin >> S->semesterNumber;
     for(int i = 1; i <= S->semesterNumber; i++){
-        Semester semester_new;
-        fin >> semester_new.order;
-        fin >> semester_new.start.day >> semester_new.start.month >> semester_new.start.year;
-        fin >> semester_new.end.day >> semester_new.end.month >> semester_new.end.year;
+        Semester *semester_new = new Semester;
+        fin >> semester_new->order;
+        fin >> semester_new->start.day >> semester_new->start.month >> semester_new->start.year;
+        fin >> semester_new->end.day >> semester_new->end.month >> semester_new->end.year;
         int sizecourses;
         fin >> sizecourses;
         for(int j = 0; j < sizecourses; j++){
-            Course course_new;
-            fin >> course_new.id;
-            fin >> course_new.name;
-            fin >> course_new.teacherName;
-            fin >> course_new.credits;
-            fin >> course_new.maxStudents;
-            semester_new.addCourse(course_new);
+            Course *course_new = new Course;
+            fin >> course_new->id;
+            fin >> course_new->name;
+            fin >> course_new->teacherName;
+            fin >> course_new->credits;
+            fin >> course_new->maxStudents;
+            semester_new->courses.addTail(course_new);
         }
-        S->addSemester(semester_new);
+        S->semesters.addTail(semester_new);
     }
     schoolyears.addTail(S);
     currentSchoolyear = schoolyears.getTail()->data;
