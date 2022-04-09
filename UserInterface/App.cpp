@@ -1,6 +1,5 @@
 #include "App.h"
 void App::promptAddStudent() {}
-void App::promptOpenRegistrationSession() {}
 void App::studentPromptViewProfile() {}
 void App::studentPromptChangePassword() {}
 void App::promptExportStudent() {
@@ -33,17 +32,18 @@ void App::run() {
     academicMemberMenu.addItem("Create new school year", &App::promptCreateSchoolYear);
     academicMemberMenu.addItem("Create semester", &App::promptCreateSemester);
     // academicMemberMenu.addItem("Add student to class", &App::promptAddStudent);
-    // academicMemberMenu.addItem("Open Registration Session", &App::promptOpenRegistrationSession);
+    academicMemberMenu.addItem("Open Registration Session", &App::promptOpenRegistrationSession);
     academicMemberMenu.addItem("View list of courses", &App::promptViewCoursesList);
     // academicMemberMenu.addItem("Export students", &App::promptExportStudent);
     academicMemberMenu.addItem("Import scoreboard of a course", &App::promptImportCourseScoreboard);
     academicMemberMenu.addItem("View scoreboard of a course", &App::promptViewCourseScoreboard);
     academicMemberMenu.addItem("Update scoreboard of a course", &App::promptUpdateCourseScoreboard);
     academicMemberMenu.addItem("Update scoreboard of a class", &App::promptUpdateClassScoreboard);
-    while (true)
+    while (true) {
         if (academicMemberMenu.run() == 0) {
             return;
         }
+    }
 }
 
 void App::init() {
