@@ -13,27 +13,27 @@ void App::studentViewEnrolledCourses() {
     tb.addColumn(Column("Credits"));
     tb.addColumn(Column("Max Student"));
 
-    DNode<Course> *cur = currentSemester->courses.getHead();
+    DNode<Course*> *cur = currentSemester->courses.getHead();
     while (cur) {
-        DNode<Student> *curStudent = cur->data.students.getHead();
+        DNode<Student*> *curStudent = cur->data->students.getHead();
         while (curStudent) {
-            if (curStudent->data.id == currentStudent->id) {
-                DNode<Session> *ss = cur->data.sessions.getHead();
+            if (curStudent->data->id == currentStudent->id) {
+                DNode<Session*> *ss = cur->data->sessions.getHead();
                 string sessionString;
                 while (ss) {
-                    sessionString += ss->data.toString();
-                    if (ss != cur->data.sessions.getTail()) {
+                    sessionString += ss->data->toString();
+                    if (ss != cur->data->sessions.getTail()) {
                         sessionString += ", ";
                     }
                     ss = ss->next;
                 }
                 tb.addRow(
-                        cur->data.id,
-                        cur->data.name,
+                        cur->data->id,
+                        cur->data->name,
                         sessionString,
-                        cur->data.teacherName,
-                        cur->data.credits,
-                        cur->data.maxStudents
+                        cur->data->teacherName,
+                        cur->data->credits,
+                        cur->data->maxStudents
                         );
                 break;
             }

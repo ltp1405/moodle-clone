@@ -29,12 +29,12 @@ void CreateSemester(Semester &semester_new){
 
 void App::promptCreateSemester(){
     int indexsemester;
-    int numsemester;
-    cout << "number of semesters you want to input: ";
-    cin >> numsemester;
+    int numsemester = currentSchoolyear->semesterNumber;
+    
     for(int i = 1; i <= numsemester; i++){
         cout << "input index semester you want to input: ";
         cin >> indexsemester;
-        CreateSemester(schoolyears.getTail()->data.semesters[indexsemester-1]->data);
+        CreateSemester(*currentSchoolyear->semesters[indexsemester-1]->data);
+        currentSemester = currentSchoolyear->semesters[indexsemester-1]->data;
     }
 }

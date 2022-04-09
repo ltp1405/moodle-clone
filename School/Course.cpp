@@ -14,7 +14,8 @@ Course::Course(string courseId, string courseName, int numberOfCredits, int maxS
 Course::Course() {}
 
 void Course::addSession(Session session) {
-    sessions.addTail(session);
+    Session *ss = new Session;
+    sessions.addTail(ss);
 }
 
 void Course::print() {

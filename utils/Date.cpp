@@ -7,6 +7,8 @@ Date::Date(int day, int month, int year) {
 }
 
 string Date::toString() {
+    if (!day || !month || !year)
+        return "";
     string s = to_string(day) + "/" + to_string(month) + "/" + to_string(year);
     return s;
 }

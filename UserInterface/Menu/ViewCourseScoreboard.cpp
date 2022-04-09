@@ -29,15 +29,15 @@ void App::viewScoreboard(const string id) {
 }
 
 void App::promptViewCourseScoreboard() {
-    DNode<Course> *cur = currentSemester->courses.getHead();
+    DNode<Course*> *cur = currentSemester->courses.getHead();
     cout << "Available Course: " << endl;
     int count = 0;
     int inp;
     while (cur) {
         count++;
-        cout << count << " " << cur->data.id << " - " << cur->data.name << endl;
+        cout << count << " " << cur->data->id << " - " << cur->data->name << endl;
         cur = cur->next;
     }
     cin >> inp;
-    viewScoreboard(currentSemester->courses[inp-1]->data.id);
+    viewScoreboard(currentSemester->courses[inp-1]->data->id);
 }

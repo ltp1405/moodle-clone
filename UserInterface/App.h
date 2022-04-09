@@ -5,6 +5,7 @@
 #include "../School/Semester.h"
 #include "../utils/LinkedList.h"
 #include <iostream>
+#include <fstream>
 #include <string>
 #include "../School/SchoolYear.h"
 #include "../utils/LinkedList.h"
@@ -19,7 +20,7 @@ using std::endl;
 class App {
     Student *currentStudent;
     AcademicMember *currentMember;
-    LinkedList<SchoolYear> schoolyears;
+    LinkedList<SchoolYear *> schoolyears;
     Semester *currentSemester;
     SchoolYear *currentSchoolyear;
     LinkedList<Score> scoreboard;
@@ -49,9 +50,14 @@ private:
     void studentPromptViewScoreboard();
     void studentViewEnrolledCourses();
     void studentPromptEnrollCourse();
+    void displayCurrentSchoolyear();
+    void savefile();
+    void readfile();
 public:
+    ~App();
     void load();
     void run();
     void init();
+    void close();
 };
 

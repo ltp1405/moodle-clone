@@ -53,7 +53,7 @@ void LinkedList<T>::printList(std::function<void(T&)> print) {
 }
 
 template<class T>
-void LinkedList<T>::addHead(const T &item) {
+void LinkedList<T>::addHead(T item) {
     if (!head) {
         head = new DNode<T>(item);
         tail = head;
@@ -66,7 +66,7 @@ void LinkedList<T>::addHead(const T &item) {
 }
 
 template<class T>
-void LinkedList<T>::addTail(const T &item) {
+void LinkedList<T>::addTail(T item) {
     if (!head) {
         head = new DNode<T>(item);
         tail = head;
