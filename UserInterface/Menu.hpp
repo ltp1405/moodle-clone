@@ -47,5 +47,5 @@ int Menu<T>::run() {
         return 0;
 
     callbacks[choice-1](context);
-    return choice-1;
+    return choice;
 }

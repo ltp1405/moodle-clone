@@ -37,8 +37,8 @@ struct Course {
     string teacherName;
     int credits;
     int maxStudents;
-    LinkedList<Session> sessions;
-    LinkedList<Student> students;
+    LinkedList<Session*> sessions;
+    LinkedList<Student*> students;
 
     Course();
     Course(string courseId, string courseName, int numberOfCredits,

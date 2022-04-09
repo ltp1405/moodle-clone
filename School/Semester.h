@@ -6,7 +6,7 @@ struct Semester {
     int order;
     Date start;
     Date end;
-    LinkedList<Course> courses;
+    LinkedList<Course*> courses;
 
     Semester(){}
     Semester(int order, Date start, Date end){

@@ -7,18 +7,22 @@
 void App::displayCurrentSchoolyear() {
     if (!currentSchoolyear)
         return;
+
     cout << currentSchoolyear->from.toString();
     cout << " - ";
     cout << currentSchoolyear->to.toString();
     cout << endl;
 
     cout << "Semesters" << endl;
-    for (DNode<Semester> *cur = currentSchoolyear->semesters.getHead();
+    for (DNode<Semester*> *cur = currentSchoolyear->semesters.getHead();
             cur != nullptr;
             cur = cur->next) {
-        cout << cur->data.start.toString();
+        cout << "\t| ";
+        cout << cur->data->order;
+        cout << " : ";
+        cout << cur->data->start.toString();
         cout << " - ";
-        cout << cur->data.end.toString();
+        cout << cur->data->end.toString();
         cout << endl;
     }
 }

@@ -20,7 +20,7 @@ using std::endl;
 class App {
     Student *currentStudent;
     AcademicMember *currentMember;
-    LinkedList<SchoolYear> schoolyears;
+    LinkedList<SchoolYear *> schoolyears;
     Semester *currentSemester;
     SchoolYear *currentSchoolyear;
     LinkedList<Score> scoreboard;
@@ -53,8 +53,10 @@ private:
     void savefile();
     void readfile();
 public:
+    ~App();
     void load();
     void run();
     void init();
+    void close();
 };
 
