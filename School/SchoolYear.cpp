@@ -3,7 +3,7 @@ using namespace std;
 #include "../School/SchoolYear.h"
 
 void SchoolYear::addSemester(Semester semester){
-    Semester *sm = new Semester;
+    Semester *sm = new Semester(semester);
     semesters.addTail(sm);
 }
 bool SchoolYear::compare(Semester semester1, Semester semester2){

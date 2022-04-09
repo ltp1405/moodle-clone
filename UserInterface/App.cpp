@@ -52,6 +52,7 @@ void App::init() {
 
 App::~App() {
     cout << "DONE" << endl;
+    savefile();
     for (auto *sy = schoolyears.getHead(); sy != nullptr; sy = sy->next) {
         for (auto *sm = sy->data->semesters.getHead(); sm != nullptr; sm = sm->next) {
             for (auto *cr = sm->data->courses.getHead(); cr != nullptr; cr = cr->next) {

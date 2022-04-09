@@ -4,7 +4,7 @@ using namespace std;
 #include "../utils/LinkedList.h"
 
 void Semester::addCourse(Course course){
-    Course *crs = new Course;
+    Course *crs = new Course(course);
     courses.addTail(crs);
 }
 void printCourse(Course course){
