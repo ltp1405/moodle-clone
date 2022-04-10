@@ -14,6 +14,7 @@ enum Gender {
 
 struct Student {
 	Student() {}
+	string id;
 	string firstname;
 	string lastname;
     string password;
