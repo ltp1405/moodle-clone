@@ -29,12 +29,14 @@ void App::promptLoginAsAMember() {
         getline(cin, username);
         cout << "\nEnter password: ";
         getline(cin, password);
-        for (int i = 1; i < login_info.size(); i++) 
-            if (checkLoginInfo(login_info, username, password)) {
+        for (auto *st = memberList.getHead(); st != nullptr; st = st->next) {
+            if (st->data->username == username && st->data->password == password) {
                 cout << "Login successful";
+                currentMember = st->data;
                 cin.ignore(100, '\n');
                 return;
             }
+        }
     }
     exit(0);
 }
@@ -52,12 +54,14 @@ void App::promptLoginAsStudent() {
         getline(cin, username);
         cout << "\nEnter password: ";
         getline(cin, password);
-        for (int i = 1; i < login_info.size(); i++) 
-            if (checkLoginInfo(login_info, username, password)) {
-                cout << "Login successful\n";
+        for (auto *st = studentList.getHead(); st != nullptr; st = st->next) {
+            if (st->data->username == username && st->data->password == password) {
+                cout << "Login successful";
+                currentStudent = st->data;
                 cin.ignore(100, '\n');
                 return;
             }
+        }
     }
     system("cls");
     exit(0);
