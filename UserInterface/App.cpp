@@ -31,6 +31,8 @@ void App::run() {
     academicMemberMenu.addItem("Create new course", &App::promptCreateCourse);
     academicMemberMenu.addItem("Create new school year", &App::promptCreateSchoolYear);
     academicMemberMenu.addItem("Create semester", &App::promptCreateSemester);
+    academicMemberMenu.addItem("Add student to class", &App::promptAddStudent);
+
     // academicMemberMenu.addItem("Add student to class", &App::promptAddStudent);
     academicMemberMenu.addItem("Open Registration Session", &App::promptOpenRegistrationSession);
     academicMemberMenu.addItem("View list of courses", &App::promptViewCoursesList);
@@ -39,11 +41,13 @@ void App::run() {
     academicMemberMenu.addItem("View scoreboard of a course", &App::promptViewCourseScoreboard);
     academicMemberMenu.addItem("Update scoreboard of a course", &App::promptUpdateCourseScoreboard);
     academicMemberMenu.addItem("Update scoreboard of a class", &App::promptUpdateClassScoreboard);
-    while (true) {
-        if (academicMemberMenu.run() == 0) {
-            return;
-        }
-    }
+
+    if (!currentStudent)
+        while (true)
+            academicMemberMenu.run();
+    else
+        while (true)
+            studentMenu.run();
 }
 
 void App::init() {
