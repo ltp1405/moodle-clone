@@ -19,8 +19,8 @@ using std::string;
 using std::endl;
 
 class App {
-    Student *currentStudent;
-    AcademicMember *currentMember;
+    Student *currentStudent = nullptr;
+    AcademicMember *currentMember = nullptr;
     Semester *currentSemester;
     SchoolYear *currentSchoolyear;
     LinkedList<Score> scoreboard;
