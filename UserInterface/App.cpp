@@ -88,6 +88,7 @@ void App::run() {
     studentMenu.addItem("View scoreboard", &App::studentPromptViewScoreboard);
     studentMenu.addItem("Logout", &App::logout);
 
+    academicMemberMenu.addItem("Create new class", &App::promptCreateClass);
     academicMemberMenu.addItem("Display current schoolyear", &App::displayCurrentSchoolyear);
     academicMemberMenu.addItem("Create new course", &App::promptCreateCourse);
     academicMemberMenu.addItem("Create new school year", &App::promptCreateSchoolYear);
