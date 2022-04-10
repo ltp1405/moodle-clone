@@ -34,6 +34,7 @@ void App::promptCreateSemester(){
     for(int i = 1; i <= numsemester; i++){
         cout << "input index semester you want to input: ";
         cin >> indexsemester;
-        CreateSemester(currentSchoolyear->semesters[indexsemester-1]->data);
+        CreateSemester(*currentSchoolyear->semesters[indexsemester-1]->data);
+        currentSemester = currentSchoolyear->semesters[indexsemester-1]->data;
     }
 }

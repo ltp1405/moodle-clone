@@ -4,16 +4,23 @@ using namespace std;
 #include "../utils/LinkedList.h"
 
 void Semester::addCourse(Course course){
-    courses.addTail(course);
+    Course *crs = new Course(course);
+    courses.addTail(crs);
 }
 void printCourse(Course course){
     cout << course.id << endl;
 }
 void Semester::viewListOfCourse(){
-    courses.printList(printCourse);
 }
 
 bool compareCourse(Course course1, Course course2){
     if(course1.id == course2.id) return true;
     else return false;
+}
+void Semester::activateRegistration(Date from, Date to) {
+    rgs.from = from;
+    rgs.to = to;
+}
+bool Semester::registratable(Date now) {
+    return now >= rgs.from && now <= rgs.to;
 }

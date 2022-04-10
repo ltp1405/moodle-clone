@@ -5,7 +5,7 @@
 struct SchoolYear {
     Date from;
     Date to;
-    LinkedList<Semester> semesters;
+    LinkedList<Semester*> semesters;
     int semesterNumber;
 
     SchoolYear(){}

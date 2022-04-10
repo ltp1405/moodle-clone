@@ -6,9 +6,6 @@
 #include "../../utils/LinkedList.h"
 #include "../App.h"
 #include "../Table.hpp"
-using std::cout;
-using std::cin;
-using std::endl;
 
 void App::promptViewCoursesList() {
     Table tb("List of Course");
@@ -20,25 +17,25 @@ void App::promptViewCoursesList() {
     tb.addColumn("Teacher Name");
     tb.addColumn("Max Student");
 
-    DNode<Course> *cur = currentSemester->courses.getHead();
+    DNode<Course*> *cur = currentSemester->courses.getHead();
     while (cur) {
         string s;
-        DNode<Session> *ss = cur->data.sessions.getHead();
+        DNode<Session*> *ss = cur->data->sessions.getHead();
         while (ss) {
-            s += ss->data.toString();
-            if (ss != cur->data.sessions.getTail()) {
+            s += ss->data->toString();
+            if (ss != cur->data->sessions.getTail()) {
                 s += ", ";
             }
             ss = ss->next;
         }
         tb.addRow(
-                cur->data.id,
-                cur->data.name,
+                cur->data->id,
+                cur->data->name,
                 s,
-                std::to_string(cur->data.credits),
-                std::to_string(cur->data.students.getSize()),
-                cur->data.teacherName,
-                std::to_string(cur->data.maxStudents)
+                std::to_string(cur->data->credits),
+                std::to_string(cur->data->students.getSize()),
+                cur->data->teacherName,
+                std::to_string(cur->data->maxStudents)
                 );
 
         cur = cur->next;
