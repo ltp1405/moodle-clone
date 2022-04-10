@@ -1,7 +1,6 @@
 #pragma once
 #include <string>
 using std::string;
-using std::to_string;
 
 struct Date {
     int day;
@@ -9,5 +8,6 @@ struct Date {
     int year;
     Date(){}
     Date(int day, int month, int year);
-    string toString();
+    string toString(const string delim="/");
+    bool valid();
 };
