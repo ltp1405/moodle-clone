@@ -14,6 +14,8 @@ enum Gender {
 
 struct Student {
 	Student() {}
+    string id;
+    string username;
 	string firstname;
 	string lastname;
     string password;
@@ -27,6 +29,6 @@ struct Student {
 Student addStudent();
 void importStudentCSV(LinkedList<Student> &student);	
 void displayStudent(Student student);
-void displayAllStudent(LinkedList<Student> student);
+void displayAllStudent(LinkedList<Student*> student);
 void exportStudentCSV(Student student, ofstream& fout);
 void exportAllStudentCSV(LinkedList<Student> student);
