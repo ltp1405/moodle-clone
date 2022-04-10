@@ -52,7 +52,6 @@ void App::loadMemberList() {
     }
 }
 void App::promptAddStudent() {}
-void App::promptOpenRegistrationSession() {}
 void App::studentPromptViewProfile() {}
 void App::studentPromptChangePassword() {}
 void App::promptExportStudent() {
@@ -94,8 +93,9 @@ void App::run() {
     academicMemberMenu.addItem("Create new school year", &App::promptCreateSchoolYear);
     academicMemberMenu.addItem("Create semester", &App::promptCreateSemester);
     academicMemberMenu.addItem("View Student List", &App::viewAllStudent);
+    academicMemberMenu.addItem("Add student to class", &App::promptAddStudent);
     // academicMemberMenu.addItem("Add student to class", &App::promptAddStudent);
-    // academicMemberMenu.addItem("Open Registration Session", &App::promptOpenRegistrationSession);
+    academicMemberMenu.addItem("Open Registration Session", &App::promptOpenRegistrationSession);
     academicMemberMenu.addItem("View list of courses", &App::promptViewCoursesList);
     // academicMemberMenu.addItem("Export students", &App::promptExportStudent);
     academicMemberMenu.addItem("Import scoreboard of a course", &App::promptImportCourseScoreboard);
