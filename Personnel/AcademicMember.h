@@ -1,6 +1,8 @@
+#include <string>
+using std::string;
+
 struct AcademicMember {
-	string preName;
-	string firstname;
-	string lastname;
+    string username;
+    string password;
 };
 

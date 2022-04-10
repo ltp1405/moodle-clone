@@ -1,4 +1,11 @@
 #include "Student.h"
+#include "../utils/LinkedList.h"
+#include "../utils/Date.h"
+#include "../utils/CSVParser.h"
+#include <fstream>
+#include <string.h>
+#include <sstream>
+using namespace std;
 
 Student addStudent(){
 	Student student;
@@ -31,7 +38,7 @@ void importStudentCSV(LinkedList<Student> &student, string filename){
 	DNode<Student>* temp=NULL;
 	string line;
 	while (getline(fin, line)){
-		temp = new DNode<Student>;
+		auto *temp = new Student;
 
 		stringstream inputstream;
 		inputstream.str(line);
@@ -39,29 +46,29 @@ void importStudentCSV(LinkedList<Student> &student, string filename){
 		string No;
 		inputstream >> No;
 
-		inputstream >> temp->data.id;
+		inputstream >> temp->id;
 
-		getline(inputstream, temp->data.firstname, ',');
-		getline(inputstream, temp->data.lastname, ',');
+		getline(inputstream, temp->firstname, ',');
+		getline(inputstream, temp->lastname, ',');
 
 		string studentGender;
 		inputstream >> studentGender;
-		if(studentGender=="1") temp->data.gender=MALE;
-		if(studentGender=="2") temp->data.gender=FEMALE;
-		if(studentGender!="1" && studentGender!="2") temp->data.gender=OTHER;
+		if(studentGender=="1") temp->gender=MALE;
+		if(studentGender=="2") temp->gender=FEMALE;
+		if(studentGender!="1" && studentGender!="2") temp->gender=OTHER;
 
 		string sDob;
 		getline(inputstream, sDob, ',');
 		stringstream dobstream;
 		dobstream.str(sDob);
-		dobstream >> temp->data.dateOfBirth.day;
-		dobstream >> temp->data.dateOfBirth.month;
-		dobstream >> temp->data.dateOfBirth.year;
+		dobstream >> temp->dateOfBirth.day;
+		dobstream >> temp->dateOfBirth.month;
+		dobstream >> temp->dateOfBirth.year;
 
 		inputstream >> temp->data.SocialID;
 
 		student.addTail(temp->data);
-		delete temp;   
+		delete temp;
 	}
 	fin.close();
 }
