@@ -18,23 +18,11 @@ void CreateSemester(Semester &semester_new){
     cout << "Input the end date of this semester (format dd mm yy): ";
     cin >> end.day >> end.month >> end.year;
     semester_new.addtime(order, start, end);
-    int numCourses;
-    cout << "Input the number of courses you want in this semester: ";
-    cin >> numCourses;
-    for(int i = 0; i < numCourses; i++){
-        Course course_new;
-        semester_new.addCourse(course_new);
-    }
 }
 
 void App::promptCreateSemester(){
-    int indexsemester;
-    int numsemester = currentSchoolyear->semesterNumber;
-    
-    for(int i = 1; i <= numsemester; i++){
-        cout << "input index semester you want to input: ";
-        cin >> indexsemester;
-        CreateSemester(*currentSchoolyear->semesters[indexsemester-1]->data);
-        currentSemester = currentSchoolyear->semesters[indexsemester-1]->data;
-    }
+    Semester* semester_new = new Semester;
+    currentSchoolyear->semesters.addTail(semester_new);
+    CreateSemester(*currentSchoolyear->semesters.getTail()->data);
+    currentSemester = currentSchoolyear->semesters.getTail()->data;
 }

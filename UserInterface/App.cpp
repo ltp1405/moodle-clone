@@ -106,11 +106,15 @@ void App::run() {
     academicMemberMenu.addItem("Logout", &App::logout);
     while (currentStudent || currentMember) {
         if (!currentStudent) {
-            if (academicMemberMenu.run() == 0)
+            if (academicMemberMenu.run() == 0){
+                savefile();
                 return;
+            }
         } else {
-            if (studentMenu.run() == 0)
+            if (studentMenu.run() == 0){
+                savefile();
                 return;
+            }
         }
         if (!currentMember && !currentStudent)
             promptLogin();

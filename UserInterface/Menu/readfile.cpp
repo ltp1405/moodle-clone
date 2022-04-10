@@ -7,8 +7,9 @@ void App::readfile(){
     SchoolYear *S = new SchoolYear;
     fin >> S->from.day >> S->from.month >> S->from.year;
     fin >> S->to.day >> S->to.month >> S->to.year;
-    fin >> S->semesterNumber;
-    for(int i = 1; i <= S->semesterNumber; i++){
+    int num;
+    fin >> num;
+    for(int i = 1; i <= num; i++){
         Semester *semester_new = new Semester;
         fin >> semester_new->order;
         fin >> semester_new->start.day >> semester_new->start.month >> semester_new->start.year;
@@ -18,8 +19,9 @@ void App::readfile(){
         for(int j = 0; j < sizecourses; j++){
             Course *course_new = new Course;
             fin >> course_new->id;
-            fin >> course_new->name;
-            fin >> course_new->teacherName;
+            fin.ignore();
+            getline(fin, course_new->name);
+            getline(fin, course_new->teacherName);
             fin >> course_new->credits;
             fin >> course_new->maxStudents;
             semester_new->courses.addTail(course_new);

@@ -6,8 +6,9 @@ void App::savefile(){
     SchoolYear *sc = schoolyears.getTail()->data;
     fout << sc->from.day << " " << sc->from.month << " " << sc->from.year << endl;
     fout << sc->to.day << " " << sc->to.month << " " << sc->to.year << endl;
-    fout << sc->semesterNumber << endl;
-    for(int i = 1; i <= sc->semesterNumber; i++){
+    int num = sc->semesters.getSize();
+    fout << num << endl;
+    for(int i = 1; i <= num; i++){
         fout << sc->semesters[i-1]->data->order << endl;
         Date start = sc->semesters[i-1]->data->start;
         fout << start.day << " " << start.month << " " << start.year << endl;
