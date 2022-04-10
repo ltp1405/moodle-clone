@@ -25,10 +25,10 @@ Student addStudent(){
 	return student;
 }
 
-void importStudentCSV(LinkedList<Student *> &student, string filename){
+void importStudentCSV(LinkedList<Student> &student, string filename){
 	ifstream fin;
 	fin.open(filename, ios::in);
-	DNode<Student*>* temp=NULL;
+	DNode<Student>* temp=NULL;
 	string line;
 	while (getline(fin, line)){
 		temp = new DNode<Student>;
@@ -57,8 +57,8 @@ void importStudentCSV(LinkedList<Student *> &student, string filename){
 		dobstream >> temp->data.dateOfBirth.day;
 		dobstream >> temp->data.dateOfBirth.month;
 		dobstream >> temp->data.dateOfBirth.year;
-
-		inputstream >> temp->SocialID;
+		
+		inputstream >> temp->data.SocialID;
 
 		student.addTail(temp->data);
 		delete temp;   

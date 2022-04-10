@@ -21,13 +21,13 @@ struct Student {
     string password;
 	Gender gender;
 	Date dateOfBirth;
-	int SocialID;
+	string SocialID;
 
 	int courseNumber;
 };
 
 Student addStudent();
-void importStudentCSV(LinkedList<Student> &student);	
+void importStudentCSV(LinkedList<Student> &student, string filename);	
 void displayStudent(Student student);
 void displayAllStudent(LinkedList<Student*> student);
 void exportStudentCSV(Student student, ofstream& fout);
