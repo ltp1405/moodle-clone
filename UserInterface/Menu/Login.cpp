@@ -9,7 +9,10 @@
 #include "../../utils/CSVParser.h"
 #include "../../utils/ClearScreen.h"
 
-using namespace std;
+// using namespace std;
+using std::string;
+using std::cin;
+using std::cout;
 
 void App::promptLoginAsAMember() {
     string username, password;

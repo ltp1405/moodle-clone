@@ -15,8 +15,8 @@ void promptCreateClass()
         cin >> classname;
     }
     
-    ofstream fout;
-    fout.open("../../data/Class.txt",ios::app);
-    fout << endl << classname;
+    std::ofstream fout;
+    fout.open("../../data/Class.txt", std::ios::app);
+    fout << std::endl << classname;
     fout.close();
 }
