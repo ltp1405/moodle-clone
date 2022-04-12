@@ -58,6 +58,7 @@ private:
     void studentViewEnrolledCourses();
     void studentPromptEnrollCourse();
     void displayCurrentSchoolyear();
+    void displayAllSchoolYears();
     void savefile();
     void readfile();
 public:
