@@ -22,6 +22,17 @@ void App::savefile(){
             fout << sc->semesters[i-1]->data->courses[j]->data->teacherName << endl;
             fout << sc->semesters[i-1]->data->courses[j]->data->credits << endl;
             fout << sc->semesters[i-1]->data->courses[j]->data->maxStudents << endl;
+            int sizesession = sc->semesters[i-1]->data->courses[j]->data->sessions.getSize();
+            fout << sizesession << endl;
+            for(int k = 0; k < sizesession; k++){
+                fout << sc->semesters[i-1]->data->courses[j]->data->sessions[k]->data->day 
+                << " " << sc->semesters[i-1]->data->courses[j]->data->sessions[k]->data->time << endl;
+            }
+            int sizestudent = sc->semesters[i-1]->data->courses[j]->data->students.getSize();
+            fout << sizestudent << endl;
+            for(int k = 0; k < sizestudent; k++){
+                fout << sc->semesters[i-1]->data->courses[j]->data->students[k]->data->id << endl;
+            }
         }
     }
     fout.close();
