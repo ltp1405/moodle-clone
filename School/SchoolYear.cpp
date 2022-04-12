@@ -1,5 +1,5 @@
 #include<iostream>
-using namespace std;
+// using namespace std;
 #include "../School/SchoolYear.h"
 
 void SchoolYear::addSemester(Semester semester){

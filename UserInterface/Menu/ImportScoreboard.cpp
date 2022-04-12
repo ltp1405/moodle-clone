@@ -4,8 +4,11 @@
 #include "../Table.hpp"
 #include "../App.h"
 #include <iostream>
-using namespace std;
+// using namespace std;
 using std::stod;
+using std::cout;
+using std::endl;
+using std::string;
 
 void App::promptImportCourseScoreboard() {
     cout << "Enter filename, (leave empty for default: data/scoreboard.csv) :";
