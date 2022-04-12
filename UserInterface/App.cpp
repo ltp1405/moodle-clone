@@ -2,8 +2,6 @@
 
 void App::loadStudentList() {
     vvs file = readCSV("Student.csv");
-    for (int i = 1; i < file.size(); i++)
-        cout << file[i].size();
     for (int i = 1; i < file.size(); i++) {
         Student *st = new Student;
         for (int j = 0; j < file[i].size(); j++) {
