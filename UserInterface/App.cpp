@@ -1,4 +1,5 @@
 #include "App.h"
+#include <Windows.h>
 
 void App::loadStudentList() {
     vvs file = readCSV("data/Student.csv");
@@ -143,6 +144,7 @@ App::~App() {
 }
 
 int main() {
+    SetConsoleOutputCP(CP_UTF8);
     App *app = new App;
     app->init();
     app->run();
