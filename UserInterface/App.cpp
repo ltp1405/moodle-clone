@@ -1,7 +1,7 @@
 #include "App.h"
 
 void App::loadStudentList() {
-    vvs file = readCSV("Student.csv");
+    vvs file = readCSV("data/Student.csv");
     for (int i = 1; i < file.size(); i++)
         cout << file[i].size();
     for (int i = 1; i < file.size(); i++) {
@@ -37,7 +37,7 @@ void App::loadStudentList() {
 }
 
 void App::loadMemberList() {
-    vvs file = readCSV("Member.csv");
+    vvs file = readCSV("data/Member.csv");
     for (int i = 1; i < file.size(); i++)
         cout << file[i].size();
     for (int i = 1; i < file.size(); i++) {

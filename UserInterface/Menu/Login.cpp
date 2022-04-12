@@ -4,20 +4,13 @@
 #include <iostream>
 
 #include "../App.h"
+#include "../../Personnel/Student.h"
+#include "../../utils/LinkedList.h"
 #include "../../utils/CSVParser.h"
 
 using namespace std;
 
-bool checkLoginInfo(vvs& login_info, string username, string password) {
-    for (int i = 1; i < login_info.size(); i++) {
-        if (login_info[i][0] == username && login_info[i][1] == password) 
-            return true;
-    }
-    return false;
-}
-
 void App::promptLoginAsAMember() {
-    vvs login_info = readCSV("data/AcademicMemberLoginInfo.csv");
     string username, password;
     short count_input_time = 0;
     cin.ignore(100, '\n');
@@ -42,7 +35,7 @@ void App::promptLoginAsAMember() {
 }
 
 void App::promptLoginAsStudent() {
-    vvs login_info = readCSV("data/StudentLoginInfo.csv");
+    vvs login_info = readCSV("data/Student.csv");
     string username, password;
     short count_input_time = 0;
     cin.ignore(100, '\n');
