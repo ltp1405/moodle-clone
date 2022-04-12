@@ -7,15 +7,19 @@
 #include "../../Personnel/Student.h"
 #include "../../utils/LinkedList.h"
 #include "../../utils/CSVParser.h"
+#include "../../utils/ClearScreen.h"
 
-using namespace std;
+// using namespace std;
+using std::string;
+using std::cin;
+using std::cout;
 
 void App::promptLoginAsAMember() {
     string username, password;
     short count_input_time = 0;
     cin.ignore(100, '\n');
     while (count_input_time < 3) {
-        system("cls");
+        clearScreen();
         cout << (count_input_time ? "Invalid username or password. Try again\n" : ""); 
         count_input_time++;
         cout << "Enter username: ";
@@ -40,7 +44,7 @@ void App::promptLoginAsStudent() {
     short count_input_time = 0;
     cin.ignore(100, '\n');
     while (count_input_time < 3) {
-        system("cls");
+        clearScreen();
         cout << (count_input_time ? "Invalid username or password. Try again\n" : ""); 
         count_input_time++;
         cout << "Enter username: ";
@@ -56,6 +60,6 @@ void App::promptLoginAsStudent() {
             }
         }
     }
-    system("cls");
+    clearScreen();
     exit(0);
 }

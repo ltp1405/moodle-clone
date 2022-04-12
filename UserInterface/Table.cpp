@@ -1,6 +1,10 @@
 #include "Table.hpp"
 #include <cstdarg>
 
+using std::cout;
+using std::endl;
+using std::vector;
+
 int Table::getWidth() {
     int width = 0;
     for (auto col = cols.getHead(); col != nullptr; col = col->next) {

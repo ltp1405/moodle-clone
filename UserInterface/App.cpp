@@ -1,5 +1,8 @@
 #include "App.h"
-#include <Windows.h>
+
+#if defined(WIN32) || defined(_WIN32) || defined(__WIN32__) || defined(__NT__)
+#   include <Windows.h>
+#endif
 
 void App::loadStudentList() {
     vvs file = readCSV("data/Student.csv");
@@ -37,8 +40,6 @@ void App::loadStudentList() {
 
 void App::loadMemberList() {
     vvs file = readCSV("data/Member.csv");
-    for (int i = 1; i < file.size(); i++)
-        cout << file[i].size();
     for (int i = 1; i < file.size(); i++) {
         auto *mem = new AcademicMember;
         for (int j = 0; j < file[i].size(); j++) {
@@ -89,6 +90,7 @@ void App::run() {
 
     // academicMemberMenu.addItem("Create new class", &App::promptCreateClass);
     academicMemberMenu.addItem("Display current schoolyear", &App::displayCurrentSchoolyear);
+    academicMemberMenu.addItem("Display all schoolyears", &App::displayAllSchoolYears);
     academicMemberMenu.addItem("Create new course", &App::promptCreateCourse);
     academicMemberMenu.addItem("Create new school year", &App::promptCreateSchoolYear);
     academicMemberMenu.addItem("Create semester", &App::promptCreateSemester);
@@ -144,7 +146,11 @@ App::~App() {
 }
 
 int main() {
+
+#if defined(WIN32) || defined(_WIN32) || defined(__WIN32__) || defined(__NT__)
     SetConsoleOutputCP(CP_UTF8);
+#endif
+
     App *app = new App;
     app->init();
     app->run();

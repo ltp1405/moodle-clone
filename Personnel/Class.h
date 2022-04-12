@@ -4,7 +4,8 @@
 #include "../Personnel/Student.h"
 #include <string.h>
 #include <fstream>
-using namespace std;
+// using namespace std;
+using std::string;
 
 struct Class {
 	string classname;

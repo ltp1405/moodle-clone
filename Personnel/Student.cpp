@@ -1,4 +1,10 @@
 #include "Student.h"
+#include "../UserInterface/Table.hpp"
+#include "../utils/LinkedList.h"
+
+using std::cin;
+using std::cout;
+using std::endl;
 
 Student addStudent(){
 	Student student;
@@ -26,8 +32,8 @@ Student addStudent(){
 }
 
 void importStudentCSV(LinkedList<Student> &student, string filename){
-	ifstream fin;
-	fin.open(filename, ios::in);
+	std::ifstream fin;
+	fin.open(filename, std::ios::in);
 	DNode<Student>* temp=NULL;
 	string line;
 	while (getline(fin, line)){
@@ -80,18 +86,34 @@ void displayStudent(Student student) {
 }
 
 void displayAllStudent(LinkedList<Student*> student){
-	cout << "---------------------- Student Details ----------------------\n"
-		 << endl
-		 << "Student ID     : " << endl
-		 << "First Name     : " << endl
-		 << "Last Name      : " << endl
-		 << "Gender         : " << endl
-		 << "Date of birth  : " << endl
-		 << "Social ID      : " << endl
-		 << endl;
+    Table tb("Student List");
+    tb.addColumn(Column("ID", 8, Alignment::right));
+    tb.addColumn(Column("Firstname", 15, Alignment::left));
+    tb.addColumn(Column("Lastname", 15, Alignment::left));
+    tb.addColumn(Column("Gender", 7, Alignment::right));
+    tb.addColumn(Column("Dob", 12, Alignment::center));
+    tb.addColumn(Column("Social ID"));
+    for (DNode<Student*> *cur = student.getHead(); cur != nullptr; cur = cur->next) {
+        Student* st = cur->data;
+        string gender_name;
+        if (st->gender == Gender::MALE) {
+            gender_name = "Male";
+        } else if (st->gender == Gender::FEMALE) {
+            gender_name = "Female";
+        } else {
+            gender_name = "Other";
+        }
+        tb.addRow(st->id,
+                st->firstname,
+                st->lastname,
+                gender_name,
+                st->dateOfBirth.toString(),
+                st->SocialID);
+    }
+    tb.display();
 }
 
-void exportStudentCSV(Student student, ofstream &fout){
+void exportStudentCSV(Student student, std::ofstream &fout){
 	fout << student.id << ","
 		 << student.firstname << ","
 		 << student.lastname << ",";
@@ -103,8 +125,8 @@ void exportStudentCSV(Student student, ofstream &fout){
 }
 
 void exportAllStudentCSV(LinkedList<Student> student){
-	ofstream fout;
-	fout.open("../data/Student.csv",ios::out);
+	std::ofstream fout;
+	fout.open("../data/Student.csv", std::ios::out);
 	DNode<Student>* temp = student.getHead();
 	int count = 0;
 	while(!temp){
