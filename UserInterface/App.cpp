@@ -1,5 +1,8 @@
 #include "App.h"
-#include <Windows.h>
+
+#if defined(WIN32) || defined(_WIN32) || defined(__WIN32__) || defined(__NT__)
+#   include <Windows.h>
+#endif
 
 void App::loadStudentList() {
     vvs file = readCSV("data/Student.csv");
@@ -145,7 +148,11 @@ App::~App() {
 }
 
 int main() {
+
+#if defined(WIN32) || defined(_WIN32) || defined(__WIN32__) || defined(__NT__)
     SetConsoleOutputCP(CP_UTF8);
+#endif
+
     App *app = new App;
     app->init();
     app->run();
