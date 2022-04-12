@@ -89,6 +89,7 @@ void App::run() {
 
     // academicMemberMenu.addItem("Create new class", &App::promptCreateClass);
     academicMemberMenu.addItem("Display current schoolyear", &App::displayCurrentSchoolyear);
+    academicMemberMenu.addItem("Display all schoolyears", &App::displayAllSchoolYears);
     academicMemberMenu.addItem("Create new course", &App::promptCreateCourse);
     academicMemberMenu.addItem("Create new school year", &App::promptCreateSchoolYear);
     academicMemberMenu.addItem("Create semester", &App::promptCreateSemester);
