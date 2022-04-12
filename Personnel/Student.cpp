@@ -1,4 +1,6 @@
 #include "Student.h"
+#include "../UserInterface/Table.hpp"
+#include "../utils/LinkedList.h"
 
 Student addStudent(){
 	Student student;
@@ -80,15 +82,31 @@ void displayStudent(Student student) {
 }
 
 void displayAllStudent(LinkedList<Student*> student){
-	cout << "---------------------- Student Details ----------------------\n"
-		 << endl
-		 << "Student ID     : " << endl
-		 << "First Name     : " << endl
-		 << "Last Name      : " << endl
-		 << "Gender         : " << endl
-		 << "Date of birth  : " << endl
-		 << "Social ID      : " << endl
-		 << endl;
+    Table tb("Student List");
+    tb.addColumn(Column("ID", 8, Alignment::right));
+    tb.addColumn(Column("Firstname", 15, Alignment::left));
+    tb.addColumn(Column("Lastname", 15, Alignment::left));
+    tb.addColumn(Column("Gender", 7, Alignment::right));
+    tb.addColumn(Column("Dob", 12, Alignment::center));
+    tb.addColumn(Column("Social ID"));
+    for (DNode<Student*> *cur = student.getHead(); cur != nullptr; cur = cur->next) {
+        Student* st = cur->data;
+        string gender_name;
+        if (st->gender == Gender::MALE) {
+            gender_name = "Male";
+        } else if (st->gender == Gender::FEMALE) {
+            gender_name = "Female";
+        } else {
+            gender_name = "Other";
+        }
+        tb.addRow(st->id,
+                st->firstname,
+                st->lastname,
+                gender_name,
+                st->dateOfBirth.toString(),
+                st->SocialID);
+    }
+    tb.display();
 }
 
 void exportStudentCSV(Student student, ofstream &fout){
