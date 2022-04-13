@@ -38,6 +38,7 @@ private:
     void promptLogin();
     void promptCreateClass();
     void promptCreateCourse();
+    void promptUpdateCourse();
     void promptCreateSchoolYear();
     void promptAddStudent();
     void promptCreateSemester();
