@@ -5,6 +5,8 @@
 #include <string>
 using std::string;
 
+struct Student;
+
 enum Day {
     MON,
     TUE,

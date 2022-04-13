@@ -1,10 +1,13 @@
 #pragma once
 #include "../utils/LinkedList.h"
 #include "../utils/Date.h"
+#include "../School/Course.h"
 #include <fstream>
 #include <string.h>
 #include <sstream>
 using namespace std;
+
+struct Course;
 
 enum Gender {
 	MALE,
@@ -23,7 +26,7 @@ struct Student {
 	Date dateOfBirth;
 	string SocialID;
 
-	int courseNumber;
+    LinkedList<Course*> courses;
 };
 
 Student addStudent();
