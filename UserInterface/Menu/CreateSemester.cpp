@@ -21,6 +21,10 @@ void CreateSemester(Semester &semester_new){
 }
 
 void App::promptCreateSemester(){
+    if (!currentSchoolyear) {
+        cout << "No schoolyear available. Please create one first." << endl;
+        return;
+    }
     Semester* semester_new = new Semester;
     currentSchoolyear->semesters.addTail(semester_new);
     CreateSemester(*currentSchoolyear->semesters.getTail()->data);
