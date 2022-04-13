@@ -7,46 +7,6 @@ using std::string;
 using std::cout;
 using std::cin;
 
-bool validDay(string day) {
-    return day == "mon"
-        || day == "tue"
-        || day == "wed"
-        || day == "thu"
-        || day == "fri"
-        || day == "sat";
-}
-
-bool validTime(string time) {
-    return time == "s1"
-        || time == "s2"
-        || time == "s3"
-        || time == "s4";
-}
-
-Day parseDay(string day) {
-    if (day == "mon")
-        return Day::MON;
-    if (day == "tue")
-        return Day::TUE;
-    if (day == "wed")
-        return Day::WED;
-    if (day == "thu")
-        return Day::THU;
-    if (day == "fri")
-        return Day::FRI;
-    return Day::SAT;
-}
-
-Time parseTime(string time) {
-    if (time == "s1")
-        return Time::S1;
-    if (time == "s2")
-        return Time::S2;
-    if (time == "s3")
-        return Time::S3;
-    return Time::S4;
-}
-
 void App::promptCreateCourse() {
     if (!currentSemester) {
         cout << "No semester available" << endl;
