@@ -7,6 +7,22 @@ using std::string;
 using std::cout;
 using std::cin;
 
+bool validDay(string day) {
+    return day == "mon"
+        || day == "tue"
+        || day == "wed"
+        || day == "thu"
+        || day == "fri"
+        || day == "sat";
+}
+
+bool validTime(string time) {
+    return time == "s1"
+        || time == "s2"
+        || time == "s3"
+        || time == "s4";
+}
+
 Day parseDay(string day) {
     if (day == "mon")
         return Day::MON;
@@ -18,8 +34,7 @@ Day parseDay(string day) {
         return Day::THU;
     if (day == "fri")
         return Day::FRI;
-    if (day == "sat")
-        return Day::SAT;
+    return Day::SAT;
 }
 
 Time parseTime(string time) {
@@ -29,8 +44,7 @@ Time parseTime(string time) {
         return Time::S2;
     if (time == "s3")
         return Time::S3;
-    if (time == "s4")
-        return Time::S4;
+    return Time::S4;
 }
 
 void App::promptCreateCourse() {
@@ -58,13 +72,39 @@ void App::promptCreateCourse() {
     getline(cin, teacherName);
 
     currentSemester->addCourse(Course(id, name, credits, maxStudents, teacherName));
-    cout << "Enter session day of session 1(mon, tue, wed, thu, fri, sat): ";
+    cout << "Enter session 1 day (mon, tue, wed, thu, fri, sat): ";
     string day;
-    getline(cin, day);
+    while (!getline(cin, day) || !validDay(day)) {
+        cin.clear();
+        cin.ignore(100, '\n');
+        cout << "Invalid input. Please type again(mon, tue, wed, thu, fri, sat): ";
+    }
     Day d = parseDay(day);
-    cout << "Enter session time(s1, s2, s3, s4): ";
+
+    cout << "Enter session 1 time (s1, s2, s3, s4): ";
     string time;
-    getline(cin, time);
+    while (!getline(cin, time) || !validTime(time)) {
+        cin.clear();
+        cin.ignore(100, '\n');
+        cout << "Invalid input. Please type again(s1, s2, s3, s4): ";
+    }
     Time t = parseTime(time);
+    currentSemester->courses.getTail()->data->addSession(Session(d, t));
+
+    cout << "Enter session 2 day (mon, tue, wed, thu, fri, sat): ";
+    while (!getline(cin, day) || !validDay(day)) {
+        cin.clear();
+        cin.ignore(100, '\n');
+        cout << "Invalid input. Please type again(mon, tue, wed, thu, fri, sat): ";
+    }
+    d = parseDay(day);
+
+    cout << "Enter session 2 time (s1, s2, s3, s4): ";
+    while (!getline(cin, time) || !validTime(time)) {
+        cin.clear();
+        cin.ignore(100, '\n');
+        cout << "Invalid input. Please type again(s1, s2, s3, s4): ";
+    }
+    t = parseTime(time);
     currentSemester->courses.getTail()->data->addSession(Session(d, t));
 }
