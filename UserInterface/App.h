@@ -59,6 +59,13 @@ private:
     void studentPromptEnrollCourse();
     void displayCurrentSchoolyear();
     void displayAllSchoolYears();
+    void profileGroup();
+    void scoreboardGroup();
+    void semesterGroup();
+    void schoolyearGroup();
+    void studentGroup();
+    void courseGroup();
+    void studentProfileGroup();
     void savefile();
     void readfile();
 public:
