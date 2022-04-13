@@ -1,6 +1,7 @@
 #include "App.h"
 #include "Menu.hpp"
 #include "../utils/ClearScreen.h"
+#include "Greeting.h"
 
 #if defined(WIN32) || defined(_WIN32) || defined(__WIN32__) || defined(__NT__)
 #   include <Windows.h>
@@ -74,6 +75,7 @@ void App::promptLogin() {
     Menu<App> menu(this);
     menu.addItem("Login as student", &App::promptLoginAsStudent);
     menu.addItem("Login as academic member", &App::promptLoginAsAMember);
+    loginGreeting();
     menu.run();
 }
 
@@ -89,6 +91,7 @@ void App::scoreboardGroup() {
     menu.addItem("View scoreboard of a course", &App::promptViewCourseScoreboard);
     menu.addItem("Update scoreboard of a course", &App::promptUpdateCourseScoreboard);
     menu.addItem("Update scoreboard of a class", &App::promptUpdateClassScoreboard);
+    scoreboardGreeting();
     while (true) {
         if (menu.run() == 0) {
             savefile();
@@ -101,6 +104,7 @@ void App::semesterGroup() {
     Menu<App> menu(this);
     menu.addItem("Add semester", &App::promptCreateSemester);
     menu.addItem("Open Registration Session", &App::promptOpenRegistrationSession);
+    semesterGreeting();
     while (true) {
         if (menu.run() == 0) {
             savefile();
@@ -114,6 +118,7 @@ void App::schoolyearGroup() {
     menu.addItem("Display current schoolyear", &App::displayCurrentSchoolyear);
     menu.addItem("Display all schoolyears", &App::displayAllSchoolYears);
     menu.addItem("Add school year", &App::promptCreateSchoolYear);
+    schoolyearGreeting();
     while (true) {
         if (menu.run() == 0) {
             savefile();
@@ -141,6 +146,7 @@ void App::courseGroup() {
     Menu<App> menu(this);
     menu.addItem("Create new course", &App::promptCreateCourse);
     menu.addItem("View list of courses", &App::promptViewCoursesList);
+    courseGreeting();
     while (true) {
         if (menu.run() == 0) {
             savefile();
@@ -167,6 +173,7 @@ void App::run() {
     academicMemberMenu.addItem("Logout", &App::logout);
     while (currentStudent || currentMember) {
         clearScreen();
+        welcomeGreeting();
         if (!currentStudent) {
             if (academicMemberMenu.run() == 0){
                 savefile();
