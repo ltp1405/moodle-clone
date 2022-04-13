@@ -82,13 +82,7 @@ void App::logout() {
 
 void App::run() {
     promptLogin();
-    Menu<App> studentMenu(this);
     Menu<App> academicMemberMenu(this);
-
-    studentMenu.addItem("View profile", &App::studentPromptViewProfile);
-    studentMenu.addItem("Change password", &App::studentPromptChangePassword);
-    studentMenu.addItem("View scoreboard", &App::studentPromptViewScoreboard);
-    studentMenu.addItem("Logout", &App::logout);
 
     // academicMemberMenu.addItem("Create new class", &App::promptCreateClass);
     academicMemberMenu.addItem("Display current schoolyear", &App::displayCurrentSchoolyear);
@@ -114,6 +108,14 @@ void App::run() {
                 return;
             }
         } else {
+            Menu<App> studentMenu(this);
+            studentMenu.addItem("View profile", &App::studentPromptViewProfile);
+            studentMenu.addItem("Change password", &App::studentPromptChangePassword);
+            studentMenu.addItem("View scoreboard", &App::studentPromptViewScoreboard);
+            if (currentSemester->registratable())
+                studentMenu.addItem("Enroll course", &App::studentPromptEnrollCourse);
+            studentMenu.addItem("Logout", &App::logout);
+
             if (studentMenu.run() == 0){
                 savefile();
                 return;
