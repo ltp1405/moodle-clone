@@ -9,6 +9,10 @@ bool empty(std::ifstream& file)
 void App::readfile(){
     std::ifstream fin;
     fin.open("schoolyear.txt");
+    if (!fin) {
+        cout << "schoolyear.txt not found. Create one." << endl;
+        return;
+    }
     if (empty(fin)) {
         cout << "Empty file. Start program from scratch." << endl;
         return;
