@@ -4,6 +4,7 @@
 #include "../School/SchoolYear.h"
 #include "../School/Semester.h"
 #include "../utils/LinkedList.h"
+#include "../utils/CSVParser.h"
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -18,23 +19,31 @@ using std::string;
 using std::endl;
 
 class App {
-    Student *currentStudent;
-    AcademicMember *currentMember;
-    LinkedList<SchoolYear *> schoolyears;
+    Student *currentStudent = nullptr;
+    AcademicMember *currentMember = nullptr;
     Semester *currentSemester;
     SchoolYear *currentSchoolyear;
     LinkedList<Score> scoreboard;
+    LinkedList<SchoolYear *> schoolyears;
+    LinkedList<AcademicMember *> memberList;
+    LinkedList<Student*> studentList;
     
 private:
     // A bunch of linked list
+    void logout();
+    void loadStudentList();
+    void loadMemberList();
     void promptLoginAsStudent();
     void promptLoginAsAMember();
     void promptLogin();
+    void promptCreateClass();
     void promptCreateCourse();
+    void promptUpdateCourse();
     void promptCreateSchoolYear();
     void promptAddStudent();
     void promptCreateSemester();
     void viewScoreboard();
+    void viewAllStudent();
     void promptOpenRegistrationSession();
     void promptViewCoursesList();
     void promptExportStudent();
@@ -50,6 +59,7 @@ private:
     void studentViewEnrolledCourses();
     void studentPromptEnrollCourse();
     void displayCurrentSchoolyear();
+    void displayAllSchoolYears();
     void savefile();
     void readfile();
 public:

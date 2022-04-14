@@ -1,7 +1,10 @@
 #pragma once
 #include "../utils/LinkedList.h"
-#include <string>
 #include "../utils/Date.h"
+#include <fstream>
+#include <string.h>
+#include <sstream>
+// using namespace std;
 using std::string;
 
 enum Gender {
@@ -12,17 +15,21 @@ enum Gender {
 
 struct Student {
 	Student() {}
-	int ordNum;
+    string id;
+    string username;
 	string firstname;
 	string lastname;
-	string id;
+    string password;
 	Gender gender;
 	Date dateOfBirth;
+	string SocialID;
 
 	int courseNumber;
 };
 
 Student addStudent();
-void inputStudentCSV(LinkedList<Student> &student);
+void importStudentCSV(LinkedList<Student> &student, string filename);	
 void displayStudent(Student student);
-void displayAllStudent(LinkedList<Student> student);
+void displayAllStudent(LinkedList<Student*> student);
+void exportStudentCSV(Student student, std::ofstream& fout);
+void exportAllStudentCSV(LinkedList<Student> student);

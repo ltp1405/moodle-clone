@@ -2,6 +2,9 @@
 #include <string>
 #include "../utils/LinkedList.h"
 #include "../Personnel/Student.h"
+#include <string.h>
+#include <fstream>
+// using namespace std;
 using std::string;
 
 struct Class {
@@ -9,4 +12,5 @@ struct Class {
 	LinkedList<Student> listOfStudent;
 };
 
-Class inputClass();
+void importClassTXT(LinkedList<Class>& c);
+bool findClass(LinkedList<Class> c, string find);
