@@ -1,9 +1,22 @@
 #include "../App.h"
 #include <fstream>
 
+bool empty(std::ifstream& file)
+{
+    return file.peek() == std::ifstream::traits_type::eof();
+}
+
 void App::readfile(){
     std::ifstream fin;
     fin.open("schoolyear.txt");
+    if (!fin) {
+        cout << "schoolyear.txt not found. Create one." << endl;
+        return;
+    }
+    if (empty(fin)) {
+        cout << "Empty file. Start program from scratch." << endl;
+        return;
+    }
     SchoolYear *S = new SchoolYear;
     fin >> S->from.day >> S->from.month >> S->from.year;
     fin >> S->to.day >> S->to.month >> S->to.year;
