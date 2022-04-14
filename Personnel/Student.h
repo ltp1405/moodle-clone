@@ -4,7 +4,8 @@
 #include <fstream>
 #include <string.h>
 #include <sstream>
-using namespace std;
+// using namespace std;
+using std::string;
 
 enum Gender {
 	MALE,
@@ -30,5 +31,5 @@ Student addStudent();
 void importStudentCSV(LinkedList<Student> &student, string filename);	
 void displayStudent(Student student);
 void displayAllStudent(LinkedList<Student*> student);
-void exportStudentCSV(Student student, ofstream& fout);
+void exportStudentCSV(Student student, std::ofstream& fout);
 void exportAllStudentCSV(LinkedList<Student> student);

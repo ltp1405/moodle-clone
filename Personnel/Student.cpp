@@ -2,6 +2,10 @@
 #include "../UserInterface/Table.hpp"
 #include "../utils/LinkedList.h"
 
+using std::cin;
+using std::cout;
+using std::endl;
+
 Student addStudent(){
 	Student student;
 	cout << "Student ID: ";
@@ -28,8 +32,8 @@ Student addStudent(){
 }
 
 void importStudentCSV(LinkedList<Student> &student, string filename){
-	ifstream fin;
-	fin.open(filename, ios::in);
+	std::ifstream fin;
+	fin.open(filename, std::ios::in);
 	DNode<Student>* temp=NULL;
 	string line;
 	while (getline(fin, line)){
@@ -109,7 +113,7 @@ void displayAllStudent(LinkedList<Student*> student){
     tb.display();
 }
 
-void exportStudentCSV(Student student, ofstream &fout){
+void exportStudentCSV(Student student, std::ofstream &fout){
 	fout << student.id << ","
 		 << student.firstname << ","
 		 << student.lastname << ",";
@@ -121,8 +125,8 @@ void exportStudentCSV(Student student, ofstream &fout){
 }
 
 void exportAllStudentCSV(LinkedList<Student> student){
-	ofstream fout;
-	fout.open("../data/Student.csv",ios::out);
+	std::ofstream fout;
+	fout.open("../data/Student.csv", std::ios::out);
 	DNode<Student>* temp = student.getHead();
 	int count = 0;
 	while(!temp){
