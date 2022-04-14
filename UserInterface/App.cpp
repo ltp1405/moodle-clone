@@ -1,5 +1,8 @@
 #include "App.h"
-#include <Windows.h>
+
+#if defined(WIN32) || defined(_WIN32) || defined(__WIN32__) || defined(__NT__)
+#   include <Windows.h>
+#endif
 
 void App::loadStudentList() {
     vvs file = readCSV("data/Student.csv");
@@ -91,6 +94,7 @@ void App::run() {
     academicMemberMenu.addItem("Display current schoolyear", &App::displayCurrentSchoolyear);
     academicMemberMenu.addItem("Display all schoolyears", &App::displayAllSchoolYears);
     academicMemberMenu.addItem("Create new course", &App::promptCreateCourse);
+    academicMemberMenu.addItem("Update course", &App::promptUpdateCourse);
     academicMemberMenu.addItem("Create new school year", &App::promptCreateSchoolYear);
     academicMemberMenu.addItem("Create semester", &App::promptCreateSemester);
     academicMemberMenu.addItem("View Student List", &App::viewAllStudent);
@@ -145,7 +149,11 @@ App::~App() {
 }
 
 int main() {
+
+#if defined(WIN32) || defined(_WIN32) || defined(__WIN32__) || defined(__NT__)
     SetConsoleOutputCP(CP_UTF8);
+#endif
+
     App *app = new App;
     app->init();
     app->run();
