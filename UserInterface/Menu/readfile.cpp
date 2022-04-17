@@ -1,9 +1,22 @@
 #include "../App.h"
 #include <fstream>
 
+bool empty(std::ifstream& file)
+{
+    return file.peek() == std::ifstream::traits_type::eof();
+}
+
 void App::readfile(){
     std::ifstream fin;
     fin.open("schoolyear.txt");
+    if(!fin){
+        cout << "Can not read file." << endl;
+        return;
+    }
+    if(empty(fin)){
+        cout << "Input by hand :)) ." << endl;
+        return;
+    }
     int sizeschoolyear;
     fin >> sizeschoolyear;
     for(int s = 0; s < sizeschoolyear; s++){

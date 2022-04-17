@@ -52,7 +52,6 @@ void App::loadMemberList() {
     }
 }
 void App::promptAddStudent() {}
-void App::studentPromptViewProfile() {}
 void App::studentPromptChangePassword() {}
 void App::promptExportStudent() {
 }
@@ -92,6 +91,7 @@ void App::run() {
     academicMemberMenu.addItem("Display current schoolyear", &App::displayCurrentSchoolyear);
     academicMemberMenu.addItem("Display all schoolyears", &App::displayAllSchoolYears);
     academicMemberMenu.addItem("Create new course", &App::promptCreateCourse);
+    academicMemberMenu.addItem("Update course", &App::promptUpdateCourse);
     academicMemberMenu.addItem("Create new school year", &App::promptCreateSchoolYear);
     academicMemberMenu.addItem("Create semester", &App::promptCreateSemester);
     academicMemberMenu.addItem("View Student List", &App::viewAllStudent);
