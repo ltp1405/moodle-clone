@@ -53,17 +53,15 @@ void App::readfile(){
                 int sizestudent;
                 fin >> sizestudent;
                 for(int k = 0; k < sizestudent; k++){
-                    Student *student_new = new Student;
                     string id;
                     fin.ignore();
                     getline(fin, id);
                     for(int i = 0; i < studentList.getSize(); i++){
                         if(studentList[i]->data->id == id){
-                            student_new = studentList[i]->data;
+                            course_new->students.addTail(studentList[i]->data);
                             break;
                         }
                     }
-                    course_new->students.addTail(student_new);
                 }
                 semester_new->courses.addTail(course_new);
             }
