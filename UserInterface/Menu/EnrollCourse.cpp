@@ -32,6 +32,7 @@ bool enrollable(Course *crs, Student *student) {
             for (;ss2 != nullptr; ss2 = ss2->next) {
                 if (ss->data->toString() == ss2->data->toString()) {
                     cout << "[ERROR] Session occupied. Not enrollable." << endl;
+                    cin.get();
                     return false;
                 }
             }
@@ -52,7 +53,8 @@ void enrollCourse(LinkedList<Course *> &ls, Student *st) {
             bool erl = enrolled(cur->data, st);
             if (erl)
                 cout << "\x1b[9m";
-            cout << cur->data->id << " [ " << cur->data->sessions.getHead()->data->toString() << " ] " << endl;
+            cout << cur->data->id << " [ " << cur->data->sessions.getHead()->data->toString() << ", ";
+            cout << cur->data->sessions.getTail()->data->toString() << " ] " << endl;
             if (erl)
                 cout << "\x1b[0m";
             cur = cur->next;
