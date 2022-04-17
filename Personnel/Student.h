@@ -2,6 +2,7 @@
 #include "../utils/LinkedList.h"
 #include "../utils/Date.h"
 #include "../School/Course.h"
+#include "Class.h"
 #include <fstream>
 #include <string.h>
 #include <sstream>
@@ -9,6 +10,7 @@
 using std::string;
 
 struct Course;
+struct Class;
 
 enum Gender {
 	MALE,
@@ -27,6 +29,7 @@ struct Student {
 	Date dateOfBirth;
 	string SocialID;
 
+    Class *cls = nullptr;
     LinkedList<Course*> courses;
 };
 

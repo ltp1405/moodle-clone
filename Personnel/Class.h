@@ -7,10 +7,12 @@
 // using namespace std;
 using std::string;
 
+struct Student;
+
 struct Class {
 	string classname;
-	LinkedList<Student> listOfStudent;
+	LinkedList<Student *> listOfStudent;
 };
 
-void importClassTXT(LinkedList<Class>& c);
-bool findClass(LinkedList<Class> c, string find);
+void importClassTXT(LinkedList<Class*>& c);
+bool findClass(LinkedList<Class*> &c, string find);
