@@ -1,4 +1,7 @@
 #include "App.h"
+#include "Menu.hpp"
+#include "../utils/ClearScreen.h"
+#include "Greeting.h"
 
 #if defined(WIN32) || defined(_WIN32) || defined(__WIN32__) || defined(__NT__)
 #   include <Windows.h>
@@ -68,12 +71,84 @@ void App::promptLogin() {
     Menu<App> menu(this);
     menu.addItem("Login as student", &App::promptLoginAsStudent);
     menu.addItem("Login as academic member", &App::promptLoginAsAMember);
+    loginGreeting();
     menu.run();
 }
 
 void App::logout() {
     currentStudent = nullptr;
     currentMember = nullptr;
+}
+void App::profileGroup() {}
+void App::scoreboardGroup() {
+    Menu<App> menu(this);
+
+    menu.addItem("Import scoreboard of a course", &App::promptImportCourseScoreboard);
+    menu.addItem("View scoreboard of a course", &App::promptViewCourseScoreboard);
+    menu.addItem("Update scoreboard of a course", &App::promptUpdateCourseScoreboard);
+    menu.addItem("Update scoreboard of a class", &App::promptUpdateClassScoreboard);
+    scoreboardGreeting();
+    while (true) {
+        if (menu.run() == 0) {
+            savefile();
+            return;
+        }
+    }
+}
+
+void App::semesterGroup() {
+    Menu<App> menu(this);
+    menu.addItem("Add semester", &App::promptCreateSemester);
+    menu.addItem("Open Registration Session", &App::promptOpenRegistrationSession);
+    semesterGreeting();
+    while (true) {
+        if (menu.run() == 0) {
+            savefile();
+            return;
+        }
+    }
+}
+
+void App::schoolyearGroup() {
+    Menu<App> menu(this);
+    menu.addItem("Display current schoolyear", &App::displayCurrentSchoolyear);
+    menu.addItem("Display all schoolyears", &App::displayAllSchoolYears);
+    menu.addItem("Add school year", &App::promptCreateSchoolYear);
+    schoolyearGreeting();
+    while (true) {
+        if (menu.run() == 0) {
+            savefile();
+            return;
+        }
+    }
+}
+
+void App::studentGroup() {
+    Menu<App> menu(this);
+    menu.addItem("View Student List", &App::viewAllStudent);
+    menu.addItem("Add student to class", &App::promptAddStudent);
+    // academicMemberMenu.addItem("Create new class", &App::promptCreateClass);
+    // academicMemberMenu.addItem("Add student to class", &App::promptAddStudent);
+    // academicMemberMenu.addItem("Export students", &App::promptExportStudent);
+    while (true) {
+        if (menu.run() == 0) {
+            savefile();
+            return;
+        }
+    }
+}
+
+void App::courseGroup() {
+    Menu<App> menu(this);
+    menu.addItem("Create new course", &App::promptCreateCourse);
+    menu.addItem("View list of courses", &App::promptViewCoursesList);
+    courseGreeting();
+    while (true) {
+        if (menu.run() == 0) {
+            savefile();
+            return;
+        }
+    }
 }
 
 void App::run() {
@@ -86,38 +161,29 @@ void App::run() {
     studentMenu.addItem("View scoreboard", &App::studentPromptViewScoreboard);
     studentMenu.addItem("Logout", &App::logout);
 
-    // academicMemberMenu.addItem("Create new class", &App::promptCreateClass);
-    academicMemberMenu.addItem("Display current schoolyear", &App::displayCurrentSchoolyear);
-    academicMemberMenu.addItem("Display all schoolyears", &App::displayAllSchoolYears);
-    academicMemberMenu.addItem("Create new course", &App::promptCreateCourse);
-    academicMemberMenu.addItem("Update course", &App::promptUpdateCourse);
-    academicMemberMenu.addItem("Create new school year", &App::promptCreateSchoolYear);
-    academicMemberMenu.addItem("Create semester", &App::promptCreateSemester);
-    academicMemberMenu.addItem("View Student List", &App::viewAllStudent);
-    academicMemberMenu.addItem("Add student to class", &App::promptAddStudent);
-    // academicMemberMenu.addItem("Add student to class", &App::promptAddStudent);
-    academicMemberMenu.addItem("Open Registration Session", &App::promptOpenRegistrationSession);
-    academicMemberMenu.addItem("View list of courses", &App::promptViewCoursesList);
-    // academicMemberMenu.addItem("Export students", &App::promptExportStudent);
-    academicMemberMenu.addItem("Import scoreboard of a course", &App::promptImportCourseScoreboard);
-    academicMemberMenu.addItem("View scoreboard of a course", &App::promptViewCourseScoreboard);
-    academicMemberMenu.addItem("Update scoreboard of a course", &App::promptUpdateCourseScoreboard);
-    academicMemberMenu.addItem("Update scoreboard of a class", &App::promptUpdateClassScoreboard);
+    academicMemberMenu.addItem("School Year", &App::schoolyearGroup);
+    academicMemberMenu.addItem("Semester", &App::semesterGroup);
+    academicMemberMenu.addItem("Course", &App::courseGroup);
+    academicMemberMenu.addItem("Student", &App::studentGroup);
+    academicMemberMenu.addItem("Scoreboard", &App::scoreboardGroup);
     academicMemberMenu.addItem("Logout", &App::logout);
     while (currentStudent || currentMember) {
+        clearScreen();
+        welcomeGreeting();
         if (!currentStudent) {
             if (academicMemberMenu.run() == 0){
                 savefile();
                 return;
             }
-        } else {
+        } else if (!currentMember) {
             if (studentMenu.run() == 0){
                 savefile();
                 return;
             }
         }
-        if (!currentMember && !currentStudent)
+        if (!currentMember && !currentStudent) {
             promptLogin();
+        }
     }
 }
 
