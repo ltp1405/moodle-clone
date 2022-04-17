@@ -4,8 +4,10 @@
 #include <tuple>
 #include "../utils/LinkedList.h"
 #include "Text.hpp"
-using namespace std;
+// using namespace std;
 using std::string;
+using std::stringstream;
+using std::vector;
 
 const string upperRight = "┐";
 const string lowerLeft = "└";

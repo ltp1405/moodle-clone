@@ -43,8 +43,6 @@ void App::loadStudentList() {
 
 void App::loadMemberList() {
     vvs file = readCSV("data/Member.csv");
-    for (int i = 1; i < file.size(); i++)
-        cout << file[i].size();
     for (int i = 1; i < file.size(); i++) {
         auto *mem = new AcademicMember;
         for (int j = 0; j < file[i].size(); j++) {
@@ -57,8 +55,6 @@ void App::loadMemberList() {
     }
 }
 void App::promptAddStudent() {}
-void App::studentPromptViewProfile() {}
-void App::studentPromptChangePassword() {}
 void App::promptExportStudent() {
 }
 

@@ -38,6 +38,7 @@ private:
     void promptLogin();
     void promptCreateClass();
     void promptCreateCourse();
+    void promptUpdateCourse();
     void promptCreateSchoolYear();
     void promptAddStudent();
     void promptCreateSemester();
@@ -52,6 +53,7 @@ private:
     void promptUpdateCourseScoreboard();
     void studentPromptViewProfile();
     void studentPromptChangePassword();
+    void memberPromptChangePassword();
     void studentViewScoreboard();
     void viewScoreboard(const string courseId);
     void studentPromptViewScoreboard();
