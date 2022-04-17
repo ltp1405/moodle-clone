@@ -24,6 +24,7 @@ void Semester::activateRegistration(Date from, Date to) {
     rgs.from = from;
     rgs.to = to;
 }
-bool Semester::registratable(Date now) {
+bool Semester::registratable() {
+    Date now = today();
     return now >= rgs.from && now <= rgs.to;
 }

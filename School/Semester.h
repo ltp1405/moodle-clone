@@ -27,6 +27,6 @@ struct Semester {
     bool compareCourse(Course course1, Course course2);
     Course getCourse();
     void activateRegistration(Date from, Date to);
-    bool registratable(Date current=today());
+    bool registratable();
 };
 
