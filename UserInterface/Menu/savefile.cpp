@@ -1,5 +1,6 @@
 #include "../App.h"
 #include <fstream>
+#include <string>
 
 void App::savefile(){
     std::ofstream fout;
@@ -44,16 +45,45 @@ void App::savefile(){
 
 }
 
-void App::loadMemberList() {
-    vvs file = readCSV("data/Member.csv");
-    for (int i = 1; i < file.size(); i++) {
-        auto *mem = new AcademicMember;
-        for (int j = 0; j < file[i].size(); j++) {
-            if (file[0][j] == "username")
-                mem->username = file[i][j];
-            else if (file[0][j] == "password")
-                mem->password = file[i][j];
-        }
-        memberList.addTail(mem);
+void App::saveStudentList() {
+    vvs file;
+    file.push_back({
+            "id",
+            "firstname",
+            "lastname",
+            "username",
+            "password",
+            "gender",
+            "day",
+            "month",
+            "year",
+            "class",
+            });
+    DNode<Student*> *st = studentList.getHead();
+    while (st) {
+        file.push_back({
+                st->data->id,
+                st->data->firstname,
+                st->data->lastname,
+                st->data->username,
+                st->data->password,
+                std::to_string(st->data->gender),
+                std::to_string(st->data->dateOfBirth.day),
+                std::to_string(st->data->dateOfBirth.month),
+                std::to_string(st->data->dateOfBirth.year),
+                st->data->cls->classname,
+                });
+        st = st->next;
     }
+    writeCSV("data/Student.csv", file);
+}
+
+void App::saveMemberList() {
+    vvs file;
+    file.push_back({ "username", "password" });
+    int i = 1;
+    for (DNode<AcademicMember*> *cur = memberList.getHead(); cur; cur = cur->next, i++) {
+        file.push_back({ cur->data->username, cur->data->password });
+    }
+    writeCSV("data/Member.csv", file);
 }
