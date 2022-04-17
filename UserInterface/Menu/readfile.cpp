@@ -34,8 +34,8 @@ void App::readfile(){
             fin >> sizecourses;
             for(int j = 0; j < sizecourses; j++){
                 Course *course_new = new Course;
-                fin >> course_new->id;
                 fin.ignore();
+                getline(fin, course_new->id);
                 getline(fin, course_new->name);
                 getline(fin, course_new->teacherName);
                 fin >> course_new->credits;
