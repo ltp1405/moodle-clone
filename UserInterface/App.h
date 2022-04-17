@@ -53,6 +53,7 @@ private:
     void promptUpdateCourseScoreboard();
     void studentPromptViewProfile();
     void studentPromptChangePassword();
+    void memberPromptChangePassword();
     void studentViewScoreboard();
     void viewScoreboard(const string courseId);
     void studentPromptViewScoreboard();
