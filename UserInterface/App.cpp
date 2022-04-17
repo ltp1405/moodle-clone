@@ -52,7 +52,6 @@ void App::loadMemberList() {
     }
 }
 void App::promptAddStudent() {}
-void App::studentPromptChangePassword() {}
 void App::promptExportStudent() {
 }
 
