@@ -33,6 +33,11 @@ struct Session {
     string toString();
 };
 
+bool validDay(string);
+bool validTime(string);
+Day parseDay(string);
+Time parseTime(string);
+
 struct Course {
     string id;
     string name;

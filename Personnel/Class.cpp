@@ -2,8 +2,8 @@
 
 void importClassTXT(LinkedList<Class>& c)
 {
-    ifstream fin;
-    fin.open("../data/Class.txt",ios::in);
+    std::ifstream fin;
+    fin.open("../data/Class.txt", std::ios::in);
     DNode<Class>* temp=NULL;
     string read;
     fin >> read;

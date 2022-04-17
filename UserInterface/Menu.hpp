@@ -33,19 +33,36 @@ void Menu<T>::addItem(string itemName, std::function<void(T*)> callback) {
 
 template <typename T>
 int Menu<T>::run() {
+    int len = 0;
+    for (auto s : menuItems) {
+        if (s.length() > len)
+            len = s.length();
+    }
+    len += 11;
+    for (int i = 0; i < len; i++) {
+        cout << "=";
+    }
+    cout << std::endl;
+
     for (int i = 0; i < menuItems.size(); i++) {
-        cout << i+1 << "/ ";
+        cout << "   " << i+1 << ". " << "\t";
         cout << menuItems[i] << std::endl;
     }
 
+    for (int i = 0; i < len; i++) {
+        cout << "=";
+    }
+
+    cout << std::endl;
     cout << "Choose " << 1 << "-" << menuItems.size() << std::endl;
     cout << "Choose 0 to cancel" << std::endl;
     cout << "> ";
     int choice;
-    cin >> choice;
-    if (choice < 0 || choice > menuItems.size()) {
-        cout << "Invalid choice. No action was done.";
-        return -1;
+    while (!(cin >> choice) || choice < 0 || choice > menuItems.size()) {
+        cin.clear();
+        cin.ignore(100, '\n');
+        cout << "Invalid choice. Please choose again." << std::endl;
+        cout << "> ";
     }
     if (choice == 0)
         return 0;

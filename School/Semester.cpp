@@ -1,7 +1,10 @@
 #include <iostream>
-using namespace std;
+// using namespace std;
 #include "../School/Semester.h"
 #include "../utils/LinkedList.h"
+
+using std::cout;
+using std::endl;
 
 void Semester::addCourse(Course course){
     Course *crs = new Course(course);
