@@ -34,8 +34,8 @@ void App::readfile(){
             fin >> sizecourses;
             for(int j = 0; j < sizecourses; j++){
                 Course *course_new = new Course;
-                fin >> course_new->id;
                 fin.ignore();
+                getline(fin, course_new->id);
                 getline(fin, course_new->name);
                 getline(fin, course_new->teacherName);
                 fin >> course_new->credits;
@@ -53,17 +53,15 @@ void App::readfile(){
                 int sizestudent;
                 fin >> sizestudent;
                 for(int k = 0; k < sizestudent; k++){
-                    Student *student_new = new Student;
                     string id;
                     fin.ignore();
                     getline(fin, id);
                     for(int i = 0; i < studentList.getSize(); i++){
                         if(studentList[i]->data->id == id){
-                            student_new = studentList[i]->data;
+                            course_new->students.addTail(studentList[i]->data);
                             break;
                         }
                     }
-                    course_new->students.addTail(student_new);
                 }
                 semester_new->courses.addTail(course_new);
             }
