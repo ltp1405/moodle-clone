@@ -1,5 +1,6 @@
 #include "../App.h"
 #include <fstream>
+
 void App::savefile(){
     std::ofstream fout;
     fout.open("schoolyear.txt");
@@ -41,4 +42,18 @@ void App::savefile(){
     }
     fout.close();
 
+}
+
+void App::loadMemberList() {
+    vvs file = readCSV("data/Member.csv");
+    for (int i = 1; i < file.size(); i++) {
+        auto *mem = new AcademicMember;
+        for (int j = 0; j < file[i].size(); j++) {
+            if (file[0][j] == "username")
+                mem->username = file[i][j];
+            else if (file[0][j] == "password")
+                mem->password = file[i][j];
+        }
+        memberList.addTail(mem);
+    }
 }
