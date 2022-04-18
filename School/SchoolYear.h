@@ -14,7 +14,7 @@ struct SchoolYear {
         this->to = to;
         this->semesterNumber = semesterNumber;
     }
-    void addtime(Date from, Date to, int semesterNumber);
+    void addtime(Date from, Date to);
     void addSemester(Semester semester);
     bool compare(Semester semester1, Semester semester2);
 };

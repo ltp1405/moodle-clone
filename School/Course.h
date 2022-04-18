@@ -5,6 +5,8 @@
 #include <string>
 using std::string;
 
+struct Student;
+
 enum Day {
     MON,
     TUE,
@@ -30,6 +32,11 @@ struct Session {
     Session(Day, Time);
     string toString();
 };
+
+bool validDay(string);
+bool validTime(string);
+Day parseDay(string);
+Time parseTime(string);
 
 struct Course {
     string id;

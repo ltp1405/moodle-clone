@@ -1,8 +1,11 @@
 #pragma once
+#include <ios>
 #include <iostream>
 #include <functional>
+#include <iterator>
 #include <string>
 #include <vector>
+#include <fstream>
 using std::cout;
 using std::cin;
 using std::string;
@@ -33,6 +36,66 @@ void Menu<T>::addItem(string itemName, std::function<void(T*)> callback) {
 
 template <typename T>
 int Menu<T>::run() {
+    int len = 0;
+    for (auto s : menuItems) {
+        if (s.length() > len)
+            len = s.length();
+    }
+    len += 11;
+    for (int i = 0; i < len; i++) {
+        cout << "=";
+    }
+    cout << std::endl;
+
+    for (int i = 0; i < menuItems.size(); i++) {
+        cout << "   " << i+1 << ". " << "\t";
+        cout << menuItems[i] << std::endl;
+    }
+
+    for (int i = 0; i < len; i++) {
+        cout << "=";
+    }
+
+    cout << std::endl;
+    cout << "Choose " << 1 << "-" << menuItems.size() << std::endl;
+    cout << "Choose 0 to cancel" << std::endl;
+    cout << "> ";
+    int choice;
+    while (!(cin >> choice) || choice < 0 || choice > menuItems.size()) {
+        cin.clear();
+        cin.ignore(100, '\n');
+        cout << "Invalid choice. Please choose again." << std::endl;
+        cout << "> ";
+    }
+    if (choice == 0)
+        return 0;
+
+    callbacks[choice-1](context);
+    return choice;
+}
+
+template <typename T>
+class NMenu {
+private:
+    std::vector<string> menuItems;
+
+public:
+    NMenu();
+    void addItem(string itemName);
+    int run();
+};
+
+template <typename T>
+NMenu<T>::NMenu() {
+}
+
+template <typename T>
+void NMenu<T>::addItem(string itemName) {
+    menuItems.push_back(itemName);
+}
+
+template <typename T>
+int NMenu<T>::run() {
     for (int i = 0; i < menuItems.size(); i++) {
         cout << i+1 << "/ ";
         cout << menuItems[i] << std::endl;
@@ -43,9 +106,12 @@ int Menu<T>::run() {
     cout << "> ";
     int choice;
     cin >> choice;
+    if (choice < 0 || choice > menuItems.size()) {
+        cout << "Invalid choice. No action was done.";
+        return -1;
+    }
     if (choice == 0)
         return 0;
 
-    callbacks[choice-1](context);
     return choice;
 }
