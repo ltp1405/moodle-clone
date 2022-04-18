@@ -36,6 +36,6 @@ struct Student {
 Student addStudent();
 void importStudentCSV(LinkedList<Student> &student, string filename);	
 void displayStudent(Student student);
-void displayAllStudent(LinkedList<Student*> student);
+void displayAllStudent(LinkedList<Student*> &student);
 void exportStudentCSV(Student student, std::ofstream& fout);
 void exportAllStudentCSV(LinkedList<Student> student);

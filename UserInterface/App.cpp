@@ -80,7 +80,7 @@ void App::studentGroup() {
     menu.addItem("Add student to class", &App::promptAddStudent);
     menu.addItem("Import student to class", &App::promptImportStudent);
     menu.addItem("View Student List", &App::viewAllStudent);
-    // academicMemberMenu.addItem("Create new class", &App::promptCreateClass);
+    menu.addItem("View class", &App::viewClass);
     // academicMemberMenu.addItem("Add student to class", &App::promptAddStudent);
     // academicMemberMenu.addItem("Export students", &App::promptExportStudent);
     while (true) {
@@ -120,6 +120,8 @@ void App::run() {
         if (!currentStudent) {
             if (academicMemberMenu.run() == 0){
                 savefile();
+                saveMemberList();
+                saveStudentList();
                 return;
             }
         } else {
@@ -133,6 +135,8 @@ void App::run() {
 
             if (studentMenu.run() == 0){
                 savefile();
+                saveMemberList();
+                saveStudentList();
                 return;
             }
         }

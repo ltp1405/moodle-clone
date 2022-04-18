@@ -15,4 +15,4 @@ struct Class {
 };
 
 void importClassTXT(LinkedList<Class*>& c);
-bool findClass(LinkedList<Class*> &c, string find);
+Class *findClass(LinkedList<Class*> &c, string find);

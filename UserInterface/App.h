@@ -36,6 +36,8 @@ private:
     void logout();
     void loadStudentList();
     void loadMemberList();
+    void saveStudentList();
+    void saveMemberList();
     void promptLoginAsStudent();
     void promptLoginAsAMember();
     void promptLogin();
@@ -75,6 +77,7 @@ private:
     void loadClasses();
     void savefile();
     void readfile();
+    void viewClass();
 public:
     ~App();
     void load();

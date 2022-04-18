@@ -1,5 +1,6 @@
 #include "../App.h"
 #include <fstream>
+#include <iostream>
 #include <string>
 
 void App::savefile(){

@@ -62,8 +62,8 @@ void App::promptImportStudent() {
             else if (file[0][j] == "username")
                 st->username = file[i][j];
         }
-        studentList.addTail(st);
         chosenClass->listOfStudent.addTail(st);
         st->cls = chosenClass;
+        studentList.addTail(st);
     }
 }

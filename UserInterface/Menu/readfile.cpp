@@ -106,10 +106,7 @@ void App::loadStudentList() {
             else if (file[0][j] == "class") {
                 Class *cls = findClass(classes, file[i][j]);
                 st->cls = cls;
-                if (cls) {
-                    cout << cls->classname << endl;
-                    cls->listOfStudent.addTail(st);
-                }
+                cls->listOfStudent.addTail(st);
             }
         }
         studentList.addTail(st);
