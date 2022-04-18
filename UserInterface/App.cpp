@@ -55,8 +55,6 @@ void App::loadMemberList() {
     }
 }
 void App::promptAddStudent() {}
-void App::promptExportStudent() {
-}
 
 void App::promptUpdateClassScoreboard() {
 }
@@ -142,6 +140,7 @@ void App::courseGroup() {
     Menu<App> menu(this);
     menu.addItem("Create new course", &App::promptCreateCourse);
     menu.addItem("View list of courses", &App::promptViewCoursesList);
+    menu.addItem("Export student of course", &App::promptExportStudent);
     menu.addItem("Update course", &App::promptUpdateCourse);
     menu.addItem("Delete course", &App::promptDeleteCourse);
     courseGreeting();
