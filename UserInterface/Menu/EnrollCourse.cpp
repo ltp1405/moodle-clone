@@ -78,15 +78,12 @@ bool enrollable(Course *crs, Student *student) {
     }
     DNode<Course*> *cr = student->courses.getHead();
     for (; cr != nullptr; cr = cr->next) {
-        DNode<Session*> *ss = cr->data->sessions.getHead();
-        for (;ss != nullptr; ss = ss->next) {
-            DNode<Session*> *ss2 = crs->sessions.getHead();
-            for (;ss2 != nullptr; ss2 = ss2->next) {
-                if (ss->data->toString() == ss2->data->toString()) {
-                    cout << "[ERROR] Session occupied. Not enrollable." << endl;
-                    return false;
-                }
-            }
+        if (cr->data->session1.toString() == crs->session1.toString()
+                || cr->data->session1.toString() == crs->session2.toString()
+                || cr->data->session2.toString() == crs->session1.toString()
+                || cr->data->session2.toString() == crs->session2.toString()) {
+            cout << "[ERROR] Session occupied. Not enrollable." << endl;
+            return false;
         }
     }
     return true;
@@ -104,7 +101,8 @@ void enrollCourse(LinkedList<Course *> &ls, Student *st) {
             bool erl = enrolled(cur->data, st);
             if (erl)
                 cout << "\x1b[9m";
-            cout << cur->data->id << " [ " << cur->data->sessions.getHead()->data->toString() << " ] " << endl;
+            cout << cur->data->id << " [ " << cur->data->session1.toString() << " ] " << ", ";
+            cout << cur->data->id << " [ " << cur->data->session1.toString() << " ] " << endl;
             if (erl)
                 cout << "\x1b[0m";
             cur = cur->next;

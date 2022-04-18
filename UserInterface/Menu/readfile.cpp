@@ -40,16 +40,18 @@ void App::readfile(){
                 getline(fin, course_new->teacherName);
                 fin >> course_new->credits;
                 fin >> course_new->maxStudents;
-                int sizesession;
-                fin >> sizesession;
-                for(int k = 0; k < sizesession; k++){
-                    Session *session_new = new Session;
-                    int a, b;
-                    fin >> a >> b;
-                    session_new->day = (Day)a;
-                    session_new->time = (Time)b;
-                    course_new->sessions.addTail(session_new);
-                }
+
+                Session session_new;
+                int a, b;
+                fin >> a >> b;
+                session_new.day = (Day)a;
+                session_new.time = (Time)b;
+                course_new->session1 = session_new;
+                fin >> a >> b;
+                session_new.day = (Day)a;
+                session_new.time = (Time)b;
+                course_new->session2 = session_new;
+
                 int sizestudent;
                 fin >> sizestudent;
                 for(int k = 0; k < sizestudent; k++){
