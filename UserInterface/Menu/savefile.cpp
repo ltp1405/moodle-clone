@@ -1,5 +1,8 @@
 #include "../App.h"
 #include <fstream>
+#include <iostream>
+#include <string>
+
 void App::savefile(){
     std::ofstream fout;
     fout.open("schoolyear.txt");
@@ -41,4 +44,47 @@ void App::savefile(){
     }
     fout.close();
 
+}
+
+void App::saveStudentList() {
+    vvs file;
+    file.push_back({
+            "id",
+            "firstname",
+            "lastname",
+            "username",
+            "password",
+            "gender",
+            "day",
+            "month",
+            "year",
+            "class",
+            });
+    DNode<Student*> *st = studentList.getHead();
+    while (st) {
+        file.push_back({
+                st->data->id,
+                st->data->firstname,
+                st->data->lastname,
+                st->data->username,
+                st->data->password,
+                std::to_string(st->data->gender),
+                std::to_string(st->data->dateOfBirth.day),
+                std::to_string(st->data->dateOfBirth.month),
+                std::to_string(st->data->dateOfBirth.year),
+                st->data->cls->classname,
+                });
+        st = st->next;
+    }
+    writeCSV("data/Student.csv", file);
+}
+
+void App::saveMemberList() {
+    vvs file;
+    file.push_back({ "username", "password" });
+    int i = 1;
+    for (DNode<AcademicMember*> *cur = memberList.getHead(); cur; cur = cur->next, i++) {
+        file.push_back({ cur->data->username, cur->data->password });
+    }
+    writeCSV("data/Member.csv", file);
 }
