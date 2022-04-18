@@ -80,6 +80,7 @@ void App::studentGroup() {
     menu.addItem("Add student to class", &App::promptAddStudent);
     menu.addItem("Import student to class", &App::promptImportStudent);
     menu.addItem("View Student List", &App::viewAllStudent);
+    menu.addItem("View list of classes", &App::viewListOfClasses);
     menu.addItem("View class", &App::viewClass);
     // academicMemberMenu.addItem("Add student to class", &App::promptAddStudent);
     // academicMemberMenu.addItem("Export students", &App::promptExportStudent);

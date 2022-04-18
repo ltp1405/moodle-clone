@@ -74,6 +74,7 @@ private:
     void studentGroup();
     void courseGroup();
     void studentProfileGroup();
+    void viewListOfClasses();
     void loadClasses();
     void savefile();
     void readfile();
