@@ -2,11 +2,57 @@
 #include "../../Personnel/Student.h"
 #include "../../utils/LinkedList.h"
 #include "../../utils/ClearScreen.h"
+#include "../Menu.hpp"
+#include "../Table.hpp"
 #include "../App.h"
+#include <cstdio>
 #include <iostream>
 using std::cout;
 using std::cin;
 using std::endl;
+
+void displayCourses(LinkedList<Course*> &courses) {
+    Table tb("Enrolled Courses");
+    tb.addColumn(Column("ID"));
+    tb.addColumn(Column("Name"));
+    tb.addColumn(Column("Sessions", 20));
+    tb.addColumn(Column("Teacher Name"));
+    tb.addColumn(Column("Credits"));
+    tb.addColumn(Column("Max Student"));
+
+    DNode<Course*> *cur = courses.getHead();
+    while (cur) {
+        DNode<Session*> *ss = cur->data->sessions.getHead();
+        string sessionString;
+        while (ss) {
+            sessionString += ss->data->toString();
+            if (ss != cur->data->sessions.getTail()) {
+                sessionString += ", ";
+            }
+            ss = ss->next;
+        }
+        tb.addRow(
+                cur->data->id,
+                cur->data->name,
+                sessionString,
+                cur->data->teacherName,
+                cur->data->credits,
+                cur->data->maxStudents
+        );
+        cur = cur->next;
+    }
+    tb.display();
+}
+
+void App::studentViewEnrolledCourses() {
+    clearScreen();
+    if (!currentStudent)
+        return;
+    displayCourses(currentStudent->courses);
+    cout << "Press any key to continue..." << endl;
+    cin.ignore(100, '\n');
+    cin.get();
+}
 
 void addStudentToCourse(Course *crs, Student *st) {
     crs->students.addHead(st);
@@ -87,6 +133,19 @@ void enrollCourse(LinkedList<Course *> &ls, Student *st) {
 void App::studentPromptEnrollCourse() {
     if (currentStudent)
         enrollCourse(currentSemester->courses, currentStudent);
-    else
-        cout << "Nullptr";
+}
+
+void App::studentPromptUnenrollCourse() {
+    clearScreen();
+    if (!currentStudent)
+        return;
+    displayCourses(currentStudent->courses);
+    NMenu menu;
+    DNode<Course*> *cur = currentStudent->courses.getHead();
+    while (cur) {
+        menu.addItem(cur->data->id + " - " + cur->data->name);
+        cur = cur->next;
+    }
+    int inp = menu.run();
+    currentStudent->courses.deleteAtIndex(inp-1);
 }

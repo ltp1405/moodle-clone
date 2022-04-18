@@ -59,6 +59,7 @@ private:
     void studentPromptViewScoreboard();
     void studentViewEnrolledCourses();
     void studentPromptEnrollCourse();
+    void studentPromptUnenrollCourse();
     void displayCurrentSchoolyear();
     void displayAllSchoolYears();
     void profileGroup();

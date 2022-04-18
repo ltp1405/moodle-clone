@@ -174,8 +174,11 @@ void App::run() {
             studentMenu.addItem("View profile", &App::studentPromptViewProfile);
             studentMenu.addItem("Change password", &App::studentPromptChangePassword);
             studentMenu.addItem("View scoreboard", &App::studentPromptViewScoreboard);
-            if (currentSemester->registratable())
+            studentMenu.addItem("View enrolled courses", &App::studentViewEnrolledCourses);
+            if (currentSemester->registratable()) {
                 studentMenu.addItem("Enroll course", &App::studentPromptEnrollCourse);
+                studentMenu.addItem("Unenroll course", &App::studentPromptUnenrollCourse);
+            }
             studentMenu.addItem("Logout", &App::logout);
 
             if (studentMenu.run() == 0){
