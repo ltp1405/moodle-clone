@@ -24,6 +24,12 @@ bool enrolled(Course *crs, Student *st) {
 }
 
 bool enrollable(Course *crs, Student *student) {
+    if (student->courses.getSize() >= 5) {
+        cout << "You can only enroll at most 5 courses." << endl;
+        cout << "If you still want to enroll this course, " << endl;
+        cout << "Consider unenroll other courses." << endl;
+        return false;
+    }
     DNode<Course*> *cr = student->courses.getHead();
     for (; cr != nullptr; cr = cr->next) {
         DNode<Session*> *ss = cr->data->sessions.getHead();
