@@ -22,19 +22,10 @@ void displayCourses(LinkedList<Course*> &courses) {
 
     DNode<Course*> *cur = courses.getHead();
     while (cur) {
-        DNode<Session*> *ss = cur->data->sessions.getHead();
-        string sessionString;
-        while (ss) {
-            sessionString += ss->data->toString();
-            if (ss != cur->data->sessions.getTail()) {
-                sessionString += ", ";
-            }
-            ss = ss->next;
-        }
         tb.addRow(
                 cur->data->id,
                 cur->data->name,
-                sessionString,
+                cur->data->session1.toString() + " " + cur->data->session2.toString(),
                 cur->data->teacherName,
                 cur->data->credits,
                 cur->data->maxStudents
