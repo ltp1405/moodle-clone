@@ -13,9 +13,12 @@ Course::Course(string courseId, string courseName, int numberOfCredits, int maxS
 
 Course::Course() {}
 
-void Course::addSession(Session session) {
-    Session *ss = new Session(session);
-    sessions.addTail(ss);
+void Course::addSession(Session session, int num) {
+    if (num == 1) {
+        session1 = session;
+    } else if (num == 2) {
+        session2 = session;
+    }
 }
 
 void Course::print() {

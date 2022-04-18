@@ -18,15 +18,8 @@ void App::studentViewEnrolledCourses() {
         DNode<Student*> *curStudent = cur->data->students.getHead();
         while (curStudent) {
             if (curStudent->data->id == currentStudent->id) {
-                DNode<Session*> *ss = cur->data->sessions.getHead();
                 string sessionString;
-                while (ss) {
-                    sessionString += ss->data->toString();
-                    if (ss != cur->data->sessions.getTail()) {
-                        sessionString += ", ";
-                    }
-                    ss = ss->next;
-                }
+                sessionString = cur->data->session1.toString() + " " + cur->data->session2.toString();
                 tb.addRow(
                         cur->data->id,
                         cur->data->name,

@@ -19,19 +19,10 @@ void App::promptViewCoursesList() {
 
     DNode<Course*> *cur = currentSemester->courses.getHead();
     while (cur) {
-        string s;
-        DNode<Session*> *ss = cur->data->sessions.getHead();
-        while (ss) {
-            s += ss->data->toString();
-            if (ss != cur->data->sessions.getTail()) {
-                s += ", ";
-            }
-            ss = ss->next;
-        }
         tb.addRow(
                 cur->data->id,
                 cur->data->name,
-                s,
+                cur->data->session1.toString() + " " + cur->data->session2.toString(),
                 std::to_string(cur->data->credits),
                 std::to_string(cur->data->students.getSize()),
                 cur->data->teacherName,
