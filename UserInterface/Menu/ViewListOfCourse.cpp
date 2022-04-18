@@ -4,10 +4,12 @@
 #include "../../School/SchoolYear.h"
 #include "../../School/Course.h"
 #include "../../utils/LinkedList.h"
+#include "../../utils/ClearScreen.h"
 #include "../App.h"
 #include "../Table.hpp"
 
 void App::promptViewCoursesList() {
+    clearScreen();
     Table tb("List of Course");
     tb.addColumn("ID");
     tb.addColumn("Name");
@@ -33,4 +35,7 @@ void App::promptViewCoursesList() {
     }
 
     tb.display();
+    cout << "Press any key to continue..." << endl;
+    cin.ignore(100, '\n');
+    cin.get();
 }

@@ -65,6 +65,7 @@ private:
     void studentPromptViewScoreboard();
     void studentViewEnrolledCourses();
     void studentPromptEnrollCourse();
+    void studentPromptUnenrollCourse();
     void displayCurrentSchoolyear();
     void displayAllSchoolYears();
     void profileGroup();
@@ -74,6 +75,7 @@ private:
     void studentGroup();
     void courseGroup();
     void studentProfileGroup();
+    void promptDeleteCourse();
     void viewListOfClasses();
     void loadClasses();
     void savefile();

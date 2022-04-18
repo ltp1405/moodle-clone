@@ -6,9 +6,6 @@
 #if defined(WIN32) || defined(_WIN32) || defined(__WIN32__) || defined(__NT__)
 #   include <Windows.h>
 #endif
-void App::promptExportStudent() {
-}
-
 void App::promptUpdateClassScoreboard() {
 }
 
@@ -96,6 +93,9 @@ void App::courseGroup() {
     Menu<App> menu(this);
     menu.addItem("Create new course", &App::promptCreateCourse);
     menu.addItem("View list of courses", &App::promptViewCoursesList);
+    menu.addItem("Export student of course", &App::promptExportStudent);
+    menu.addItem("Update course", &App::promptUpdateCourse);
+    menu.addItem("Delete course", &App::promptDeleteCourse);
     courseGreeting();
     while (true) {
         if (menu.run() == 0) {
@@ -130,8 +130,11 @@ void App::run() {
             studentMenu.addItem("View profile", &App::studentPromptViewProfile);
             studentMenu.addItem("Change password", &App::studentPromptChangePassword);
             studentMenu.addItem("View scoreboard", &App::studentPromptViewScoreboard);
-            if (currentSemester->registratable())
+            studentMenu.addItem("View enrolled courses", &App::studentViewEnrolledCourses);
+            if (currentSemester->registratable()) {
                 studentMenu.addItem("Enroll course", &App::studentPromptEnrollCourse);
+                studentMenu.addItem("Unenroll course", &App::studentPromptUnenrollCourse);
+            }
             studentMenu.addItem("Logout", &App::logout);
 
             if (studentMenu.run() == 0){

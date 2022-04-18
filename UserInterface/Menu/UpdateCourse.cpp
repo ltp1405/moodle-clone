@@ -146,3 +146,18 @@ void App::promptUpdateCourse() {
 
     updateCourse(currentSemester->courses[sel-1]->data);
 }
+
+void App::promptDeleteCourse() {
+    promptViewCoursesList();
+    int sel;
+    cout << "Select course to update." << endl;
+    cout << "select> ";
+    while (!(cin >> sel) || sel < 1 || sel > currentSemester->courses.getSize()) {
+        cin.clear();
+        cin.ignore(100, '\n');
+        cout << "Invalid input. Type again." << endl;
+        cout << "select> ";
+    }
+
+    currentSemester->courses.deleteAtIndex(sel-1);
+}
