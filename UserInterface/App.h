@@ -13,6 +13,7 @@
 #include "../School/Score.h"
 #include "../Personnel/Student.h"
 #include "../School/Semester.h"
+#include "../Personnel/Class.h"
 using std::cout;
 using std::cin;
 using std::string;
@@ -27,12 +28,16 @@ class App {
     LinkedList<SchoolYear *> schoolyears;
     LinkedList<AcademicMember *> memberList;
     LinkedList<Student*> studentList;
+    LinkedList<Class*> classes;
     
 private:
     // A bunch of linked list
+    void promptAddClass();
     void logout();
     void loadStudentList();
     void loadMemberList();
+    void saveStudentList();
+    void saveMemberList();
     void promptLoginAsStudent();
     void promptLoginAsAMember();
     void promptLogin();
@@ -47,6 +52,7 @@ private:
     void promptOpenRegistrationSession();
     void promptViewCoursesList();
     void promptExportStudent();
+    void promptImportStudent();
     void promptImportCourseScoreboard();
     void promptViewCourseScoreboard();
     void promptUpdateClassScoreboard();
@@ -68,8 +74,11 @@ private:
     void studentGroup();
     void courseGroup();
     void studentProfileGroup();
+    void viewListOfClasses();
+    void loadClasses();
     void savefile();
     void readfile();
+    void viewClass();
 public:
     ~App();
     void load();

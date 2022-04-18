@@ -1,8 +1,11 @@
 #pragma once
+#include <ios>
 #include <iostream>
 #include <functional>
+#include <iterator>
 #include <string>
 #include <vector>
+#include <fstream>
 using std::cout;
 using std::cin;
 using std::string;

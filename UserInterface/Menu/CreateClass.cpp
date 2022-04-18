@@ -1,22 +1,20 @@
 #include "../App.h"
 #include "../../Personnel/Class.h"
+#include "../../Personnel/Student.h"
+#include <string>
 
-void promptCreateClass()
+void App::promptAddClass()
 {
-    LinkedList<Class> CLASS;
-    importClassTXT(CLASS);
     cout << "Input the class name(e.g: 21CTT1): ";
     string classname;
     cin >> classname;
-    while(findClass(CLASS,classname))
+    while(findClass(classes, classname))
     {
         cout << "Class name already exists! Try again.\n\n"
              << "Input the class name: ";
         cin >> classname;
     }
-    
-    std::ofstream fout;
-    fout.open("../../data/Class.txt", std::ios::app);
-    fout << std::endl << classname;
-    fout.close();
+    Class *cls = new Class;
+    cls->classname = classname;
+    classes.addTail(cls);
 }
