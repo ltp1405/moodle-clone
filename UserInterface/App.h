@@ -69,6 +69,7 @@ private:
     void studentGroup();
     void courseGroup();
     void studentProfileGroup();
+    void promptDeleteCourse();
     void savefile();
     void readfile();
 public:
