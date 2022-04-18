@@ -61,6 +61,7 @@ void App::readfile(){
                     for(int i = 0; i < studentList.getSize(); i++){
                         if(studentList[i]->data->id == id){
                             course_new->students.addTail(studentList[i]->data);
+                            studentList[i]->data->courses.addTail(course_new);
                             break;
                         }
                     }
