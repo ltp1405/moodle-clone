@@ -85,7 +85,7 @@ void displayStudent(Student student) {
 		 << endl;
 }
 
-void displayAllStudent(LinkedList<Student*> student){
+void displayAllStudent(LinkedList<Student*> &student){
     Table tb("Student List");
     tb.addColumn(Column("ID", 8, Alignment::right));
     tb.addColumn(Column("Firstname", 15, Alignment::left));

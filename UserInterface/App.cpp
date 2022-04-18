@@ -6,55 +6,6 @@
 #if defined(WIN32) || defined(_WIN32) || defined(__WIN32__) || defined(__NT__)
 #   include <Windows.h>
 #endif
-
-void App::loadStudentList() {
-    vvs file = readCSV("data/Student.csv");
-    for (int i = 1; i < file.size(); i++) {
-        Student *st = new Student;
-        for (int j = 0; j < file[i].size(); j++) {
-            if (file[0][j] == "firstname")
-                st->firstname = file[i][j];
-            else if (file[0][j] == "lastname")
-                st->lastname = file[i][j];
-            else if (file[0][j] == "id")
-                st->id = file[i][j];
-            else if (file[0][j] == "password")
-                st->password = file[i][j];
-            else if (file[0][j] == "gender") {
-                int g = stod(file[i][j]);
-                if (g == 1)
-                    st->gender = Gender::MALE;
-                else if (g == 2)
-                    st->gender = Gender::FEMALE;
-                else
-                    st->gender = Gender::OTHER;
-            } else if (file[0][j] == "day")
-                st->dateOfBirth.day = stod(file[i][j]);
-            else if (file[0][j] == "month")
-                st->dateOfBirth.month = stod(file[i][j]);
-            else if (file[0][j] == "year")
-                st->dateOfBirth.year = stod(file[i][j]);
-            else if (file[0][j] == "username")
-                st->username = file[i][j];
-        }
-        studentList.addTail(st);
-    }
-}
-
-void App::loadMemberList() {
-    vvs file = readCSV("data/Member.csv");
-    for (int i = 1; i < file.size(); i++) {
-        auto *mem = new AcademicMember;
-        for (int j = 0; j < file[i].size(); j++) {
-            if (file[0][j] == "username")
-                mem->username = file[i][j];
-            else if (file[0][j] == "password")
-                mem->password = file[i][j];
-        }
-        memberList.addTail(mem);
-    }
-}
-void App::promptAddStudent() {}
 void App::promptExportStudent() {
 }
 
@@ -125,9 +76,12 @@ void App::schoolyearGroup() {
 
 void App::studentGroup() {
     Menu<App> menu(this);
-    menu.addItem("View Student List", &App::viewAllStudent);
+    menu.addItem("Add new class", &App::promptAddClass);
     menu.addItem("Add student to class", &App::promptAddStudent);
-    // academicMemberMenu.addItem("Create new class", &App::promptCreateClass);
+    menu.addItem("Import student to class", &App::promptImportStudent);
+    menu.addItem("View Student List", &App::viewAllStudent);
+    menu.addItem("View list of classes", &App::viewListOfClasses);
+    menu.addItem("View class", &App::viewClass);
     // academicMemberMenu.addItem("Add student to class", &App::promptAddStudent);
     // academicMemberMenu.addItem("Export students", &App::promptExportStudent);
     while (true) {
@@ -167,6 +121,8 @@ void App::run() {
         if (!currentStudent) {
             if (academicMemberMenu.run() == 0){
                 savefile();
+                saveMemberList();
+                saveStudentList();
                 return;
             }
         } else {
@@ -180,6 +136,8 @@ void App::run() {
 
             if (studentMenu.run() == 0){
                 savefile();
+                saveMemberList();
+                saveStudentList();
                 return;
             }
         }
@@ -189,7 +147,12 @@ void App::run() {
     }
 }
 
+void App::loadClasses() {
+    importClassTXT(classes);
+}
+
 void App::init() {
+    loadClasses();
     loadMemberList();
     loadStudentList();
     readfile();
