@@ -52,24 +52,3 @@ InputError nameInput(std::string &name) {
         return InputError::Invalid;
     return InputError::None;
 }
-
-int main() {
-    Date d;
-    InputError err;
-    do {
-        std::cout << "Enter date(dd mm yyyy): ";
-        err = dateInput(d);
-        switch (err) {
-            case InputError::WrongFormat:
-                std::cout << "Wrong format" << std::endl;
-                break;
-            case InputError::Invalid:
-                std::cout << "Invalid Date" << std::endl;
-                break;
-            default:
-                std::cout << "";
-        }
-    } while (err != InputError::None);
-
-    std::cout << d.toString("-");
-}
