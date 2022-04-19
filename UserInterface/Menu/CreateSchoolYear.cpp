@@ -10,10 +10,10 @@ void SchoolYear::addtime(Date from, Date to ){
 SchoolYear *CreateSchoolYear(){
     SchoolYear *S = new SchoolYear;
     Date from;
-    cout << "This school year start from (input with format dd mm yy: ";
+    cout << "This school year start from (input with format dd mm yy): ";
     cin >> from.day >> from.month >> from.year;
     Date to;
-    cout << "This school year end at (input with format dd mm yy: ";
+    cout << "This school year end at (input with format dd mm yy): ";
     cin >> to.day >> to.month >> to.year;
     
     S->addtime(from, to);
