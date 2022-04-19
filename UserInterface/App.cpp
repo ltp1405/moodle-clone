@@ -2,6 +2,7 @@
 #include "Menu.hpp"
 #include "../utils/ClearScreen.h"
 #include "Greeting.h"
+#include "../utils/makeDir.h"
 
 #if defined(WIN32) || defined(_WIN32) || defined(__WIN32__) || defined(__NT__)
 #   include <Windows.h>
@@ -169,6 +170,7 @@ void App::loadRegSession() {
 }
 
 void App::init() {
+    makeDir();
     loadClasses();
     loadMemberList();
     loadStudentList();
