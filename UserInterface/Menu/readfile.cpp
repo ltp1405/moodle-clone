@@ -106,6 +106,8 @@ void App::loadStudentList() {
                 st->dateOfBirth.year = stod(file[i][j]);
             else if (file[0][j] == "username")
                 st->username = file[i][j];
+            else if (file[0][j] == "social id")
+                st->SocialID = file[i][j];
             else if (file[0][j] == "class") {
                 Class *cls = findClass(classes, file[i][j]);
                 st->cls = cls;

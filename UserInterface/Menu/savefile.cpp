@@ -53,6 +53,7 @@ void App::saveStudentList() {
             "username",
             "password",
             "gender",
+            "social id",
             "day",
             "month",
             "year",
