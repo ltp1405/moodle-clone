@@ -1,7 +1,16 @@
 #pragma once
+#include "../utils/LinkedList.h"
+#include "../utils/Date.h"
 #include "../School/Course.h"
-#include <string>
+#include "Class.h"
+#include <fstream>
+#include <string.h>
+#include <sstream>
+// using namespace std;
 using std::string;
+
+struct Course;
+struct Class;
 
 enum Gender {
 	MALE,
@@ -10,17 +19,23 @@ enum Gender {
 };
 
 struct Student {
+	Student() {}
+    string id;
+    string username;
 	string firstname;
 	string lastname;
-	string id;
+    string password;
 	Gender gender;
 	Date dateOfBirth;
-	int age;
+	string SocialID;
 
-	Course *enrolledCourse;
-	int courseNumber;
-	const int maxCourses = 5;
+    Class *cls = nullptr;
+    LinkedList<Course*> courses;
 };
 
-void addStudent(string firstname, string lastname, string id, Gender gender, Date dateOfBirth);
-void didplayStudent();
+Student addStudent();
+void importStudentCSV(LinkedList<Student> &student, string filename);	
+void displayStudent(Student student);
+void displayAllStudent(LinkedList<Student*> &student);
+void exportStudentCSV(Student student, std::ofstream& fout);
+void exportAllStudentCSV(LinkedList<Student> student);

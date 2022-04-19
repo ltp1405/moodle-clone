@@ -22,8 +22,8 @@ public:
     DNode<T>* getHead();
     DNode<T>* getTail();
     void printList(std::function<void(T&)> print);
-    void addHead(const T &item);
-    void addTail(const T &item);
+    void addHead(T item);
+    void addTail(T item);
     bool deleteHead();
     bool deleteTail();
     DNode<T>* findNode(T &toFind, std::function<bool(T&, T&)>);

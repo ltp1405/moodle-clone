@@ -2,11 +2,12 @@
 #include <vector>
 #include <string>
 #include <tuple>
+#include "../utils/LinkedList.h"
 #include "Text.hpp"
-using namespace std;
+// using namespace std;
 using std::string;
-using std::tuple;
-
+using std::stringstream;
+using std::vector;
 
 const string upperRight = "┐";
 const string lowerLeft = "└";
@@ -32,6 +33,7 @@ struct Column {
     Alignment align;
     Color color;
 
+    Column() {}
     Column(string name, int width=15, Alignment align=Alignment::left) {
         this->align = align;
         this->name = name;
@@ -40,7 +42,7 @@ struct Column {
 };
 
 struct Row {
-    vector<string> data;
+    LinkedList<string> data;
 };
 
 enum BorderStyle {
@@ -54,8 +56,8 @@ class Table {
     BorderStyle headerBorderStyle;
     BorderStyle borderStyle;
     string title;
-    vector<Column> cols;
-    vector<vector<string>> rows;
+    LinkedList<Column> cols;
+    LinkedList<LinkedList<string>> rows;
 
 private:
     int getWidth();
@@ -63,10 +65,37 @@ private:
     void printBot();
     void printBotHeader();
     void printLine(const string s, int times);
+    void addEach(int count) {
+        int diff = count - cols.getSize();
+        if (diff < 0) {
+            for (int i = 0; i < -diff; i++) {
+                rows.getTail()->data.addTail("");
+            }
+        } else if (diff > 0) {
+            for (int i = 0; i < diff; i++) {
+                rows.getTail()->data.deleteTail();
+            }
+        }
+    }
+
+    template<typename T, typename... Ts>
+    void addEach(int count, T var1, Ts... var2) {
+        stringstream sstr;
+        sstr << var1;
+
+        rows.getTail()->data.addTail(sstr.str());
+        addEach(count+1, var2...);
+    }
+    
 public:
     Table(string title);
     void addColumn(string name);
     void addColumn(Column col);
     void addRow(vector<string> data);
+
+    template<typename... Ts> void addRow(Ts... data) {
+        rows.addTail(LinkedList<string>());
+        addEach(0, data...);
+    }
     void display();
 };
