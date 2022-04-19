@@ -3,11 +3,23 @@
 #include <fstream>
 #include <string>
 
+bool validPath(const std::string path) {
+    std::ifstream fin;
+    fin.open(path);
+    if (!fin) {
+        fin.close();
+        return false;
+    }
+
+    fin.close();
+    return true;
+}
+
 void App::promptImportStudent() {
-    std::cin.ignore(100, '\n');
-    cout << "Which class do you want to add to?" << endl;
+    cout << "Choose the class to import." << endl;
     cout << "classname> ";
     string inp;
+    cin.ignore(100, '\n');
     std::getline(std::cin, inp);
     DNode<Class*> *cur = classes.getHead();
     Class *chosenClass = nullptr;
@@ -21,17 +33,17 @@ void App::promptImportStudent() {
         cout << "Class not found." << endl;
         return;
     }
+
+    cout << "File format: " << endl;
+    cout << "+ In CSV" << endl;
+    cout << "+ The file must have at least 'id', 'firstname', 'lastname', 'gender'," << endl;
+    cout << "'day', 'month', 'year'" << endl << endl;
     cout << "Enter file path: ";
-    std::ifstream fin;
-    cin.ignore(100, '\n');
-    std::getline(std::cin, inp);
-    fin.open(inp);
-    while (!fin) {
-        cout << "Wrong path. Please type again: ";
-        std::getline(std::cin, inp);
-        fin.open(inp);
+    std::getline(cin, inp);
+    while (!validPath(inp)) {
+        cout << "Invalid path. Please type again." << endl;
+        std::getline(cin, inp);
     }
-    fin.close();
 
     vvs file = readCSV(inp);
     for (int i = 1; i < file.size(); i++) {
@@ -61,6 +73,12 @@ void App::promptImportStudent() {
                 st->dateOfBirth.year = stod(file[i][j]);
             else if (file[0][j] == "username")
                 st->username = file[i][j];
+        }
+        if (st->username == "") {
+            st->username = st->id;
+        }
+        if (st->password == "") {
+            st->password = "student";
         }
         chosenClass->listOfStudent.addTail(st);
         st->cls = chosenClass;
