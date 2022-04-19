@@ -124,6 +124,10 @@ void App::studentPromptEnrollCourse() {
         enrollCourse(currentSemester->courses, currentStudent);
 }
 
+bool studentCompare(Student *&st1, Student *&st2) {
+    return st1->id == st2->id;
+}
+
 void App::studentPromptUnenrollCourse() {
     clearScreen();
     if (!currentStudent)
@@ -136,5 +140,14 @@ void App::studentPromptUnenrollCourse() {
         cur = cur->next;
     }
     int inp = menu.run();
+    Course *crs = currentStudent->courses.getNodeAtIndex(inp-1)->data;
     currentStudent->courses.deleteAtIndex(inp-1);
+    int count = 0;
+    for (DNode<Student*> *cur = crs->students.getHead(); cur; cur = cur->next) {
+        if (cur->data->id == currentStudent->id) {
+            break;
+        }
+        count++;
+    }
+    crs->students.deleteAtIndex(count);
 }
