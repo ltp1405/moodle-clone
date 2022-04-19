@@ -32,6 +32,7 @@ class App {
     
 private:
     // A bunch of linked list
+    void promptViewStudentOfCourse();
     void promptAddClass();
     void logout();
     void loadStudentList();
