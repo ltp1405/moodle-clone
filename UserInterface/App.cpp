@@ -123,6 +123,7 @@ void App::run() {
         if (!currentStudent) {
             if (academicMemberMenu.run() == 0){
                 savefile();
+                saveClass();
                 saveMemberList();
                 saveStudentList();
                 return;
@@ -141,6 +142,7 @@ void App::run() {
 
             if (studentMenu.run() == 0){
                 savefile();
+                saveClass();
                 saveMemberList();
                 saveStudentList();
                 return;
@@ -180,6 +182,7 @@ void App::init() {
 App::~App() {
     cout << "DONE" << endl;
     savefile();
+    saveClass();
     for (auto *sy = schoolyears.getHead(); sy != nullptr; sy = sy->next) {
         for (auto *sm = sy->data->semesters.getHead(); sm != nullptr; sm = sm->next) {
             for (auto *cr = sm->data->courses.getHead(); cr != nullptr; cr = cr->next) {

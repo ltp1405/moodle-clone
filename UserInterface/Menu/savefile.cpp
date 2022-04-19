@@ -86,3 +86,17 @@ void App::saveMemberList() {
     }
     writeCSV("data/Member.csv", file);
 }
+
+void App::saveClass() {
+    std::ofstream fout;
+    fout.open("data/Class.txt");
+    if (!fout)
+        return;
+    fout << classes.getSize() << endl;
+    DNode<Class*> *cur = classes.getHead();
+    while (cur) {
+        fout << cur->data->classname << endl;
+        cur = cur->next;
+    }
+    fout.close();
+}
