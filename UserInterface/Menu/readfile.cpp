@@ -58,10 +58,10 @@ void App::readfile(){
                     string id;
                     fin.ignore();
                     getline(fin, id);
-                    for(int i = 0; i < studentList.getSize(); i++){
-                        if(studentList[i]->data->id == id){
-                            course_new->students.addTail(studentList[i]->data);
-                            studentList[i]->data->courses.addTail(course_new);
+                    for(DNode<Student*> *cur = studentList.getHead(); cur; cur = cur->next){
+                        if(cur->data->id == id){
+                            course_new->students.addTail(cur->data);
+                            cur->data->courses.addTail(course_new);
                             break;
                         }
                     }
