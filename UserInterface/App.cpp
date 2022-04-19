@@ -95,6 +95,7 @@ void App::courseGroup() {
     Menu<App> menu(this);
     menu.addItem("Create new course", &App::promptCreateCourse);
     menu.addItem("View list of courses", &App::promptViewCoursesList);
+    menu.addItem("View course students", &App::promptViewStudentOfCourse);
     menu.addItem("Export student of course", &App::promptExportStudent);
     menu.addItem("Update course", &App::promptUpdateCourse);
     menu.addItem("Delete course", &App::promptDeleteCourse);
