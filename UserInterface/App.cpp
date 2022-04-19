@@ -26,6 +26,7 @@ void App::promptLogin() {
 void App::logout() {
     currentStudent = nullptr;
     currentMember = nullptr;
+    clearScreen();
 }
 void App::profileGroup() {}
 void App::scoreboardGroup() {
