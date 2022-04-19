@@ -4,10 +4,12 @@
 #include "../../School/SchoolYear.h"
 #include "../../School/Course.h"
 #include "../../utils/LinkedList.h"
+#include "../../utils/ClearScreen.h"
 #include "../App.h"
 #include "../Table.hpp"
 
 void App::promptViewCoursesList() {
+    clearScreen();
     Table tb("List of Course");
     tb.addColumn("ID");
     tb.addColumn("Name");
@@ -19,19 +21,10 @@ void App::promptViewCoursesList() {
 
     DNode<Course*> *cur = currentSemester->courses.getHead();
     while (cur) {
-        string s;
-        DNode<Session*> *ss = cur->data->sessions.getHead();
-        while (ss) {
-            s += ss->data->toString();
-            if (ss != cur->data->sessions.getTail()) {
-                s += ", ";
-            }
-            ss = ss->next;
-        }
         tb.addRow(
                 cur->data->id,
                 cur->data->name,
-                s,
+                cur->data->session1.toString() + " " + cur->data->session2.toString(),
                 std::to_string(cur->data->credits),
                 std::to_string(cur->data->students.getSize()),
                 cur->data->teacherName,
@@ -42,4 +35,7 @@ void App::promptViewCoursesList() {
     }
 
     tb.display();
+    cout << "Press any key to continue..." << endl;
+    cin.ignore(100, '\n');
+    cin.get();
 }

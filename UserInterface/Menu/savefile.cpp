@@ -1,5 +1,8 @@
 #include "../App.h"
 #include <fstream>
+#include <iostream>
+#include <string>
+
 void App::savefile(){
     std::ofstream fout;
     fout.open("schoolyear.txt");
@@ -25,12 +28,10 @@ void App::savefile(){
                 fout << sc->semesters[i-1]->data->courses[j]->data->teacherName << endl;
                 fout << sc->semesters[i-1]->data->courses[j]->data->credits << endl;
                 fout << sc->semesters[i-1]->data->courses[j]->data->maxStudents << endl;
-                int sizesession = sc->semesters[i-1]->data->courses[j]->data->sessions.getSize();
-                fout << sizesession << endl;
-                for(int k = 0; k < sizesession; k++){
-                    fout << sc->semesters[i-1]->data->courses[j]->data->sessions[k]->data->day 
-                    << " " << sc->semesters[i-1]->data->courses[j]->data->sessions[k]->data->time << endl;
-                }
+                fout << sc->semesters[i-1]->data->courses[j]->data->session1.day 
+                << " " << sc->semesters[i-1]->data->courses[j]->data->session1.time << endl;
+                fout << sc->semesters[i-1]->data->courses[j]->data->session2.day 
+                << " " << sc->semesters[i-1]->data->courses[j]->data->session2.time << endl;
                 int sizestudent = sc->semesters[i-1]->data->courses[j]->data->students.getSize();
                 fout << sizestudent << endl;
                 for(int k = 0; k < sizestudent; k++){
@@ -41,4 +42,47 @@ void App::savefile(){
     }
     fout.close();
 
+}
+
+void App::saveStudentList() {
+    vvs file;
+    file.push_back({
+            "id",
+            "firstname",
+            "lastname",
+            "username",
+            "password",
+            "gender",
+            "day",
+            "month",
+            "year",
+            "class",
+            });
+    DNode<Student*> *st = studentList.getHead();
+    while (st) {
+        file.push_back({
+                st->data->id,
+                st->data->firstname,
+                st->data->lastname,
+                st->data->username,
+                st->data->password,
+                std::to_string(st->data->gender),
+                std::to_string(st->data->dateOfBirth.day),
+                std::to_string(st->data->dateOfBirth.month),
+                std::to_string(st->data->dateOfBirth.year),
+                st->data->cls->classname,
+                });
+        st = st->next;
+    }
+    writeCSV("data/Student.csv", file);
+}
+
+void App::saveMemberList() {
+    vvs file;
+    file.push_back({ "username", "password" });
+    int i = 1;
+    for (DNode<AcademicMember*> *cur = memberList.getHead(); cur; cur = cur->next, i++) {
+        file.push_back({ cur->data->username, cur->data->password });
+    }
+    writeCSV("data/Member.csv", file);
 }

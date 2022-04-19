@@ -13,6 +13,7 @@ void App::memberPromptChangePassword() {
     string in;
     cout << "Enter old password: " << endl;
     cout << "old password> ";
+    cin.ignore(100, '\n');
     getline(cin, in);
     int count = 1;
     while (in != currentMember->password) {
@@ -54,6 +55,7 @@ void App::studentPromptChangePassword() {
     string in;
     cout << "Enter old password: " << endl;
     cout << "old password> ";
+    cin.ignore(100, '\n');
     getline(cin, in);
     int count = 1;
     while (in != currentStudent->password) {

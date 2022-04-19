@@ -53,8 +53,8 @@ void updateSessions(Course *course) {
         cout << "Invalid input. Please type again(s1, s2, s3, s4): ";
     }
     Time t = parseTime(time);
-    course->sessions[0]->data->day = d;
-    course->sessions[0]->data->time = t;
+    course->session1.day = d;
+    course->session1.time = t;
 
     cout << "Enter session 2 day (mon, tue, wed, thu, fri, sat): ";
     while (!getline(cin, day) || !validDay(day)) {
@@ -71,8 +71,8 @@ void updateSessions(Course *course) {
         cout << "Invalid input. Please type again(s1, s2, s3, s4): ";
     }
     t = parseTime(time);
-    course->sessions[1]->data->day = d;
-    course->sessions[1]->data->time = t;
+    course->session1.day = d;
+    course->session2.time = t;
 }
 
 void updateCourse(Course *crs) {
@@ -145,4 +145,19 @@ void App::promptUpdateCourse() {
     }
 
     updateCourse(currentSemester->courses[sel-1]->data);
+}
+
+void App::promptDeleteCourse() {
+    promptViewCoursesList();
+    int sel;
+    cout << "Select course to update." << endl;
+    cout << "select> ";
+    while (!(cin >> sel) || sel < 1 || sel > currentSemester->courses.getSize()) {
+        cin.clear();
+        cin.ignore(100, '\n');
+        cout << "Invalid input. Type again." << endl;
+        cout << "select> ";
+    }
+
+    currentSemester->courses.deleteAtIndex(sel-1);
 }
