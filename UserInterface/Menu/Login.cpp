@@ -1,6 +1,5 @@
 #include <string>
 #include <fstream>
-#include <vector>
 #include <iostream>
 
 #include "../App.h"
