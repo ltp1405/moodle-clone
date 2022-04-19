@@ -39,7 +39,6 @@ void App::promptLoginAsAMember() {
 }
 
 void App::promptLoginAsStudent() {
-    vvs login_info = readCSV("data/Student.csv");
     string username, password;
     short count_input_time = 0;
     cin.ignore(100, '\n');
