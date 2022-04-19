@@ -82,6 +82,7 @@ private:
     void readfile();
     void viewClass();
     void loadRegSession();
+    void saveClass();
     
 public:
     ~App();
