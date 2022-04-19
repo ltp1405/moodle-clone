@@ -78,6 +78,13 @@ void App::readfile(){
 }
 
 void App::loadStudentList() {
+    std::ifstream fin;
+    fin.open("data/Student.csv");
+    if (!fin) {
+        return;
+        fin.close();
+    }
+    fin.close();
     vvs file = readCSV("data/Student.csv");
     for (int i = 1; i < file.size(); i++) {
         Student *st = new Student;
