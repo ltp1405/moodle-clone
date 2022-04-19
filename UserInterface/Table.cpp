@@ -67,20 +67,6 @@ void Table::addColumn(Column col) {
     cols.addTail(col);
 }
 
-void Table::addRow(vector<string> data) {
-    while (data.size() < cols.getSize()) {
-        data.push_back("");
-    }
-
-    while (data.size() > cols.getSize()) {
-        data.pop_back();
-    }
-    rows.addTail(LinkedList<string>());
-    for (auto d : data) {
-        rows.getTail()->data.addTail(d);
-    }
-}
-
 void Table::display() {
     printTop();
 
