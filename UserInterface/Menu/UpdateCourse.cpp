@@ -71,7 +71,7 @@ void updateSessions(Course *course) {
         cout << "Invalid input. Please type again(s1, s2, s3, s4): ";
     }
     t = parseTime(time);
-    course->session1.day = d;
+    course->session2.day = d;
     course->session2.time = t;
 }
 
