@@ -154,6 +154,19 @@ void App::loadClasses() {
     importClassTXT(classes);
 }
 
+void App::loadRegSession() {
+    std::ifstream fin("data/RegistrationSession.txt");
+    if (!fin || !currentSchoolyear || !currentSemester)
+        return;
+    fin >> currentSemester->rgs.from.day 
+        >> currentSemester->rgs.from.month 
+        >> currentSemester->rgs.from.year
+        >> currentSemester->rgs.to.day
+        >> currentSemester->rgs.to.month
+        >> currentSemester->rgs.to.year;
+    fin.close();
+}
+
 void App::init() {
     loadClasses();
     loadMemberList();
