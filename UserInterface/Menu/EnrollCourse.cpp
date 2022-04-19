@@ -69,6 +69,7 @@ bool enrollable(Course *crs, Student *student) {
     }
     DNode<Course*> *cr = student->courses.getHead();
     for (; cr != nullptr; cr = cr->next) {
+
         if (cr->data->session1.toString() == crs->session1.toString()
                 || cr->data->session1.toString() == crs->session2.toString()
                 || cr->data->session2.toString() == crs->session1.toString()
@@ -93,7 +94,7 @@ void enrollCourse(LinkedList<Course *> &ls, Student *st) {
             if (erl)
                 cout << "\x1b[9m";
             cout << cur->data->id << " [ " << cur->data->session1.toString() << " ] " << ", ";
-            cout << cur->data->id << " [ " << cur->data->session1.toString() << " ] " << endl;
+            cout << cur->data->id << " [ " << cur->data->session2.toString() << " ] " << endl;
             if (erl)
                 cout << "\x1b[0m";
             cur = cur->next;
