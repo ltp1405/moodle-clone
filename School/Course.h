@@ -44,13 +44,14 @@ struct Course {
     string teacherName;
     int credits;
     int maxStudents;
-    LinkedList<Session*> sessions;
+    Session session1;
+    Session session2;
     LinkedList<Student*> students;
 
     Course();
     Course(string courseId, string courseName, int numberOfCredits,
            int maxStudents, string teacher);
 
-    void addSession(Session session);
+    void addSession(Session session, int num);
     void print();
 };

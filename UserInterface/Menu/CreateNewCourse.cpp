@@ -49,7 +49,7 @@ void App::promptCreateCourse() {
         cout << "Invalid input. Please type again(s1, s2, s3, s4): ";
     }
     Time t = parseTime(time);
-    currentSemester->courses.getTail()->data->addSession(Session(d, t));
+    currentSemester->courses.getTail()->data->addSession(Session(d, t), 1);
 
     cout << "Enter session 2 day (mon, tue, wed, thu, fri, sat): ";
     while (!getline(cin, day) || !validDay(day)) {
@@ -66,5 +66,5 @@ void App::promptCreateCourse() {
         cout << "Invalid input. Please type again(s1, s2, s3, s4): ";
     }
     t = parseTime(time);
-    currentSemester->courses.getTail()->data->addSession(Session(d, t));
+    currentSemester->courses.getTail()->data->addSession(Session(d, t), 2);
 }
