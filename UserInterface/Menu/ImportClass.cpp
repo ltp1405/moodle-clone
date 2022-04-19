@@ -36,8 +36,8 @@ void App::promptImportStudent() {
 
     cout << "File format: " << endl;
     cout << "+ In CSV" << endl;
-    cout << "+ The file must have at least 'id', 'firstname', 'lastname', 'gender'," << endl;
-    cout << "'day', 'month', 'year'" << endl << endl;
+    cout << "+ The file must have at least 'id', 'firstname', 'lastname', 'social id'," << endl;
+    cout << "'gender', 'day', 'month', 'year'" << endl << endl;
     cout << "Enter file path: ";
     std::getline(cin, inp);
     while (!validPath(inp)) {
@@ -73,6 +73,8 @@ void App::promptImportStudent() {
                 st->dateOfBirth.year = stod(file[i][j]);
             else if (file[0][j] == "username")
                 st->username = file[i][j];
+            else if (file[0][j] == "social id")
+                st->SocialID = file[i][j];
         }
         if (st->username == "") {
             st->username = st->id;
