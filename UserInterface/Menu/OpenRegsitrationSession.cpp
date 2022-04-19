@@ -1,4 +1,13 @@
+#include <fstream>
+
 #include "../App.h"
+
+void saveRegistrationSession(Date start, Date end) {
+    std::ofstream fout("data/RegistrationSession.txt");
+    fout << start.day << ' ' << start.month << ' ' << start.year << endl
+        << end.day << ' ' << end.month << ' ' << end.year;
+    fout.close();
+}
 
 void App::promptOpenRegistrationSession() {
     if (!currentSemester)
@@ -12,4 +21,6 @@ void App::promptOpenRegistrationSession() {
     cin >> eday >> emonth >> eyear;
     currentSemester->rgs.from = Date(sday, smonth, syear);
     currentSemester->rgs.to = Date(eday, emonth, eyear);
+
+    saveRegistrationSession(currentSemester->rgs.from, currentSemester->rgs.to);
 }
