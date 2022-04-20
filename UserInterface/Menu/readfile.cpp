@@ -8,7 +8,7 @@ bool empty(std::ifstream& file)
 
 void App::readfile(){
     std::ifstream fin;
-    fin.open("schoolyear.txt");
+    fin.open("data/schoolyear.txt");
     if(!fin){
         cout << "Can not read file." << endl;
         return;
