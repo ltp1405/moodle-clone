@@ -5,16 +5,19 @@
 
 void App::promptAddClass()
 {
-    cout << "Input the class name(e.g: 21CTT1): ";
+    cout << "Input the class name(0 to stop): ";
     string classname;
     cin >> classname;
-    while(findClass(classes, classname))
+    while(findClass(classes, classname) && classname!="0")
     {
         cout << "Class name already exists! Try again.\n\n"
-             << "Input the class name: ";
+             << "Input the class name(0 to stop): ";
         cin >> classname;
     }
-    Class *cls = new Class;
-    cls->classname = classname;
-    classes.addTail(cls);
+    if(classname!="0")
+    {
+        Class *cls = new Class;
+        cls->classname = classname;
+        classes.addTail(cls);
+    }
 }
