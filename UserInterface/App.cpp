@@ -35,6 +35,7 @@ void App::scoreboardGroup() {
 
     menu.addItem("Import scoreboard of a course", &App::promptImportCourseScoreboard);
     menu.addItem("View scoreboard of a course", &App::promptViewCourseScoreboard);
+    menu.addItem("View scoreboard of a class", &App::viewClassScoreboard);
     menu.addItem("Update scoreboard of a course", &App::promptUpdateCourseScoreboard);
     menu.addItem("Update scoreboard of a class", &App::promptUpdateClassScoreboard);
     scoreboardGreeting();
@@ -177,25 +178,16 @@ void App::init() {
     loadClasses();
     loadMemberList();
     loadStudentList();
+    readScoreboard();
     readfile();
+    loadRegSession();
 }
 
 App::~App() {
     cout << "DONE" << endl;
     savefile();
     saveClass();
-    for (auto *sy = schoolyears.getHead(); sy != nullptr; sy = sy->next) {
-        for (auto *sm = sy->data->semesters.getHead(); sm != nullptr; sm = sm->next) {
-            for (auto *cr = sm->data->courses.getHead(); cr != nullptr; cr = cr->next) {
-                delete cr->data;
-            }
-            delete sm->data;
-        }
-        delete sy->data;
-    }
-    for (auto *st = schoolyears.getHead(); st != nullptr; st = st->next) {
-        delete st->data;
-    }
+    saveScoreboard();
 }
 
 int main() {
@@ -204,8 +196,8 @@ int main() {
     SetConsoleOutputCP(CP_UTF8);
 #endif
 
-    App *app = new App;
-    app->init();
-    app->run();
+    App app;
+    app.init();
+    app.run();
 	return 0;
 }
