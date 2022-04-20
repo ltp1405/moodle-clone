@@ -104,6 +104,13 @@ void App::saveClass() {
 }
 
 void App::saveScoreboard() {
+    std::ofstream fout;
+    fout.open("data/scoreboard.csv");
+    if (!fout) {
+        fout.close();
+        return;
+    }
+    fout.close();
     vvs csv;
     csv.push_back({ "student id", "student name", "course id",
             "midterm mark", "final mark", "total mark", "other mark" });

@@ -140,6 +140,13 @@ void App::loadMemberList() {
 }
 
 void App::readScoreboard() {
+    std::ifstream fin;
+    fin.open("data/scoreboard.csv");
+    if (!fin) {
+        fin.close();
+        return;
+    }
+    fin.close();
     vvs file = readCSV("data/scoreboard.csv");
     for (int i = 1; i < file.size(); i++) {
         scoreboard.addTail(Score());
