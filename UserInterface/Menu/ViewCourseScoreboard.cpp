@@ -32,17 +32,16 @@ void App::viewScoreboard(const string id) {
 }
 
 void App::promptViewCourseScoreboard() {
+    clearScreen();
     DNode<Course*> *cur = currentSemester->courses.getHead();
     cout << "Available Course: " << endl;
     int count = 0;
     int inp;
+    NMenu menu;
     while (cur) {
-        count++;
-        cout << count << " " << cur->data->id << " - " << cur->data->name << endl;
+        menu.addItem(cur->data->id + " - " + cur->data->name);
         cur = cur->next;
     }
-    cin >> inp;
+    inp = menu.run();
     viewScoreboard(currentSemester->courses[inp-1]->data->id);
-    cout << "Press any key to continue..." << endl;
-    cin.get();
 }
