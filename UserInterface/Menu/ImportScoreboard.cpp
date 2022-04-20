@@ -3,6 +3,7 @@
 #include "../../utils/CSVParser.h"
 #include "../Table.hpp"
 #include "../App.h"
+#include <fstream>
 #include <iostream>
 // using namespace std;
 using std::stod;
@@ -13,9 +14,18 @@ using std::string;
 void App::promptImportCourseScoreboard() {
     cout << "Enter filename, (leave empty for default: data/scoreboard.csv) :";
     string ans;
+    cin.ignore(100, '\n');
     std::getline(cin, ans);
+    std::ifstream fin;
+    fin.open(ans);
+    if (!fin) {
+        cout << "File not found." << endl;
+        fin.close();
+        return;
+    }
+    fin.close();
     cout << "Scoreboard imported" << endl;
-    vvs file = readCSV("../data/scoreboard.csv");
+    vvs file = readCSV(ans);
     for (int i = 1; i < file.size(); i++) {
         scoreboard.addTail(Score());
         for (int j = 0; j < file[i].size(); j++) {

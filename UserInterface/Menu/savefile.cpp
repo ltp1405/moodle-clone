@@ -5,7 +5,7 @@
 
 void App::savefile(){
     std::ofstream fout;
-    fout.open("schoolyear.txt");
+    fout.open("data/schoolyear.txt");
     int sizeschoolyear = schoolyears.getSize();
     fout << sizeschoolyear << endl;
     for(int s = 0; s < sizeschoolyear; s++){
@@ -68,6 +68,7 @@ void App::saveStudentList() {
                 st->data->username,
                 st->data->password,
                 std::to_string(st->data->gender),
+                st->data->SocialID,
                 std::to_string(st->data->dateOfBirth.day),
                 std::to_string(st->data->dateOfBirth.month),
                 std::to_string(st->data->dateOfBirth.year),

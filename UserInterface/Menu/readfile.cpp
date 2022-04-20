@@ -8,7 +8,7 @@ bool empty(std::ifstream& file)
 
 void App::readfile(){
     std::ifstream fin;
-    fin.open("schoolyear.txt");
+    fin.open("data/schoolyear.txt");
     if(!fin){
         cout << "Can not read file." << endl;
         return;
@@ -32,9 +32,9 @@ void App::readfile(){
             fin >> semester_new->end.day >> semester_new->end.month >> semester_new->end.year;
             int sizecourses;
             fin >> sizecourses;
+            fin.ignore();
             for(int j = 0; j < sizecourses; j++){
                 Course *course_new = new Course;
-                fin.ignore();
                 getline(fin, course_new->id);
                 getline(fin, course_new->name);
                 getline(fin, course_new->teacherName);
