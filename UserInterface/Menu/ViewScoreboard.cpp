@@ -21,3 +21,60 @@ void App::viewScoreboard() {
     table.display();
 }
 
+bool inSemester(Semester *sm, const string courseID) {
+    DNode<Course*> *crs = sm->courses.getHead();
+    while (crs) {
+        if (crs->data->id == courseID)
+            return true;
+        crs = crs->next;
+    }
+    return false;
+}
+
+void App::viewClassScoreboard() {
+    cout << "Enter class name: ";
+    string inp;
+    std::cin.ignore(100, '\n');
+    std::getline(std::cin, inp);
+    Class *cls = findClass(classes, inp);
+    if (!cls) {
+        cout << "Class not found." << endl;
+        return;
+    }
+
+    DNode<Student*> *st = cls->listOfStudent.getHead();
+    while (st) {
+        double semesterGPA = 0;
+        int inSm = 0;
+        int count = 0;
+        double totalGPA = 0;
+        if (st->data->courses.getSize() == 0) {
+            st = st->next;
+            continue;
+        }
+        Table tb(st->data->firstname + "'s Scoreboard");
+        tb.addColumn(Column("", 20));
+        tb.addColumn(Column("Score", 10));
+        DNode<Score> *score = scoreboard.getHead();
+        while (score) {
+            if (score->data.id == st->data->id) {
+                count++;
+                totalGPA += score->data.finalMark;
+                if (inSemester(currentSemester, score->data.courseId)) {
+                    tb.addRow(score->data.courseId, score->data.finalMark);
+                    semesterGPA += score->data.finalMark;
+                    inSm++;
+                }
+            }
+            score = score->next;
+        }
+        if (count == 0) {
+            st = st->next;
+            continue;
+        }
+        tb.addRow("Semester GPA", semesterGPA/inSm);
+        tb.addRow("Total GPA", totalGPA/st->data->courses.getSize());
+        st = st->next;
+        tb.display();
+    }
+}
