@@ -94,6 +94,7 @@ void App::studentGroup() {
     bool run = true;
     do {
         clearScreen();
+        studentGreeting();
         int rs = menu.run();
         if (rs == 0)
             run = false;
