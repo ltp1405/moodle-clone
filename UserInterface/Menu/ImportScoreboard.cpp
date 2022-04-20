@@ -13,16 +13,17 @@ using std::string;
 
 void App::promptImportCourseScoreboard() {
     clearScreen();
-    cout << "Enter filename:";
+    cout << "Enter filename: ";
     string ans;
     cin.ignore(100, '\n');
     std::getline(cin, ans);
-    cout << "Scoreboard imported" << endl;
     std::ifstream fin;
     fin.open(ans);
     if (!fin) {
         cout << "File not found." << endl;
+        cout << "Press any key to continue..." << endl;
         fin.close();
+        cin.get();
         return;
     }
     fin.close();
