@@ -81,7 +81,23 @@ void Table::addRow(vector<string> data) {
     }
 }
 
+void Table::printTitle() {
+    int cellWidth = getWidth();
+    int cellDataWidth = title.size();
+    int frontPadding = (cellWidth - cellDataWidth) / 2
+        + (cellWidth - cellDataWidth) % 2;
+    int backPadding = (cellWidth - cellDataWidth) / 2;
+    for (int i = 0; i < frontPadding-1; i++) {
+        cout << "~";
+    }
+    cout << " " << title << " ";
+    for (int i = 0; i < backPadding-1; i++)
+        cout << "~";
+    cout << endl;
+}
+
 void Table::display() {
+    printTitle();
     printTop();
 
     cout << vertical;
