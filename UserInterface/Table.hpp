@@ -62,6 +62,7 @@ class Table {
 private:
     int getWidth();
     void printTop();
+    void printTitle();
     void printBot();
     void printBotHeader();
     void printLine(const string s, int times);
