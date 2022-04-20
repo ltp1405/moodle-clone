@@ -1,6 +1,7 @@
 #include "../App.h"
 #include "../../School/SchoolYear.h"
 #include "../../utils/Date.h"
+#include "../../utils/ClearScreen.h"
 
 void SchoolYear::addtime(Date from, Date to ){
     this->from = from;
@@ -22,8 +23,11 @@ SchoolYear *CreateSchoolYear(){
 }
 
 void App::promptCreateSchoolYear(){
-    cout << "Create new school year." << endl;
+    clearScreen();
     SchoolYear *sc = CreateSchoolYear();
+    cout << "School Year added. Press any key to continue..." << endl;
+    cin.ignore(100, '\n');
+    cin.get();
     schoolyears.addTail(sc);
     currentSchoolyear = sc;
 }

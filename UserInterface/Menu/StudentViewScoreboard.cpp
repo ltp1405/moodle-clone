@@ -22,4 +22,6 @@ void App::studentPromptViewScoreboard() {
         cur = cur->next;
     }
     table.display();
+    cout << "Press any key to continue..." << endl;
+    cin.get();
 }

@@ -29,6 +29,7 @@ void App::logout() {
     currentMember = nullptr;
     clearScreen();
 }
+
 void App::profileGroup() {}
 void App::scoreboardGroup() {
     Menu<App> menu(this);
@@ -38,26 +39,30 @@ void App::scoreboardGroup() {
     menu.addItem("View scoreboard of a class", &App::viewClassScoreboard);
     menu.addItem("Update scoreboard of a course", &App::promptUpdateCourseScoreboard);
     menu.addItem("Update scoreboard of a class", &App::promptUpdateClassScoreboard);
-    scoreboardGreeting();
-    while (true) {
-        if (menu.run() == 0) {
-            savefile();
-            return;
-        }
-    }
+    bool run = true;
+    do {
+        clearScreen();
+        scoreboardGreeting();
+        int rs = menu.run();
+        if (rs == 0)
+            run = false;
+    } while (run);
+    savefile();
 }
 
 void App::semesterGroup() {
     Menu<App> menu(this);
     menu.addItem("Add semester", &App::promptCreateSemester);
     menu.addItem("Open Registration Session", &App::promptOpenRegistrationSession);
-    semesterGreeting();
-    while (true) {
-        if (menu.run() == 0) {
-            savefile();
-            return;
-        }
-    }
+    bool run = true;
+    do {
+        clearScreen();
+        semesterGreeting();
+        int rs = menu.run();
+        if (rs == 0)
+            run = false;
+    } while (run);
+    savefile();
 }
 
 void App::schoolyearGroup() {
@@ -65,13 +70,15 @@ void App::schoolyearGroup() {
     menu.addItem("Display current schoolyear", &App::displayCurrentSchoolyear);
     menu.addItem("Display all schoolyears", &App::displayAllSchoolYears);
     menu.addItem("Add school year", &App::promptCreateSchoolYear);
-    schoolyearGreeting();
-    while (true) {
-        if (menu.run() == 0) {
-            savefile();
-            return;
-        }
-    }
+    bool run = true;
+    do {
+        clearScreen();
+        schoolyearGreeting();
+        int rs = menu.run();
+        if (rs == 0)
+            run = false;
+    } while (run);
+    savefile();
 }
 
 void App::studentGroup() {
@@ -84,12 +91,14 @@ void App::studentGroup() {
     menu.addItem("View class", &App::viewClass);
     // academicMemberMenu.addItem("Add student to class", &App::promptAddStudent);
     // academicMemberMenu.addItem("Export students", &App::promptExportStudent);
-    while (true) {
-        if (menu.run() == 0) {
-            savefile();
-            return;
-        }
-    }
+    bool run = true;
+    do {
+        clearScreen();
+        int rs = menu.run();
+        if (rs == 0)
+            run = false;
+    } while (run);
+    savefile();
 }
 
 void App::courseGroup() {
@@ -100,13 +109,15 @@ void App::courseGroup() {
     menu.addItem("Export student of course", &App::promptExportStudent);
     menu.addItem("Update course", &App::promptUpdateCourse);
     menu.addItem("Delete course", &App::promptDeleteCourse);
-    courseGreeting();
-    while (true) {
-        if (menu.run() == 0) {
-            savefile();
-            return;
-        }
-    }
+    bool run = true;
+    do {
+        clearScreen();
+        courseGreeting();
+        int rs = menu.run();
+        if (rs == 0)
+            run = false;
+    } while (run);
+    savefile();
 }
 
 void App::run() {

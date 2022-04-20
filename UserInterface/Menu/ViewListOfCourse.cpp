@@ -41,6 +41,7 @@ void App::promptViewCoursesList() {
 }
 
 void App::promptViewStudentOfCourse() {
+    clearScreen();
     string inp;
     cout << "Enter course ID: ";
     cin.ignore(100, '\n');
@@ -56,6 +57,8 @@ void App::promptViewStudentOfCourse() {
     }
     if (!chosen) {
         cout << "Course not found." << endl;
+        cout << "Press any key to continue..." << endl;
+        cin.get();
         return;
     }
 
@@ -85,6 +88,5 @@ void App::promptViewStudentOfCourse() {
     }
     tb.display();
     cout << "Press any key to continue..." << endl;
-    cin.ignore(100, '\n');
     cin.get();
 }

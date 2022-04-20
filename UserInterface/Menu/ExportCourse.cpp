@@ -29,4 +29,7 @@ void App::promptExportStudent() {
         cur = cur->next;
     }
     writeCSV("scoreboard.csv", csv);
+    cout << "Scoreboard exported to scoreboard.csv" << endl;
+    cout << "Press any key to continue..." << endl;
+    cin.get();
 }

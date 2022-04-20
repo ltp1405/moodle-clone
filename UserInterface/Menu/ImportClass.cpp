@@ -16,6 +16,7 @@ bool validPath(const std::string path) {
 }
 
 void App::promptImportStudent() {
+    clearScreen();
     cout << "Choose the class to import." << endl;
     cout << "classname> ";
     string inp;
@@ -31,6 +32,8 @@ void App::promptImportStudent() {
     }
     if (!chosenClass) {
         cout << "Class not found." << endl;
+        cout << "Press any key to continue..." << endl;
+        cin.get();
         return;
     }
 
@@ -86,4 +89,7 @@ void App::promptImportStudent() {
         st->cls = chosenClass;
         studentList.addTail(st);
     }
+    cout << "Class imported. Press any key to continue..." << endl;
+    cin.ignore(100, '\n');
+    cin.get();
 }
