@@ -2,6 +2,7 @@
 #include "../App.h"
 
 void App::viewScoreboard() {
+    clearScreen();
     DNode<Score> *cur = scoreboard.getHead();
     Table table("Scoreboard");
     table.addColumn(Column("Order", 5));
@@ -19,6 +20,9 @@ void App::viewScoreboard() {
         count++;
     }
     table.display();
+    cout << "Press any key to continue..." << endl;
+    cin.ignore(100, '\n');
+    cin.get();
 }
 
 bool inSemester(Semester *sm, const string courseID) {
@@ -32,6 +36,7 @@ bool inSemester(Semester *sm, const string courseID) {
 }
 
 void App::viewClassScoreboard() {
+    clearScreen();
     cout << "Enter class name: ";
     string inp;
     std::cin.ignore(100, '\n');
@@ -77,4 +82,6 @@ void App::viewClassScoreboard() {
         st = st->next;
         tb.display();
     }
+    cout << "Press any key to continue..." << endl;
+    cin.get();
 }

@@ -4,6 +4,7 @@
 #include "../School/SchoolYear.h"
 #include "../School/Semester.h"
 #include "../utils/LinkedList.h"
+#include "../utils/ClearScreen.h"
 #include "../utils/CSVParser.h"
 #include <iostream>
 #include <fstream>

@@ -26,6 +26,9 @@ void App::viewScoreboard(const string id) {
         cur = cur->next;
     }
     table.display();
+    cout << "Press any key to continue..." << endl;
+    cin.ignore(100, '\n');
+    cin.get();
 }
 
 void App::promptViewCourseScoreboard() {
@@ -40,4 +43,6 @@ void App::promptViewCourseScoreboard() {
     }
     cin >> inp;
     viewScoreboard(currentSemester->courses[inp-1]->data->id);
+    cout << "Press any key to continue..." << endl;
+    cin.get();
 }

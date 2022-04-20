@@ -12,6 +12,7 @@ using std::endl;
 using std::string;
 
 void App::promptImportCourseScoreboard() {
+    clearScreen();
     cout << "Enter filename:";
     string ans;
     cin.ignore(100, '\n');
@@ -45,4 +46,6 @@ void App::promptImportCourseScoreboard() {
                 scoreboard.getTail()->data.name = file[i][j];
         }
     }
+    cout << "Scoreboard imported. Press any key to continue..." << endl;
+    cin.get();
 }

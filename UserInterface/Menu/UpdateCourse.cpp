@@ -145,6 +145,8 @@ void App::promptUpdateCourse() {
     }
 
     updateCourse(currentSemester->courses[sel-1]->data);
+    cout << "Course updated. Press any key to continue..." << endl;
+    cin.get();
 }
 
 void App::promptDeleteCourse() {
@@ -160,4 +162,6 @@ void App::promptDeleteCourse() {
     }
 
     currentSemester->courses.deleteAtIndex(sel-1);
+    cout << "Course deleted. Press any key to continue..." << endl;
+    cin.get();
 }
