@@ -8,6 +8,7 @@ using std::cout;
 using std::cin;
 
 void App::promptCreateCourse() {
+    clearScreen();
     if (!currentSemester) {
         cout << "No semester available" << endl;
         return;
@@ -67,4 +68,6 @@ void App::promptCreateCourse() {
     }
     t = parseTime(time);
     currentSemester->courses.getTail()->data->addSession(Session(d, t), 2);
+    cout << "Course added. Press any key to continue..." << endl;
+    cin.get();
 }

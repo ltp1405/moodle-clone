@@ -5,14 +5,16 @@
 
 void App::promptAddClass()
 {
+    clearScreen();
     cout << "Input the class name(0 to stop): ";
     string classname;
-    cin >> classname;
+    cin.ignore(100, '\n');
+    getline(cin, classname);
     while(findClass(classes, classname) && classname!="0")
     {
         cout << "Class name already exists! Try again.\n\n"
              << "Input the class name(0 to stop): ";
-        cin >> classname;
+        getline(cin, classname);
     }
     if(classname!="0")
     {

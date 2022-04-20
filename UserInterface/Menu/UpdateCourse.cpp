@@ -2,6 +2,7 @@
 #include "../App.h"
 #include "../Menu.hpp"
 #include <iostream>
+#include <stdexcept>
 #include <string>
 using std::cout;
 using std::cin;
@@ -9,31 +10,80 @@ using std::endl;
 using std::string;
 using std::getline;
 
-void promptChangeId(Course *crs) {
-    cout << "Current ID: " << crs->id << endl;
-    cout << "Please enter new ID: ";
-    string id;
-    cin.ignore(1000, '\n');
-    std::getline(cin, id);
-    crs->id = id;
+void change_id(Course *crs) {
+    string str_inp;
+    cout << "Enter new ID (leave empty to skip)." << endl;
+    cout << "new id> ";
+    cin.ignore(100, '\n');
+    while (!getline(cin, str_inp)) {
+        cin.ignore(100, '\n');
+        cout << "Invalid input. Type again." << endl;
+        cout << "new id> ";
+    }
+    if (!str_inp.empty()) {
+        crs->id = str_inp;
+    }
 }
 
-void promptChangeName(Course *crs) {
-    cout << "Current Name: " << crs->name << endl;
-    cout << "Please enter new course name: ";
-    string name;
-    cin.ignore(1000, '\n');
-    std::getline(cin, name);
-    crs->name = name;
+void change_name(Course *crs) {
+    string str_inp;
+    cout << "Enter new name (leave empty to skip)." << endl;
+    cout << "new name> ";
+    while (!getline(cin, str_inp)) {
+        cout << "Invalid input. Type again." << endl;
+        cout << "new name> ";
+    }
+    if (!str_inp.empty()) {
+        crs->name = str_inp;
+    }
+
 }
 
-void promptChangeTeacher(Course *crs) {
-    cout << "Current Teacher: " << crs->teacherName << endl;
-    cout << "Please enter new teacher: ";
-    string name;
-    cin.ignore(1000, '\n');
-    std::getline(cin, name);
-    crs->teacherName = name;
+void change_teacher(Course *crs) {
+    string str_inp;
+    cout << "Enter new teacher (leave empty to skip)." << endl;
+    cout << "new teacher> ";
+    while (!getline(cin, str_inp)) {
+        cout << "Invalid input. Type again." << endl;
+        cout << "new teacher> ";
+    }
+    if (!str_inp.empty()) {
+        crs->teacherName = str_inp;
+    }
+}
+
+void change_credits(Course *crs) {
+    string inp;
+    cout << "Enter new number of credits." << endl;
+    cout << "credits> ";
+    getline(cin, inp);
+    if (inp == "")
+        return;
+    int i;
+    try {
+        i = std::stoi(inp);
+    } catch (std::invalid_argument) {
+        cout << "Invalid input. Credits not changed." << endl;
+        return;
+    }
+    crs->credits = i;
+}
+
+void change_max_students(Course *crs) {
+    string inp;
+    cout << "Enter new max number of students." << endl;
+    cout << "max students> ";
+    getline(cin, inp);
+    if (inp == "")
+        return;
+    int i;
+    try {
+        i = std::stoi(inp);
+    } catch (std::invalid_argument) {
+        cout << "Invalid input. Credits not changed." << endl;
+        return;
+    }
+    crs->maxStudents = i;
 }
 
 void updateSessions(Course *course) {
@@ -78,58 +128,26 @@ void updateSessions(Course *course) {
 void updateCourse(Course *crs) {
     string str_inp;
     int int_inp;
-    
-    cout << "Enter new ID (leave empty to skip)." << endl;
-    cout << "new id> ";
-    cin.ignore(100, '\n');
-    while (!getline(cin, str_inp)) {
+
+    change_id(crs);
+    cout << endl;
+    change_name(crs);
+    cout << endl;
+    change_teacher(crs);
+    cout << endl;
+    change_credits(crs);
+    cout << endl;
+    change_max_students(crs);
+    NMenu menu;
+    cout << "Do you want to update session?" << endl;
+    menu.addItem("Yes");
+    menu.addItem("No");
+    int inp = menu.run();
+    if (inp == 1)
+        updateSessions(crs);
+    else
         cin.ignore(100, '\n');
-        cout << "Invalid input. Type again." << endl;
-        cout << "new id> ";
-    }
-    if (!str_inp.empty()) {
-        crs->id = str_inp;
-    }
-
-    cout << "Enter new name (leave empty to skip)." << endl;
-    cout << "new name> ";
-    while (!getline(cin, str_inp)) {
-        cout << "Invalid input. Type again." << endl;
-        cout << "new name> ";
-    }
-    if (!str_inp.empty()) {
-        crs->name = str_inp;
-    }
-
-    cout << "Enter new teacher (leave empty to skip): ";
-    cout << "new teacher> ";
-    while (!getline(cin, str_inp)) {
-        cout << "Invalid input. Type again." << endl;
-        cout << "new teacher> ";
-    }
-    if (!str_inp.empty()) {
-        crs->teacherName = str_inp;
-    }
-
-    cout << "Enter new number of credits: ";
-    cout << "credits> ";
-    while (!(cin >> int_inp)) {
-        cin.clear();
-        cin.ignore(100, '\n');
-        cout << "Invalid input. Type again." << endl;
-        cout << "credits> ";
-    }
-    crs->credits = int_inp;
-
-    cout << "Enter new max number of students: ";
-    while (!(cin >> int_inp)) {
-        cin.clear();
-        cin.ignore(100, '\n');
-        cout << "Invalid input. Type again." << endl;
-        cout << "max students> ";
-    }
-    crs->maxStudents = int_inp;
-    updateSessions(crs);
+    return;
 }
 
 void App::promptUpdateCourse() {
@@ -145,6 +163,8 @@ void App::promptUpdateCourse() {
     }
 
     updateCourse(currentSemester->courses[sel-1]->data);
+    cout << "Course updated. Press any key to continue..." << endl;
+    cin.get();
 }
 
 void App::promptDeleteCourse() {
@@ -160,4 +180,6 @@ void App::promptDeleteCourse() {
     }
 
     currentSemester->courses.deleteAtIndex(sel-1);
+    cout << "Course deleted. Press any key to continue..." << endl;
+    cin.get();
 }

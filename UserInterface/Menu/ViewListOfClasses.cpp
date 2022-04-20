@@ -7,6 +7,7 @@
 
 
 void App::viewListOfClasses() {
+    clearScreen();
     Table tb("List of Course");
     tb.addColumn("Name");
     tb.addColumn("No of Student");
@@ -22,4 +23,7 @@ void App::viewListOfClasses() {
     }
 
     tb.display();
+    cout << "Press any key to continue..." << endl;
+    cin.ignore(100, '\n');
+    cin.get();
 }

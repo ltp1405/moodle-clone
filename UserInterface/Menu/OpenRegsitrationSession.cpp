@@ -23,4 +23,11 @@ void App::promptOpenRegistrationSession() {
     currentSemester->rgs.to = Date(eday, emonth, eyear);
 
     saveRegistrationSession(currentSemester->rgs.from, currentSemester->rgs.to);
+    cout << "Registration Session opened from "
+         << currentSemester->rgs.from.toString() << " "
+         << "to " << currentSemester->rgs.to.toString()
+         << endl;
+    cout << "Press any key to continue..." << endl;
+    cin.ignore(100, '\n');
+    cin.get();
 }

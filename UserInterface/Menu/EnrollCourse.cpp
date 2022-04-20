@@ -123,6 +123,8 @@ void enrollCourse(LinkedList<Course *> &ls, Student *st) {
 void App::studentPromptEnrollCourse() {
     if (currentStudent)
         enrollCourse(currentSemester->courses, currentStudent);
+    cout << "Course enrolled. Press any key to continue..." << endl;
+    cin.get();
 }
 
 bool studentCompare(Student *&st1, Student *&st2) {
