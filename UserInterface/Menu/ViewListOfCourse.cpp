@@ -11,20 +11,20 @@
 void App::promptViewCoursesList() {
     clearScreen();
     Table tb("List of Course");
-    tb.addColumn("ID");
+    tb.addColumn(Column("ID", 6));
     tb.addColumn("Name");
-    tb.addColumn(Column("Sessions", 20));
-    tb.addColumn("No of Credits");
-    tb.addColumn("No of Student");
-    tb.addColumn("Teacher Name");
-    tb.addColumn("Max Student");
+    tb.addColumn(Column("Sessions", 35));
+    tb.addColumn(Column("Credits", 8));
+    tb.addColumn(Column("Students", 9));
+    tb.addColumn(Column("Teacher", 15));
+    tb.addColumn(Column("Max", 5));
 
     DNode<Course*> *cur = currentSemester->courses.getHead();
     while (cur) {
         tb.addRow(
                 cur->data->id,
                 cur->data->name,
-                cur->data->session1.toString() + " " + cur->data->session2.toString(),
+                cur->data->session1.toString() + ", " + cur->data->session2.toString(),
                 std::to_string(cur->data->credits),
                 std::to_string(cur->data->students.getSize()),
                 cur->data->teacherName,
