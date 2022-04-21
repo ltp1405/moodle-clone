@@ -151,33 +151,33 @@ void updateCourse(Course *crs) {
 }
 
 void App::promptUpdateCourse() {
-    promptViewCoursesList();
-    int sel;
-    cout << "Select course to update." << endl;
-    cout << "select> ";
-    while (!(cin >> sel) || sel < 1 || sel > currentSemester->courses.getSize()) {
-        cin.clear();
-        cin.ignore(100, '\n');
-        cout << "Invalid input. Type again." << endl;
-        cout << "select> ";
+    NMenu menu;
+    DNode<Course*> *crs = currentSemester->courses.getHead();
+    while (crs) {
+        menu.addItem(crs->data->id + " - " + crs->data->name);
+        crs = crs->next;
     }
-
+    cout << "Select course to update." << endl;
+    int sel = menu.run();
+    if (sel == 0) {
+        return;
+    }
     updateCourse(currentSemester->courses[sel-1]->data);
     cout << "Course updated. Press any key to continue..." << endl;
     cin.get();
 }
 
 void App::promptDeleteCourse() {
-    promptViewCoursesList();
-    int sel;
-    cout << "Select course to update." << endl;
-    cout << "select> ";
-    while (!(cin >> sel) || sel < 1 || sel > currentSemester->courses.getSize()) {
-        cin.clear();
-        cin.ignore(100, '\n');
-        cout << "Invalid input. Type again." << endl;
-        cout << "select> ";
+    NMenu menu;
+    DNode<Course*> *crs = currentSemester->courses.getHead();
+    while (crs) {
+        menu.addItem(crs->data->id + " - " + crs->data->name);
+        crs = crs->next;
     }
+    cout << "Select course to delete." << endl;
+    int sel = menu.run();
+    if (sel == 0)
+        return;
 
     currentSemester->courses.deleteAtIndex(sel-1);
     cout << "Course deleted. Press any key to continue..." << endl;
