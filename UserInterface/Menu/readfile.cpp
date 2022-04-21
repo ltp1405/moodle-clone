@@ -10,11 +10,10 @@ void App::readfile(){
     std::ifstream fin;
     fin.open("data/schoolyear.txt");
     if(!fin){
-        cout << "Can not read file." << endl;
         return;
     }
     if(empty(fin)){
-        cout << "Input by hand :)) ." << endl;
+        cout << "Input by hand." << endl;
         return;
     }
     int sizeschoolyear;
