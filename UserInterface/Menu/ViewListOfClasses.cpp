@@ -8,7 +8,7 @@
 
 void App::viewListOfClasses() {
     clearScreen();
-    Table tb("List of Course");
+    Table tb("List of Classes");
     tb.addColumn("Name");
     tb.addColumn("No of Student");
 
