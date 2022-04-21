@@ -90,6 +90,5 @@ void App::promptImportStudent() {
         studentList.addTail(st);
     }
     cout << "Class imported. Press any key to continue..." << endl;
-    cin.ignore(100, '\n');
     cin.get();
 }
