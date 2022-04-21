@@ -111,6 +111,9 @@ void displayAllStudent(LinkedList<Student*> &student){
                 st->SocialID);
     }
     tb.display();
+	cout << "Press any key to continue...";
+	cin.ignore();
+	cin.get();
 }
 
 void exportStudentCSV(Student student, std::ofstream &fout){
