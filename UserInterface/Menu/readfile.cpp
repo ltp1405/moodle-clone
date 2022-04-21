@@ -72,7 +72,7 @@ void App::readfile(){
         }
         schoolyears.addTail(S);
         currentSchoolyear = schoolyears.getTail()->data;
-        currentSemester = currentSchoolyear->semesters.getTail()->data;
+        currentSemester = currentSchoolyear->semesters.getTail() ? currentSchoolyear->semesters.getTail()->data : nullptr;
     }
     fin.close();
 }
