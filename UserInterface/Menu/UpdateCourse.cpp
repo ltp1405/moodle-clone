@@ -151,6 +151,7 @@ void updateCourse(Course *crs) {
 }
 
 void App::promptUpdateCourse() {
+    clearScreen();
     NMenu menu;
     DNode<Course*> *crs = currentSemester->courses.getHead();
     while (crs) {
@@ -168,6 +169,7 @@ void App::promptUpdateCourse() {
 }
 
 void App::promptDeleteCourse() {
+    clearScreen();
     NMenu menu;
     DNode<Course*> *crs = currentSemester->courses.getHead();
     while (crs) {

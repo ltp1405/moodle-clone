@@ -9,7 +9,7 @@ void NMenu::addItem(string itemName) {
 
 int NMenu::run() {
     for (int i = 0; i < menuItems.size(); i++) {
-        cout << i+1 << "/ ";
+        cout << i+1 << ". ";
         cout << menuItems[i] << std::endl;
     }
 
