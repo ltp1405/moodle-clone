@@ -92,7 +92,7 @@ void enrollCourse(LinkedList<Course *> &ls, Student *st) {
         while (cur) {
             bool erl = enrolled(cur->data, st);
             if (erl)
-                cout << "\x1b[9m";
+                cout << "X \x1b[9m";
             cout << cur->data->id << " [ " << cur->data->session1.toString() << " ] " << ", ";
             cout << cur->data->id << " [ " << cur->data->session2.toString() << " ] " << endl;
             if (erl)
