@@ -25,6 +25,9 @@ void App::promptLogin() {
 }
 
 void App::logout() {
+    savefile();
+    saveClass();
+    saveScoreboard();
     currentStudent = nullptr;
     currentMember = nullptr;
     clearScreen();
@@ -37,8 +40,8 @@ void App::scoreboardGroup() {
     menu.addItem("Import scoreboard of a course", &App::promptImportCourseScoreboard);
     menu.addItem("View scoreboard of a course", &App::promptViewCourseScoreboard);
     menu.addItem("View scoreboard of a class", &App::viewClassScoreboard);
-    menu.addItem("Update scoreboard of a course", &App::promptUpdateCourseScoreboard);
-    menu.addItem("Update scoreboard of a class", &App::promptUpdateClassScoreboard);
+    // menu.addItem("Update scoreboard of a course", &App::promptUpdateCourseScoreboard);
+    // menu.addItem("Update scoreboard of a class", &App::promptUpdateClassScoreboard);
     bool run = true;
     do {
         clearScreen();
