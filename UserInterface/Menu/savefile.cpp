@@ -127,5 +127,5 @@ void App::saveScoreboard() {
                 });
         cur = cur->next;
     }
-    writeCSV("scoreboard.csv", csv);
+    writeCSV("data/scoreboard.csv", csv);
 }
