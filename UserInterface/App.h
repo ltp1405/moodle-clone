@@ -73,6 +73,7 @@ private:
     void studentPromptUnenrollCourse();
     void displayCurrentSchoolyear();
     void displayAllSchoolYears();
+    void promptUpdateScoreboard();
     void profileGroup();
     void scoreboardGroup();
     void semesterGroup();
