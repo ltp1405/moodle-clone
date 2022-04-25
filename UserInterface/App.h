@@ -73,6 +73,7 @@ private:
     void studentPromptUnenrollCourse();
     void displayCurrentSchoolyear();
     void displayAllSchoolYears();
+    void promptUpdateScoreboard();
     void profileGroup();
     void scoreboardGroup();
     void semesterGroup();
@@ -81,6 +82,7 @@ private:
     void courseGroup();
     void studentProfileGroup();
     void promptDeleteCourse();
+    void editScoreboard(int row_id);
     void viewListOfClasses();
     void loadClasses();
     void savefile();
