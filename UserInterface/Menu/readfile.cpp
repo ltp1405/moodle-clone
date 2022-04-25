@@ -31,9 +31,10 @@ void App::readfile(){
             fin >> semester_new->end.day >> semester_new->end.month >> semester_new->end.year;
             int sizecourses;
             fin >> sizecourses;
+            fin.ignore();
             for(int j = 0; j < sizecourses; j++){
                 Course *course_new = new Course;
-                fin.ignore();
+                
                 getline(fin, course_new->id);
                 getline(fin, course_new->name);
                 getline(fin, course_new->teacherName);
@@ -53,9 +54,10 @@ void App::readfile(){
 
                 int sizestudent;
                 fin >> sizestudent;
+                fin.ignore();
                 for(int k = 0; k < sizestudent; k++){
                     string id;
-                    fin.ignore();
+                    
                     getline(fin, id);
                     for(DNode<Student*> *cur = studentList.getHead(); cur; cur = cur->next){
                         if(cur->data->id == id){
