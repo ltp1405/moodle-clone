@@ -43,5 +43,7 @@ void App::promptViewCourseScoreboard() {
         cur = cur->next;
     }
     inp = menu.run();
+    if (inp == 0)
+        return;
     viewScoreboard(currentSemester->courses[inp-1]->data->id);
 }
