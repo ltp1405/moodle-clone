@@ -3,6 +3,7 @@
 #include "../../utils/CSVParser.h"
 #include "../Table.hpp"
 #include "../App.h"
+#include <fstream>
 #include <iostream>
 // using namespace std;
 using std::stod;
@@ -11,12 +12,38 @@ using std::endl;
 using std::string;
 
 void App::promptImportCourseScoreboard() {
-    cout << "Enter filename, (leave empty for default: data/scoreboard.csv) :";
+    clearScreen();
+    cout << "Enter filename: ";
     string ans;
+    cin.ignore(100, '\n');
     std::getline(cin, ans);
-    cout << "Scoreboard imported" << endl;
-    vvs file = readCSV("../data/scoreboard.csv");
+    std::ifstream fin;
+    fin.open(ans);
+    if (!fin) {
+        cout << "File not found." << endl;
+        cout << "Press any key to continue..." << endl;
+        fin.close();
+        cin.get();
+        return;
+    }
+    fin.close();
+    vvs file = readCSV(ans);
     for (int i = 1; i < file.size(); i++) {
+        bool skip = false;
+        for (int j = 0; j < file[i].size(); j++) {
+            if (file[0][j] == "student id") {
+                for (DNode<Score> *cur = scoreboard.getHead(); cur; cur = cur->next) {
+                    if (cur->data.id == file[i][j]) {
+                        cout << "Student " << cur->data.id << " already added." << endl;
+                        skip = true;
+                        break;
+                    }
+                }
+            }
+        }
+
+        if (skip)
+            continue;
         scoreboard.addTail(Score());
         for (int j = 0; j < file[i].size(); j++) {
             if (file[0][j] == "midterm mark")
@@ -35,4 +62,6 @@ void App::promptImportCourseScoreboard() {
                 scoreboard.getTail()->data.name = file[i][j];
         }
     }
+    cout << "Scoreboard imported. Press any key to continue..." << endl;
+    cin.get();
 }

@@ -16,6 +16,7 @@ bool validPath(const std::string path) {
 }
 
 void App::promptImportStudent() {
+    clearScreen();
     cout << "Choose the class to import." << endl;
     cout << "classname> ";
     string inp;
@@ -31,13 +32,15 @@ void App::promptImportStudent() {
     }
     if (!chosenClass) {
         cout << "Class not found." << endl;
+        cout << "Press any key to continue..." << endl;
+        cin.get();
         return;
     }
 
     cout << "File format: " << endl;
     cout << "+ In CSV" << endl;
-    cout << "+ The file must have at least 'id', 'firstname', 'lastname', 'gender'," << endl;
-    cout << "'day', 'month', 'year'" << endl << endl;
+    cout << "+ The file must have at least 'id', 'firstname', 'lastname', 'social id'," << endl;
+    cout << "'gender', 'day', 'month', 'year'" << endl << endl;
     cout << "Enter file path: ";
     std::getline(cin, inp);
     while (!validPath(inp)) {
@@ -73,6 +76,8 @@ void App::promptImportStudent() {
                 st->dateOfBirth.year = stod(file[i][j]);
             else if (file[0][j] == "username")
                 st->username = file[i][j];
+            else if (file[0][j] == "social id")
+                st->SocialID = file[i][j];
         }
         if (st->username == "") {
             st->username = st->id;
@@ -84,4 +89,6 @@ void App::promptImportStudent() {
         st->cls = chosenClass;
         studentList.addTail(st);
     }
+    cout << "Class imported. Press any key to continue..." << endl;
+    cin.get();
 }

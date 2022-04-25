@@ -5,7 +5,7 @@
 
 void App::savefile(){
     std::ofstream fout;
-    fout.open("schoolyear.txt");
+    fout.open("data/schoolyear.txt");
     int sizeschoolyear = schoolyears.getSize();
     fout << sizeschoolyear << endl;
     for(int s = 0; s < sizeschoolyear; s++){
@@ -53,6 +53,7 @@ void App::saveStudentList() {
             "username",
             "password",
             "gender",
+            "social id",
             "day",
             "month",
             "year",
@@ -67,6 +68,7 @@ void App::saveStudentList() {
                 st->data->username,
                 st->data->password,
                 std::to_string(st->data->gender),
+                st->data->SocialID,
                 std::to_string(st->data->dateOfBirth.day),
                 std::to_string(st->data->dateOfBirth.month),
                 std::to_string(st->data->dateOfBirth.year),
@@ -85,4 +87,45 @@ void App::saveMemberList() {
         file.push_back({ cur->data->username, cur->data->password });
     }
     writeCSV("data/Member.csv", file);
+}
+
+void App::saveClass() {
+    std::ofstream fout;
+    fout.open("data/Class.txt");
+    if (!fout)
+        return;
+    fout << classes.getSize() << endl;
+    DNode<Class*> *cur = classes.getHead();
+    while (cur) {
+        fout << cur->data->classname << endl;
+        cur = cur->next;
+    }
+    fout.close();
+}
+
+void App::saveScoreboard() {
+    std::ofstream fout;
+    fout.open("data/scoreboard.csv");
+    if (!fout) {
+        fout.close();
+        return;
+    }
+    fout.close();
+    vvs csv;
+    csv.push_back({ "student id", "student name", "course id",
+            "midterm mark", "final mark", "total mark", "other mark" });
+    DNode<Score> *cur = scoreboard.getHead();
+    while (cur) {
+        csv.push_back({
+                cur->data.id,
+                cur->data.name,
+                cur->data.courseId,
+                std::to_string(cur->data.midtermMark),
+                std::to_string(cur->data.finalMark),
+                std::to_string(cur->data.totalMark),
+                std::to_string(cur->data.otherMark),
+                });
+        cur = cur->next;
+    }
+    writeCSV("data/scoreboard.csv", csv);
 }

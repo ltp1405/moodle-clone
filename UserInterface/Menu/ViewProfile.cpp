@@ -9,4 +9,7 @@ void App::studentPromptViewProfile() {
     tb.addRow("Name", currentStudent->lastname + " " + currentStudent->firstname);
     tb.addRow("Birthday", currentStudent->dateOfBirth.toString());
     tb.display();
+    cout << "Press any key to continue..." << endl;
+    cin.ignore();
+    cin.get();
 }

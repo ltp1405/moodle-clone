@@ -91,12 +91,10 @@ void enrollCourse(LinkedList<Course *> &ls, Student *st) {
             return;
         while (cur) {
             bool erl = enrolled(cur->data, st);
-            if (erl)
-                cout << "\x1b[9m";
+            cout << (erl ? "[X] \x1b[9m" : "[ ]");
             cout << cur->data->id << " [ " << cur->data->session1.toString() << " ] " << ", ";
             cout << cur->data->id << " [ " << cur->data->session2.toString() << " ] " << endl;
-            if (erl)
-                cout << "\x1b[0m";
+            cout << (erl ? "\x1b[0m" : "");
             cur = cur->next;
         }
         cout << "Choose which course to enroll, type 0 to exit." << endl;
@@ -123,6 +121,12 @@ void enrollCourse(LinkedList<Course *> &ls, Student *st) {
 void App::studentPromptEnrollCourse() {
     if (currentStudent)
         enrollCourse(currentSemester->courses, currentStudent);
+    cout << "Course enrolled. Press any key to continue..." << endl;
+    cin.get();
+}
+
+bool studentCompare(Student *&st1, Student *&st2) {
+    return st1->id == st2->id;
 }
 
 void App::studentPromptUnenrollCourse() {
@@ -137,5 +141,16 @@ void App::studentPromptUnenrollCourse() {
         cur = cur->next;
     }
     int inp = menu.run();
+    if (inp == 0)
+        return;
+    Course *crs = currentStudent->courses.getNodeAtIndex(inp-1)->data;
     currentStudent->courses.deleteAtIndex(inp-1);
+    int count = 0;
+    for (DNode<Student*> *cur = crs->students.getHead(); cur; cur = cur->next) {
+        if (cur->data->id == currentStudent->id) {
+            break;
+        }
+        count++;
+    }
+    crs->students.deleteAtIndex(count);
 }

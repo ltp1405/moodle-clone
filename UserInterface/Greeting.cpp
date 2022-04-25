@@ -59,3 +59,11 @@ void scoreboardGreeting() {
     cout << "/___/\\__/\\___/_/  \\__/_.__/\\___/\\_,_/_/  \\_,_/   " << endl;
     cout << "                                                 " << endl;
 }
+
+void studentGreeting() {
+    cout << "   ______          __         __  " << endl;
+    cout << "  / __/ /___ _____/ /__ ___  / /_ " << endl;
+    cout << " _\\ \\/ __/ // / _  / -_) _ \\/ __/ " << endl;
+    cout << "/___/\\__/\\_,_/\\_,_/\\__/_//_/\\__/  " << endl;
+    cout << "                                  " << endl;
+}

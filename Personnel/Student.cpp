@@ -9,11 +9,11 @@ using std::endl;
 Student addStudent(){
 	Student student;
 	cout << "Student ID: ";
-	cin >> student.id;
+    getline(cin, student.id);
 	cout << "Student First Name: ";
-	cin >> student.firstname;
+    getline(cin, student.firstname);
 	cout << "Student Last Name: ";
-	cin >> student.lastname;
+    getline(cin, student.lastname);
 
 	cout << "Student Gender (1 for Male, 2 for Female): ";
 	int temp;
@@ -22,7 +22,7 @@ Student addStudent(){
 	if(temp==2) student.gender=FEMALE;
 	if(temp!=1&&temp!=2) student.gender=OTHER;
 
-	cout << "Student Day Of Birth (DD/MM/YYYY): ";
+	cout << "Student Day Of Birth (dd mm yyyy): ";
 	cin >> student.dateOfBirth.day >> student.dateOfBirth.month >> student.dateOfBirth.year;
 
 	cout << "Student Social ID: ";
@@ -111,6 +111,9 @@ void displayAllStudent(LinkedList<Student*> &student){
                 st->SocialID);
     }
     tb.display();
+	cout << "Press any key to continue...";
+	cin.ignore();
+	cin.get();
 }
 
 void exportStudentCSV(Student student, std::ofstream &fout){

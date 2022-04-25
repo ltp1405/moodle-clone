@@ -26,18 +26,24 @@ void App::viewScoreboard(const string id) {
         cur = cur->next;
     }
     table.display();
+    cout << "Press any key to continue..." << endl;
+    cin.ignore(100, '\n');
+    cin.get();
 }
 
 void App::promptViewCourseScoreboard() {
+    clearScreen();
     DNode<Course*> *cur = currentSemester->courses.getHead();
     cout << "Available Course: " << endl;
     int count = 0;
     int inp;
+    NMenu menu;
     while (cur) {
-        count++;
-        cout << count << " " << cur->data->id << " - " << cur->data->name << endl;
+        menu.addItem(cur->data->id + " - " + cur->data->name);
         cur = cur->next;
     }
-    cin >> inp;
+    inp = menu.run();
+    if (inp == 0)
+        return;
     viewScoreboard(currentSemester->courses[inp-1]->data->id);
 }

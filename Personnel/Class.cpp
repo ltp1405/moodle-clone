@@ -13,7 +13,7 @@ void importClassTXT(LinkedList<Class*>& c)
     for (int i = 0; i < n; i++) {
         string read;
         std::getline(fin, read);
-        std::cout << read << std::endl;
+        // std::cout << read << std::endl;
 
         Class *temp = new Class;
         temp->classname=read;

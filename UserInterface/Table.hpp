@@ -62,6 +62,7 @@ class Table {
 private:
     int getWidth();
     void printTop();
+    void printTitle();
     void printBot();
     void printBotHeader();
     void printLine(const string s, int times);
@@ -91,7 +92,6 @@ public:
     Table(string title);
     void addColumn(string name);
     void addColumn(Column col);
-    void addRow(vector<string> data);
 
     template<typename... Ts> void addRow(Ts... data) {
         rows.addTail(LinkedList<string>());

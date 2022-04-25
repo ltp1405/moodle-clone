@@ -8,13 +8,12 @@ bool empty(std::ifstream& file)
 
 void App::readfile(){
     std::ifstream fin;
-    fin.open("schoolyear.txt");
+    fin.open("data/schoolyear.txt");
     if(!fin){
-        cout << "Can not read file." << endl;
         return;
     }
     if(empty(fin)){
-        cout << "Input by hand :)) ." << endl;
+        cout << "Input by hand." << endl;
         return;
     }
     int sizeschoolyear;
@@ -72,12 +71,19 @@ void App::readfile(){
         }
         schoolyears.addTail(S);
         currentSchoolyear = schoolyears.getTail()->data;
-        currentSemester = currentSchoolyear->semesters.getTail()->data;
+        currentSemester = currentSchoolyear->semesters.getTail() ? currentSchoolyear->semesters.getTail()->data : nullptr;
     }
     fin.close();
 }
 
 void App::loadStudentList() {
+    std::ifstream fin;
+    fin.open("data/Student.csv");
+    if (!fin) {
+        return;
+        fin.close();
+    }
+    fin.close();
     vvs file = readCSV("data/Student.csv");
     for (int i = 1; i < file.size(); i++) {
         Student *st = new Student;
@@ -106,6 +112,8 @@ void App::loadStudentList() {
                 st->dateOfBirth.year = stod(file[i][j]);
             else if (file[0][j] == "username")
                 st->username = file[i][j];
+            else if (file[0][j] == "social id")
+                st->SocialID = file[i][j];
             else if (file[0][j] == "class") {
                 Class *cls = findClass(classes, file[i][j]);
                 st->cls = cls;
@@ -127,5 +135,35 @@ void App::loadMemberList() {
                 mem->password = file[i][j];
         }
         memberList.addTail(mem);
+    }
+}
+
+void App::readScoreboard() {
+    std::ifstream fin;
+    fin.open("data/scoreboard.csv");
+    if (!fin) {
+        fin.close();
+        return;
+    }
+    fin.close();
+    vvs file = readCSV("data/scoreboard.csv");
+    for (int i = 1; i < file.size(); i++) {
+        scoreboard.addTail(Score());
+        for (int j = 0; j < file[i].size(); j++) {
+            if (file[0][j] == "midterm mark")
+                scoreboard.getTail()->data.midtermMark = stod(file[i][j]);
+            else if (file[0][j] == "final mark")
+                scoreboard.getTail()->data.finalMark = stod(file[i][j]);
+            else if (file[0][j] == "total mark")
+                scoreboard.getTail()->data.totalMark = stod(file[i][j]);
+            else if (file[0][j] == "other mark")
+                scoreboard.getTail()->data.otherMark = stod(file[i][j]);
+            else if (file[0][j] == "student id")
+                scoreboard.getTail()->data.id = file[i][j];
+            else if (file[0][j] == "course id")
+                scoreboard.getTail()->data.courseId = file[i][j];
+            else if (file[0][j] == "student name")
+                scoreboard.getTail()->data.name = file[i][j];
+        }
     }
 }

@@ -4,6 +4,7 @@
 #include "../School/SchoolYear.h"
 #include "../School/Semester.h"
 #include "../utils/LinkedList.h"
+#include "../utils/ClearScreen.h"
 #include "../utils/CSVParser.h"
 #include <iostream>
 #include <fstream>
@@ -32,6 +33,10 @@ class App {
     
 private:
     // A bunch of linked list
+    void promptViewStudentOfCourse();
+    void saveScoreboard();
+    void readScoreboard();
+    void viewClassScoreboard();
     void promptAddClass();
     void logout();
     void loadStudentList();
@@ -68,6 +73,7 @@ private:
     void studentPromptUnenrollCourse();
     void displayCurrentSchoolyear();
     void displayAllSchoolYears();
+    void promptUpdateScoreboard();
     void profileGroup();
     void scoreboardGroup();
     void semesterGroup();
@@ -76,12 +82,14 @@ private:
     void courseGroup();
     void studentProfileGroup();
     void promptDeleteCourse();
+    void editScoreboard(int row_id);
     void viewListOfClasses();
     void loadClasses();
     void savefile();
     void readfile();
     void viewClass();
     void loadRegSession();
+    void saveClass();
     
 public:
     ~App();

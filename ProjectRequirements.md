@@ -65,7 +65,7 @@ teacher, the teacher will enter student results in this file,
 send it back to the staff, and then the staff will import the
 scoreboard to the system)
 - View the scoreboard of a course.
-- Update a student result.
+<!-- - Update a student result. -->
 - View the scoreboard of a class, including final marks of all courses
 in the semester, GPA in this semester, and the overall GPA.
 

@@ -4,6 +4,7 @@
 #include "../Table.hpp"
 
 void App::viewClass(){
+    clearScreen();
     cout << "Enter class name: ";
     string inp;
     std::cin.ignore(100, '\n');
@@ -42,5 +43,6 @@ void App::viewClass(){
         );
     }
     tb.display();
+    cout << "Press any key to continue..." << endl;
+    cin.get();
 }
-

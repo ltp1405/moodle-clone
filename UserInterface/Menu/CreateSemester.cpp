@@ -1,5 +1,6 @@
 #include "../App.h"
 #include "../../School/Semester.h"
+#include "../../utils/ClearScreen.h"
 
 void Semester::addtime(int order, Date start, Date end){
     this->order = order;
@@ -23,10 +24,16 @@ void CreateSemester(Semester &semester_new){
 void App::promptCreateSemester(){
     if (!currentSchoolyear) {
         cout << "No schoolyear available. Please create one first." << endl;
+        cin.ignore(100, '\n');
+        cin.get();
         return;
     }
+    clearScreen();
     Semester* semester_new = new Semester;
     currentSchoolyear->semesters.addTail(semester_new);
     CreateSemester(*currentSchoolyear->semesters.getTail()->data);
+    cout << "Semester added. Press any key to continue..." << endl;
+    cin.ignore(100, '\n');
+    cin.get();
     currentSemester = currentSchoolyear->semesters.getTail()->data;
 }
