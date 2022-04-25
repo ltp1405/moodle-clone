@@ -202,6 +202,8 @@ App::~App() {
     savefile();
     saveClass();
     saveScoreboard();
+    saveMemberList();
+    saveStudentList();
 }
 
 int main() {
