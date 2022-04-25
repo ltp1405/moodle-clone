@@ -141,6 +141,8 @@ void App::studentPromptUnenrollCourse() {
         cur = cur->next;
     }
     int inp = menu.run();
+    if (inp == 0)
+        return;
     Course *crs = currentStudent->courses.getNodeAtIndex(inp-1)->data;
     currentStudent->courses.deleteAtIndex(inp-1);
     int count = 0;
