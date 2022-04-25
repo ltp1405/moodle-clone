@@ -30,13 +30,17 @@ void App::promptImportCourseScoreboard() {
     vvs file = readCSV(ans);
     for (int i = 1; i < file.size(); i++) {
         bool skip = false;
-        for (int j = 0; j < file[i].size(); j++) {
-            if (file[0][j] == "student id") {
-                for (DNode<Score> *cur = scoreboard.getHead(); cur; cur = cur->next) {
-                    if (cur->data.id == file[i][j]) {
-                        cout << "Student " << cur->data.id << " already added." << endl;
-                        skip = true;
-                        break;
+        for (int k = 0; k < file[i].size(); k++) {
+            if (file[0][k] == "course id") {
+                for (int j = 0; j < file[i].size(); j++) {
+                    if (file[0][j] == "student id") {
+                        for (DNode<Score> *cur = scoreboard.getHead(); cur; cur = cur->next) {
+                            if (cur->data.id == file[i][j] && cur->data.courseId == file[i][k]) {
+                                cout << "Student " << cur->data.id << " already added." << endl;
+                                skip = true;
+                                break;
+                            }
+                        }
                     }
                 }
             }
