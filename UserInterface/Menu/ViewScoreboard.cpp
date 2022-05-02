@@ -85,7 +85,7 @@ void App::viewClassScoreboard() {
     cout << "Press any key to continue..." << endl;
     cin.get();
 }
-void sort(LinkedList<string> &listid, LinkedList<int> &listscore){
+void sort(LinkedList<string> &listid, LinkedList<double> &listscore){
     if(listid.getSize() == 0) return;
     int n = listid.getSize();
     for (int i = 0; i < n; i++){
@@ -109,7 +109,7 @@ void App::viewtop10Scoreboard() {
         return;
     }
     LinkedList<string> listid;
-    LinkedList<int> listscore;
+    LinkedList<double> listscore;
     DNode<Student*> *st = cls->listOfStudent.getHead();
     Table tb("Ranking GPA in this semester");
     tb.addColumn(Column("ID Student", 20));
