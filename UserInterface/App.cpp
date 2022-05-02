@@ -41,6 +41,7 @@ void App::scoreboardGroup() {
     menu.addItem("View scoreboard of a course", &App::promptViewCourseScoreboard);
     menu.addItem("View scoreboard of a class", &App::viewClassScoreboard);
     menu.addItem("Update scoreboard of a course", &App::promptUpdateScoreboard);
+    menu.addItem("View Ranking GPA in this semester", &App::viewtop10Scoreboard);
     bool run = true;
     do {
         clearScreen();
