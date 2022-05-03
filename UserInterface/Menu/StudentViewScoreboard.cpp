@@ -4,6 +4,7 @@
 #include "../../Personnel/Student.h"
 
 void App::studentPromptViewScoreboard() {
+    clearScreen();
     DNode<Score> *cur = scoreboard.getHead();
     Table table("Scoreboard");
     table.addColumn(Column("Order", 5));
@@ -23,5 +24,6 @@ void App::studentPromptViewScoreboard() {
     }
     table.display();
     cout << "Press any key to continue..." << endl;
+    cin.ignore();
     cin.get();
 }

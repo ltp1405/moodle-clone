@@ -49,7 +49,7 @@ void change_total(Score *score) {
         cout << "Invalid input. Credits not changed." << endl;
         return;
     }
-    score->otherMark = i;
+    score->totalMark = i;
 }
 
 void change_other(Score *score) {
@@ -66,7 +66,7 @@ void change_other(Score *score) {
         cout << "Invalid input. Credits not changed." << endl;
         return;
     }
-    score->midtermMark = i;
+    score->otherMark = i;
 }
 
 void App::editScoreboard(int row_id) {
@@ -97,8 +97,8 @@ void App::promptUpdateScoreboard() {
     score_table.addColumn("Name");
     score_table.addColumn(Column("Midterm", 7));
     score_table.addColumn(Column("Final", 6));
-    score_table.addColumn(Column("Total", 6));
     score_table.addColumn(Column("Other", 6));
+    score_table.addColumn(Column("Total", 6));
 
     DNode<Score> *cur_s = scoreboard.getHead();
     LinkedList<int> score_i;
@@ -133,8 +133,8 @@ void App::promptUpdateScoreboard() {
         score_table.addColumn("Name");
         score_table.addColumn(Column("Midterm", 7));
         score_table.addColumn(Column("Final", 6));
-        score_table.addColumn(Column("Total", 6));
         score_table.addColumn(Column("Other", 6));
+        score_table.addColumn(Column("Total", 6));
         DNode<Score> *cur_s = scoreboard.getHead();
 
         int count = 1;

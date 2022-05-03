@@ -74,6 +74,7 @@ private:
     void displayCurrentSchoolyear();
     void displayAllSchoolYears();
     void promptUpdateScoreboard();
+    void viewtop10Scoreboard();
     void profileGroup();
     void scoreboardGroup();
     void semesterGroup();

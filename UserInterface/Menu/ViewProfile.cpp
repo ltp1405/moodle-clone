@@ -2,6 +2,7 @@
 #include "../Table.hpp"
 
 void App::studentPromptViewProfile() {
+    clearScreen();
     Table tb("Student Information");
     tb.addColumn(Column("", 10));
     tb.addColumn(Column("Information", 25, Alignment::center));
