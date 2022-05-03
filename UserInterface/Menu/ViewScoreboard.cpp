@@ -78,7 +78,7 @@ void App::viewClassScoreboard() {
             continue;
         }
         tb.addRow("Semester GPA", semesterGPA/inSm);
-        tb.addRow("Total GPA", totalGPA/st->data->courses.getSize());
+        tb.addRow("Total GPA", totalGPA/count);
         st = st->next;
         tb.display();
     }
