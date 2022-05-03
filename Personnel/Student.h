@@ -39,3 +39,4 @@ void displayStudent(Student student);
 void displayAllStudent(LinkedList<Student*> &student);
 void exportStudentCSV(Student student, std::ofstream& fout);
 void exportAllStudentCSV(LinkedList<Student> student);
+void exportStudent();
